@@ -1,0 +1,41 @@
+%% LaTeX2e class for student theses
+%% sections/content.tex
+%% 
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% Version 1.1, 2014-11-21
+
+\chapter{Introduction}
+\label{ch:Introduction}
+The phase distribution in clouds is one of the most important parameters determining radiative properties and precipitation forming. Nevertheless the knowledge of ice production and thereby the distribution of ice and liquid particles (phase distribution) in clouds is still incomplete and mainly based on remote sensing or punctual in-situ measurements \citep{cantrell2005production}. \\
+There have been efforts to evaluate the phase distribution (from here on PD) in clouds with remote sensing by satellites or aircraft measurements and to parameterize them for use in numerical models (see figure \ref{fig:lf_diagn}). These methods show large discrepancies in the temperature dependent PD.
+\begin{figure}[h]
+ \begin{minipage}[b]{0.49\textwidth}
+  {\includegraphics[width=\textwidth, height=8cm]{fig/intro/Choi_liq_fract.png}}
+ \end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+  {\includegraphics[width=\textwidth, height=8cm]{fig/intro/Korolev_liq_fract.png}}
+ \end{minipage}
+ \caption[Composition of experimental measurements that derived the liquid fraction as a function of temperature]{Liquid fraction ($lf$) as a function of temperature derived from satellite data, Global Climate Models (GCM) (left; \cite{choi2010space}) and aircraft measurements (right; \cite{korolev2003microphysical}). The colored lines in the left panel show the lf of satellite data sampled over June, July and August of the years 2000-2006 in a specific latitude while the gray or black lines correspond to several GCMs. The right panel composites different aircraft campaigns in different regions composed by \citet{korolev2003microphysical}.}
+ \label{fig:lf_diagn}
+\end{figure}
+The glaciation temperature can be defined as the temperature dependent liquid fraction ($lf$) where as value of $lf$=0.5 is reached. While satellite measurements see typical glaciation temperatures around $T$=$-25\Cels$, aircraft measurements and parametrizations used in Global Climate Models (GCMs) spread around $T$=$-10\Cels$.\\ 
+To understand the difference between measurements and to represent better the thermodynamic properties of clouds in climate models it is crucial to examine the sensitivity of the resulting phase distribution to measurement artefacts.
+\\
+!(neuer Satz) A deep convective cloud (DCC) is a cloud-type with a very complex structure and therefore greater efforts in examining its mycrophysical behaviour and radiative properties are required.
+In general the radiative forcing of clouds is determined by the sum of short-wave (corresponding to albedo effect) and long-wave (corresponding to greenhouse effect) radiative forcing. \\
+In clouds with a low vertical extent the total radiative forcing is dominated by one of the components. High optical thin cirrus clouds tend to warm the earth. In the short-wavelength range they are transmitting radiation to a great extent. In contrast to that the existence of high clouds leads to a higher downward long-wavelength radiation. While the cold clouds emit, due to their temperature, a small amount of long-wave radiation to the space they reflect a greater amount back to the earth surface.\\
+In contrast to that low clouds tend to cool the Earth by reflecting short wave radiation and emitting long-wave radiation with almost the same temperature as the ground.\\
+In general DCCs are one of the most effective cloud types in changing the radiative flux both in short- and long-wave regime, due to their optical thickness and cold cloud-top \citep{chen2000radiative}.\\
+The thermodynamic phase plays an important role in the radiative effects. Both the direct radiative properties and the lifetime of the clouds depend on the thermodynamic phase. Due to the the different geometric properties of liquid water (i.e. typically smaller effective radius) and ice (i.e. typically larger effective radius), liquid parts of the cloud have a greater albedo. Furthermore the lifetime of the clouds is expected to be shorter if more ice is formed and therefore precipitation can be initiated \citep{lohmann2005forcing}. \\
+\\
+DCCs in central Europe typically have a wide vertical extension. Clouds with the base below $T$=$0\Cels$ and the cloudtop above the temperature of homogeneous freezing at about $T$=-$38^\circ\text{C}$ occur regularly in the mid-latitude summer season \citep{houze2014}.
+As a result for the modelling of convective clouds it is essential to include mycrophysics in the whole mixed phase temperature range from $T$=$0\Cels$ to $-40\Cels$, including primary and secondary ice nucleation and the evolution of saturation.\\ \\
+In this study a single DCC will be modelled with a high resolution to examine the glaciation temperature and the statistics of the cloud phase distribution. Fore this the numeric weather prediction model COSMO that contains the Seifert and Beheng (SB) two-moment cloud physic scheme is used. The model and configuration description is given in chapter \ref{chap:COSMO}.\\
+Furthermore analyses are presented that aim to be comparable to diagnostics of aircraft and satellite (see sections \ref{sec:precip} and \ref{sec:tau_as_lim}). By varying the definition of the cloud and the calculation method of the liquid fraction this approach to experimental results can be realized. Thereby for example the shift of the glaciation temperature based on measurement limitations can be explored.\\
+Section \ref{sec:sens} investigates the sensitivity of the model to different routines of the SB-two-moment scheme that are related to ice production. In section 5, finally a brief conclusion is given.

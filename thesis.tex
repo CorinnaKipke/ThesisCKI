@@ -1,0 +1,183 @@
+%% LaTeX2e class for student theses
+%% thesis.tex
+%% 
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% Version 1.1, 2014-11-21
+
+%% LaTeX2e class for student theses
+%% thesis.tex
+%% 
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% Version 1.1, 2014-11-21
+
+%% Available languages: english,ngerman
+%% Available modes: draft,final (see README)
+\documentclass[english,draft]{sdqthesis}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+%\usepackage{eulervm}
+\newcommand{\Cels}{\ensuremath{\,^\circ \textrm{C}}}
+\newcommand{\veloc}{\ensuremath{\,\mbox{m}\cdot \mbox{s}^{-1}}}
+\newcommand{\massmix}{\ensuremath{\,\mbox{g}\cdot \mbox{kg}^{-1}}}
+\newcommand{\Tfif}{\ensuremath{T_{50}}}
+%\usepackage{subfigure} 
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{floatrow}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage[nonumberlist, acronym]{glossaries}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\makeglossaries
+%\usepackage{jneurosci}
+%\let \bibhang \relax
+%\usepackage{natbib}
+%% ---------------------------------
+%% | Information about the thesis  |
+%% ---------------------------------
+
+%% Name of the author
+\author{Corinna Kipke}
+
+%% Title (and possibly subtitle) of the thesis
+\title{In Silico Evaluation of the Retention of Magnetic
+Nanoparticles within Magnetized Packed Beds}
+
+%% Type of the thesis 
+\thesistype{Master's Thesis}
+
+%% Change the Ce here, ``IPD'' is default
+ \myinstitute{Institute of Functional Interfaces (IFG) -\\ Department of Bioengineering and Biosystems}
+
+%% You can put a logo in the ``logos'' directory and include it here
+%% instead of the SDQ logo
+% \grouplogo{myfile}
+%% Alternatively, you can disable the group logo
+ \nogrouplogo
+
+%% The reviewers are the professors that grade your thesis
+\reviewerone{Prof. Dr. Matthias Franzreb}
+\reviewertwo{Prof. Dr. Dieter Stapf}
+
+%% The advisors are PhDs or Postdocs
+\advisorone{M.Sc. Carsten-Rene Arlt}
+%% The second advisor can be omitted
+%\advisortwo{Christian Barthlott}
+
+%% Please enter the start end end time of your thesis
+%\editingtime{xx. Month 2015}{xx. Month 2015}
+
+\settitle
+
+%% --------------------------------
+%% | Settings for word separation |
+%% --------------------------------
+
+%% Describe separation hints here.
+%% For more details, see 
+%% http://en.wikibooks.org/wiki/LaTeX/Text_Formatting#Hyphenation
+\hyphenation{
+me-ta-mo-del
+}
+
+%% --------------------------------
+%% | Bibliography                 |
+%% --------------------------------
+
+%% Use biber instead of BibTeX, see README
+\usepackage[citestyle=authoryear,maxnames=2,uniquelist=false,natbib=true,bibstyle=authoryear,firstinits,backend=biber,defernumbers=true]{biblatex}
+%authoryear: use cite citep (in parents) and citet (in text), maxnames=2: if more than 2 authors only one author and et al. is displayed; uniquelist: dont use first name if 2 authors have same last name, natbib=true: necessary for citep etc., bibstyle=authoryear: controls style in Bibliography, firstinits: show only initials of first name in bibliography; defersnumber=true: necessary  for use of omitnumbers=true in printbibliography (no numbers in bibliography)
+
+\addbibresource{thesis.bib}
+\bibliography{thesis.bib}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
+%% ====================================
+%% ====================================
+%% ||                                ||
+%% || Beginning of the main document ||
+%% ||                                ||
+%% ====================================
+%% ====================================
+\begin{document}
+
+%% Set PDF metadata
+%\setpdf
+
+%% Set the title
+\maketitle
+%% The Preamble begins here
+\frontmatter
+\include{sections/declaration}
+
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+%% ----------------
+%% |   Abstract   |
+%% ----------------
+
+%% For theses written in English, an abstract both in English
+%% and German is mandatory.
+%%
+%% For theses written in German, a German abstract is sufficient.
+%%
+%% The text is included from the following files:
+%% - sections/abstract
+
+%\includeabstract
+
+%% ------------------------
+%% |   Table of Contents  |
+%% ------------------------
+\tableofcontents
+
+\listoffigures
+\listoftables
+\printglossaries
+
+%% -----------------
+%% |   Main part   |
+%% -----------------
+
+\mainmatter
+
+\include{sections/introduction}
+\include{sections/content}
+%\include{sections/evaluation}
+\include{sections/conclusion}
+
+
+%% --------------------
+%% |   Bibliography   |
+%% --------------------
+
+%% Add entry to the table of contents for the bibliography
+%\bibliographystyle{agsm}
+\printbibliography[omitnumbers=true]
+
+%% ----------------
+%% |   Appendix   |
+%% ----------------
+\appendix
+\include{sections/appendix}
+
+\end{document}
