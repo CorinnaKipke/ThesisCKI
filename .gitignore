@@ -15,4 +15,5 @@
 *.glo
 *.gls
 *.log
+sections/*.aux
 thesis.pdf
