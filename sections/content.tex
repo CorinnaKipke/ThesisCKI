@@ -20,18 +20,81 @@
 \chapter{Theoretical Framework}
 \label{chap:chap_theo}
 
+\newacronym{cfd}{CFD}{computational fluid dynamics}
+\newacronym{smb}{SMB}{simulated moving bed chromatography}
+
+In the first part of this chapter the fundamentals of magnetism are described. Section \ref{subsec:Quant_mag} gives an overview of the basic magnetic quantities while in section \ref{subsec:Mag_mat} the magnetic properties of materials are discussed. In Section \ref{sec:Mag_sep} the basic principles of and the forces acting in a magnetic separation process are explained. Furthermore the dimensioning of a Helmholtz coil is described in Section \ref{sec:Dim_helm_coil}.
+In the second part of this chapter the fundamentals of \gls{cfd} are discussed (see Section ...). 
+
 \section{Fundamentals of magnetism}
 \label{sec:Fund_mag}
+Magnetism is a physical phenomenon produced by the motion of electric charges, which results in attractive and repulsive forces between objects \cite{stevenson2010oxford}.
+
+\begin{equation}
+\label{eq:Gauss}
+\centering
+\nabla\cdotp\boldsymbol{B} = 0
+\end{equation}
+
+\begin{equation}
+\label{eq:Ampere}
+\centering
+\nabla\times\boldsymbol{H} = \boldsymbol{J}
+\end{equation}
+
+\subsection{Fundamental quantities of magnetism}
+\label{subsec:Quant_mag}
+
+\begin{equation}
+\label{eq:B_vac}
+\centering
+\boldsymbol{B} = \mu_{0}\boldsymbol{H}
+\end{equation}
+
+\begin{equation}
+\label{eq:mu}
+\centering
+\mu_{0} = 4\pi10^{-7}\frac{Vs}{Am}
+\end{equation}
+
+\begin{equation}
+\label{eq:B_tot}
+\centering
+\boldsymbol{B} = \mu_{0}\mu_{r}\boldsymbol{H}
+\end{equation}
+
+\begin{equation}
+\label{eq:mu_r}
+\centering
+\mu_{r} = 1 + \chi
+\end{equation}
+
+\begin{equation}
+\label{eq:Mag}
+\centering
+\boldsymbol{B} = \mu_{0}(\boldsymbol{H} + \boldsymbol{M})
+\end{equation}
 
 
 
 \subsection{Magnetic properties of materials}
 \label{subsec:Mag_mat}
+Figure of permeability curves
 
+\section{Fundamentals of magnetic separation}
+\label{sec:Mag_sep}
 
+\subsection{Basic principles}
+\label{subsec:bas_princ}
 
+\subsection{Magnetic particle accumulation on single wires}
+\label{subsec:single_wire}
 
 \section{Dimensioning of a Helmholtz coil}
+\label{sec:Dim_helm_coil}
+
+\section{Simulated moving bed chromatography}
+\label{sec:smb}
 
 \chapter{Materials and Methodology}
 \label{chap:chap_mat}
@@ -103,7 +166,7 @@ A CETONI neMESYS syringe pump (CETONI GmbH, Korbussen, Germany), controlled by a
         \end{subfigure}
         \\
         
-        \caption{Column packing setup; left side: CETONI neMESYS control station (1), column (2) and syring pump (3); right side: Column packed with \gls{pmma} matrix material }
+        \caption[Column packing setup]{Column packing setup; left side: CETONI neMESYS control station (1), column (2) and syring pump (3); right side: Column packed with \gls{pmma} matrix material }
         \label{fig:Packing_Setup_Column}
   \end{figure}  
 
@@ -205,7 +268,7 @@ The magnetic field could be influenced by the variation of the frequency, duty c
 \centering
 
 \scalebox{0.60}{\includegraphics{figures/waveform.pdf}}
-\caption{Example of a square wave signal used for the generation of a constant magnetic field with a frequency of 1\,Hz, a high level of 400\,mV and a low level of 396\,mV
+\caption[Example of a square wave signal]{Example of a square wave signal used for the generation of a constant magnetic field with a frequency of 1\,Hz, a high level of 400\,mV and a low level of 396\,mV
 \label{fig:waveform}
 }
 \end{figure}
