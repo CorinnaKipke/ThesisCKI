@@ -332,8 +332,8 @@ Langevin equation (for more detailed information see \cite{Langevin}\cite{Browni
 D = \frac{k_{B}T}{6\pi\eta b}
 \end{equation}
 
-Equation \ref{eq:Stokes_Einstein}, called Stokes-Einstein equation, describes the diffusion of spherical particles through a fluid with low Reynolds numbers. $k_{B}$ is the Boltzmann constant with a value of 1.38064852$\cdotp$10\textsuperscript{-23}\,J/K, which can be calculated by the division of the universal gas constant $R$ by the Avogadro constant $N_{A}$, while T is the temperature of the surrounding fluid. A diffusion force $F_{B}$ acting on the particles can be described as follows:
- 
+Equation \ref{eq:Stokes_Einstein}, called Stokes-Einstein equation, describes the diffusion of spherical particles through a fluid with low Reynolds numbers. $k_{B}$ is the Boltzmann constant with a value of 1.38064852$\cdotp$10\textsuperscript{-23}\,J/K, which can be calculated by the division of the universal gas constant $R$ by the Avogadro constant $N_{A}$, while T is the temperature of the surrounding fluid. Particle diffusion can be pictured as a driving force which is based on the gradient in the particle concentration. 
+A diffusion "force" $F_{B}$ acting on the particles can therefore be described as follows:
 
 \begin{equation}
 \label{eq:mag_force}
@@ -341,44 +341,104 @@ Equation \ref{eq:Stokes_Einstein}, called Stokes-Einstein equation, describes th
 \boldsymbol{F}_{B} = -k_{B}T\frac{\nabla n}{n}
 \end{equation}
 
-where $n$ is the number density of particles within the fluid \cite{choomphon2017simulation}. \\
-As the type of particles (shape, size, material) is usually given, the main influencing factors on $F_{m}$ for the magnetic separation are the magnetic field strength and its gradient. Consequently the combination of magnetic field strength and field gradient must be optimized for each application individually. The most common magnetic separators can be divided into three basic categories: open gradient magnetic seperators, closed-gradient magnetic separators and matrix (polygradient) magnetic seperators \cite{svoboda2004magnetic}. \Gls{hgms}, which are used for the recovery of micron sized particles, belong to the class of matrix separators. In the following Section the principles of \gls{hgms} will be further explained.        
+where $n$ is the number density of particles within the fluid \cite{choomphon2017simulation}\cite{moeser2004high}\cite{fletcher1991fine}. \\
+As the type of particles (shape, size, material) is usually given, the main influencing factors on $F_{m}$ for the magnetic separation are the magnetic field strength and its gradient. Consequently the combination of magnetic field strength and field gradient must be optimized for each application individually. The most common magnetic separators can be divided into three basic categories: open gradient magnetic seperators, closed-gradient magnetic separators and matrix (polygradient) magnetic seperators \cite{svoboda2004magnetic}. \Gls{hgms}, which are used for the recovery of micron sized particles, belong to the class of matrix separators. In the following Section the principles of \gls{hgms} will be further explained.  
+
+\subsection{Field of a transversally magnetized cylinder}
+\label{subsec:mag_field}
 
 \subsection{High gradient magnetic separation}
 \label{subsec:HGMS}
-In conventional magnetic separators only ferromagnetic materials with a particle size larger than approximately 50\,\textmu m can be separated. \Gls{hgms}, based on the Frantz Ferrofilter, enables the magnetic separation of smaller and only weakly magnetic particles \cite{frantz1937patent} \cite{ge2017magnetic}. This is achieved through the combination of strong magnetic fields and high magnetic field gradients. Ferromagnetic bodies, called the matrix, are placed in the external magnetic field. The applied magnetic field induces magnetic moments in the ferromagnetic matrix which leads to high magnetic field gradients in the proximity of the matrix elements \cite{shukla2006process}. Magnetically susceptible particles will move along the gradient towards the matrix element and will be captured on the surface \cite{hoffmann2002novel}. As the magnitude of the magnetic field gradient as well as the collection surface are dependant on the shape, size, arrangement and placement of the used bodies, the matrix material e.g. balls, grooved plates, steel wool or rods has to be chosen carefully (more information on different matrix materials can be found in\cite{iacob2002high}\cite{kim2013effects}\cite{takayasu1981matrices}). The matrix has to be fine enough to generate a strong enough magnetic field gradient for selective separation, but also not so strong as to cause matrix blockage and retention of non-magnetic materials. As the filling factor of the used matrix material is often low, e.g. 0.04 and 0.20 for steel wool and expanded metal respectively with the exception of ball (0.50) and grooved plate (0.80) matrices, and as the matrix does not conduct magnetic flux very well, strong external fields are required.    
+In conventional magnetic separators only ferromagnetic materials with a particle size larger than approximately 50\,\textmu m can be separated. \Gls{hgms}, based on the Frantz Ferrofilter, enables the magnetic separation of smaller and only weakly magnetic particles \cite{frantz1937patent} \cite{ge2017magnetic}. This is achieved through the combination of strong magnetic fields and high magnetic field gradients. Ferromagnetic bodies, called the matrix, are placed in the external magnetic field. The applied magnetic field induces magnetic moments in the ferromagnetic matrix which leads to high magnetic field gradients in the proximity of the matrix elements \cite{shukla2006process}. Magnetically susceptible particles will move along the gradient towards the magnetized matrix element and will be captured on the surface \cite{hoffmann2002novel}. As the magnitude of the magnetic field gradient as well as the collection surface are dependant on the shape, size, arrangement and placement of the used bodies, the matrix material e.g. balls, grooved plates, steel wool or rods has to be chosen carefully (more information on different matrix materials can be found in\cite{iacob2002high}\cite{kim2013effects}\cite{takayasu1981matrices}). The matrix has to be fine enough to generate a strong enough magnetic field gradient for selective separation, but also not so strong as to cause matrix blockage and retention of non-magnetic materials. As the filling factor of the used matrix material is often low, e.g. 0.04 and 0.20 for steel wool and expanded metal respectively and as the matrix does not conduct magnetic flux very well, strong external fields are required. An exception are matrices consisting of balls with a filling factor of up to 0.50 and grooved plate with a filling factor of 0.80. 
+%In general, the separation efficiency of ball matrices is smaller than the in filament units, as a closed packed array of spheres does not leave much space for the collection of particles.  
 
-%%%%%%%%%%%%Include Figure of HGMS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A schematic drawing of a \gls{hgms} is shown in Figure \ref{fig:??}. 
-
-not only generates the high magnetic
-field gradient to increase magnetic force acting on magnetic parti-
-cle, but also provides surface sites with high gradient to collect
-magnetic material
-A wire placed into an
-external magnetic field generates high magnetic field gradients
-in its surrounding. When magnetically susceptible particles are
-introduced into such an environment they will move along the
-gradient toward the wire and will be captured at distinct regions
-on the wire’s surface
-
-\subsection{Magnetic particle accumulation on single wires}
-\label{subsec:single_wire}
+%%%%%%%%%%%%Include Figure of HGMS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%change figure !!!!!!!!!!!!!!!!!
 
 \begin{figure}[h]
 \centering
 
-\scalebox{0.80}{\includegraphics{figures/Single_wire.pdf}}
-\caption[Hysteresis loop of a ferromagnetic material]{Example of a hysteresis loop of a ferromagnetic material: $M_{r}$ is the remnant magnetization at H=0; ${H}_{c}$ is the coercivity, i.e. the reverse field that reduces $M$ to zero; $M_{s}$ is the saturation magnetization
-\label{fig:si_wire}
+\scalebox{0.35}{\includegraphics{figures/hgms_franzreb.png}}
+\caption[Schematic \gls{hgms} process]{Schematic \gls{hgms} process: The ferromagnetic wire placed in the external field, generated by permanent magnets, generates high magnetic field gradients. The magnetic particles in the suspension move along the gradient towards the wire and are captured on the wire's surface.  
+\label{fig:hgms}
 }
 \end{figure}
 
+A schematic drawing of a \gls{hgms} is shown in Figure \ref{fig:hgms}. The particle suspension flows through the matrix. Particles with high magnetic susceptibilities accumulate on the matrix surface while the rest of the suspension leaves the system. Once the matrix is saturated with particles the external magnetic field is turned of and the collected particles are recovered \cite{svoboda2004magnetic}\cite{gerber1983high}\cite{ditsch2005high}.    
 
+ 
+
+\subsection{Magnetic particle accumulation on single wires}
+\label{subsec:single_wire}
+For micron-size particles or larger, the \gls{hgms} collection process can be simplified by the analysis of a single magnetized collector and the particle trajectories in its vicinity. Figure \ref{fig:wire} depicts the configuration of particle capture in a single wire model.
+
+\begin{figure}[h]
+\centering
+\scalebox{0.3}{\includegraphics{figures/Single_wire.png}}
+\caption[Configuration of particle capture in a single wire model]{Configuration of particle capture in a single wire model: A cylindrical ferromagnetic wire with the radius a which is magnetized to saturation by an external magnetic field $H_{0}$, a paramagnetic particle with the radius b and the velocity $v_{0}$ \cite{svoboda2004magnetic}
+\label{fig:wire}
+}
+\end{figure}
+
+For a single wire model three different orientations of the wire relative to the flow and applied field are considered. It is assumed that the magnetic field is always orthogonal to the ferromagnetic wire. The direction of the fluid flow can then be either parallel (longitudinal) or perpendicular (transversal) to direction of the magnetic field. In addition the fluid flow can be oriented parallel to the wire, which is referred to as axial configuration \cite{friedlaender1978particle}. The particle build-up profile for the three different orientations is shown in Figure \ref{fig:hgms_config}.   
+
+\begin{figure}[h]
+\centering
+
+\scalebox{0.45}{\includegraphics{figures/hgms_orientation.pdf}}
+\caption[Geometric configurations in \gls{hgms} and particle build-up]{Schematic drawing of the three main geometric configurations in \gls{hgms} and the corresponding profiles of the particle build-up in a ferromagnetic wire; arrangements between the directions of the magnetic field $H_{0}$ and the particle flow velocity $v_{0}$ with respect to the wire (top) and the cross section of the wire (hatched area) with the particle build-up profile corresponding to the respective configuration \cite{svoboda2004magnetic}
+\label{fig:hgms_config}
+}
+\end{figure}
+
+The particle trajectories in the vicinity of the wire are calculated by Newton's second law, which states that the sum of all forces affecting the particle is equal to the product of the particle mass $m$ and its acceleration $a_{p}$. 
+
+\begin{equation}
+\label{eq:mag_force}
+\centering
+\sum_{i}\boldsymbol{F}_{i} = m\boldsymbol{a}_{p}
+\end{equation}
+ 
+The forces acting on the particles e.g. the magnetic, gravitational and hydrodynamic force are described in Section \ref{subsec:bas_princ}. Whether a particle is collected by the wire or not can be determined by following the particle trajectory. If the particle trajectory ends on the wire's surface the particle is separated, if however the particle trajectory passes the wire the particle remains in suspension \cite{FranzrebHabil}. A model for the particle trajectories with sphere instead of a wire can be found in \cite{friedlaender1981particle}\cite{moyer1986filtration}. \newline 
+In the case of ultra-fine magnetic particles, where the diffusion outweighs the other forces, the trajectory analysis is not suitable. In this case, the continuity equation representing the conservation of mass with the influence of external forces on individual magnetic particles expressed through the flux term is solved \cite{choomphon2017simulation}. In a two-dimensional model spherical and cylindrical collectors are treated in the same way. The solution of the continuity equation, describing the time-dependent distribution of the magentic particles around the collercotor, can be written as follows:     
+
+\begin{equation}
+\label{eq:diff_eq}
+\centering
+\frac{\partial n}{\partial t} = \nabla\cdotp(D\nabla n)-\nabla\cdotp(n v_{p})
+\end{equation}
+
+where $n$ is the particle number density, $D$ the diffusion coefficient and $v_{p}$ the particle drift velocity caused by the magnetic force $F_{m}$ for spherical particles at low Reynolds numbers. $D$ is determined by the Stokes-Einstein relation (see Section \ref{subsec:bas_princ}). For a steady-state, i.e. ${\partial n}/{\partial t}$=0, Equation \ref{eq:diff_eq} reduces to:
+
+\begin{equation}
+\label{eq:diff_eq}
+\centering
+ D\nabla n = n v_{p}
+\end{equation}
+
+which describes the dynamic balance between an inward flux of the particles towards the wire and an outward flux due to Brownian motion \cite{fletcher1991fine}. 
+
+
+
+% Diffusion with force balance: \cite{gerber1983generalization}\cite{takayasu1983magnetic}\cite{davies19902}\cite{fletcher1991fine}
+% Diffusion with energy model \cite{glew1984influence}
+% 
+%  \cite{choomphon2017simulation}
+% \cite{moyer1986filtration} for spheres as matrix
 \section{Dimensioning of a Helmholtz coil}
 \label{sec:Dim_helm_coil}
+A Helmholtz coil produces an approximately uniform magnetic field along the x-axis between the coils. The dimensioning of the coil is based on the Biot-Savart law, which describes the magentic field generated by a stationary electric current. The magnetic flux density in a cylindrical coil with only one winding can be calculated with Equation \ref{eq:one_winding}. 
 
+\begin{equation}
+\label{eq:one_winding}
+\centering
+ B(r) = \frac{\mu_{0}}{4\pi}\int d^{3}r^{'}j(r^{'}\times \frac{r-r^{'}}{\vert r-r^{'} \vert^{3}}
+\end{equation}
+
+Where $d^{3}r^{'}$ denotes a volume integral, $j(r^{'}$ the current density and $r-r^{'}$ a direction vector. In addition the vectors $r$ and $r^{'}$ are defined as the following: $r = (0,0,z)$ and $r^{'} = (R cos(\phi),R sin(\phi), z^{'})$. 
+
+\cite{wotruba1968verbesserung}\cite{wotruba1969massive}\cite{heller1955erzeugung}
+%%%%%%%%%%%%%%%%%really necessary??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Simulated moving bed chromatography}
 \label{sec:smb}
