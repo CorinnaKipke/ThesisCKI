@@ -33,7 +33,8 @@ The first application of magnetic separation can be dated back to 1792, when Wil
 \newacronym{smb}{SMB}{simulated moving bed chromatography}
 \newacronym{ogms}{OGMS}{open-gradient magnetic seperators}
 \newacronym{hgms}{HGMS}{high-gradient magnetic seperators}
-
+\newacronym{cfd}{CFD}{computational fluid dynamics}
+\newacronym{pde}{PDEs}{partial differential equations}
 
 In the first part of this chapter the fundamentals of magnetism are described (see Section \ref{sec:Fund_mag}). In Section \ref{sec:Mag_sep} the basic principles of and the forces acting in a magnetic separation process are explained. Furthermore the dimensioning of a Helmholtz coil is described in Section \ref{sec:Dim_helm_coil}.
 In the second part of this chapter the fundamentals of \gls{cfd} are discussed (see Section ...). 
@@ -42,7 +43,7 @@ In the second part of this chapter the fundamentals of \gls{cfd} are discussed (
 \label{sec:Fund_mag}
 Magnetism is a physical phenomenon produced by the motion of electric charges, which results in attractive and repulsive forces between objects \cite{stevenson2010oxford}. Electric currents and the magnetic moments of elementary particles are the origin of magnetic fields, which generate these forces. Sections \ref{subsec:Maxwell}, \ref{subsec:const_rel} and \ref{subsec:Mag_pot} give an overview of the basic electromagnetic equations decribing those fields, while in Section \ref{subsec:Mag_mat} the magnetic properties of materials are discussed.
 
-\subsection{Maxwell's Equations}
+\subsection{Maxwell's equations}
 \label{subsec:Maxwell}
 %%%%%%%%%Quellen einfügen%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \cite{kallenbach2018elektromagnete}
 The relationship between magnetic and electric fields, as well as the relation of those fields to electrical charges and currents, are described by  Maxwell’s equations. In combination with the Lorentz force law these equations describe all classical electromagnetic phenomena \cite{meschede2015gerthsen}. The macroscopic Maxwell equations for general time-varying fields in the differential form are as follows: 
@@ -344,8 +345,6 @@ A diffusion "force" $F_{B}$ acting on the particles can therefore be described a
 where $n$ is the number density of particles within the fluid \cite{choomphon2017simulation}\cite{moeser2004high}\cite{fletcher1991fine}. \\
 As the type of particles (shape, size, material) is usually given, the main influencing factors on $F_{m}$ for the magnetic separation are the magnetic field strength and its gradient. Consequently the combination of magnetic field strength and field gradient must be optimized for each application individually. The most common magnetic separators can be divided into three basic categories: open gradient magnetic seperators, closed-gradient magnetic separators and matrix (polygradient) magnetic seperators \cite{svoboda2004magnetic}. \Gls{hgms}, which are used for the recovery of micron sized particles, belong to the class of matrix separators. In the following Section the principles of \gls{hgms} will be further explained.  
 
-\subsection{Field of a transversally magnetized cylinder}
-\label{subsec:mag_field}
 
 \subsection{High gradient magnetic separation}
 \label{subsec:HGMS}
@@ -366,7 +365,31 @@ In conventional magnetic separators only ferromagnetic materials with a particle
 
 A schematic drawing of a \gls{hgms} is shown in Figure \ref{fig:hgms}. The particle suspension flows through the matrix. Particles with high magnetic susceptibilities accumulate on the matrix surface while the rest of the suspension leaves the system. Once the matrix is saturated with particles the external magnetic field is turned of and the collected particles are recovered \cite{svoboda2004magnetic}\cite{gerber1983high}\cite{ditsch2005high}.    
 
- 
+\subsection{Magnetic field in the vicinity of a magnetized wire}
+\label{subsec:mag_field}
+The magnetic field $H(r,\varphi)$ in the vicinity of a infinitely long cylinder, which is magnetized by a homogeneous magnetic field $H_{0}$ (geometry shown in Figure \ref{fig:wire}), is described by the following equation:
+
+\begin{equation}
+\label{eq:mag_field_strat}
+\centering
+H = H_{0}(e_{r}cos\varphi-e_{\varphi}sin\varphi)+H_{0}\frac{a^{2}}{r^{2}}\left(\frac{\mu_{w}-\mu_{f}}{\mu_{w}+\mu_{f}}\right)(e_{r}cos\varphi+e_{\varphi}sin\varphi)
+\end{equation}
+
+where $e_{r}$ and $e_{\varphi}$ are the unit vectors in the polar coordinate system and $\mu_{w}$ and $\mu_{f}$ depict the magnetic permeability of the wire and the fluid respectively \cite{stratton2007electromagnetic}. For an external field $H_{0}$, that is strong enough to magnetize the wire to saturation, and a surrounding medium with a permeability close to one, e.g. water or air, Equation \ref{eq:mag_field_strat} can be written as follows:
+
+\begin{equation}
+\label{eq:Hr_field}
+\centering
+H_{r} = \left(\frac{M_{s,w}a^{2}}{2r^{2}}+H_{0}\right)cos\varphi
+\end{equation}
+%%%%%%%%%%%%%%%%sin\theta ???cos\theta????????%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\label{eq:Hphi_field}
+\centering
+H_{\varphi} = \left(\frac{M_{s,w}a^{2}}{2r^{2}}-H_{0}\right)sin\varphi
+\end{equation}
+
+where $a$ is the radius of the wire and $r$ is the distance between the wire and the magnetic nanoparticle \cite{FranzrebHabil}. The magnetic force $F_{m}$ affecting the particles can then be calculated from the magnetic field with Equation \ref{eq:mag_force} \cite{moeser2004high}. 
 
 \subsection{Magnetic particle accumulation on single wires}
 \label{subsec:single_wire}
@@ -375,7 +398,7 @@ For micron-size particles or larger, the \gls{hgms} collection process can be si
 \begin{figure}[h]
 \centering
 \scalebox{0.3}{\includegraphics{figures/Single_wire.png}}
-\caption[Configuration of particle capture in a single wire model]{Configuration of particle capture in a single wire model: A cylindrical ferromagnetic wire with the radius a which is magnetized to saturation by an external magnetic field $H_{0}$, a paramagnetic particle with the radius b and the velocity $v_{0}$ \cite{svoboda2004magnetic}
+\caption[Configuration of particle capture in a single wire model]{Configuration of particle capture in a single wire model: A cylindrical ferromagnetic wire with the radius a which is magnetized to saturation by an external magnetic field $H_{0}$, a paramagnetic particle with the radius b at a distance $r$ from the wire and a polar angle of $theta$ from the wire center and the fluid flow velocity $v_{0}$ \cite{svoboda2004magnetic}
 \label{fig:wire}
 }
 \end{figure}
@@ -425,20 +448,57 @@ which describes the dynamic balance between an inward flux of the particles towa
 % 
 %  \cite{choomphon2017simulation}
 % \cite{moyer1986filtration} for spheres as matrix
-\section{Dimensioning of a Helmholtz coil}
-\label{sec:Dim_helm_coil}
-A Helmholtz coil produces an approximately uniform magnetic field along the x-axis between the coils. The dimensioning of the coil is based on the Biot-Savart law, which describes the magentic field generated by a stationary electric current. The magnetic flux density in a cylindrical coil with only one winding can be calculated with Equation \ref{eq:one_winding}. 
+
+
+% \section{Dimensioning of a Helmholtz coil}
+% \label{sec:Dim_helm_coil}
+% A Helmholtz coil produces an approximately uniform magnetic field along the x-axis between the coils. The dimensioning of the coil is based on the Biot-Savart law, which describes the magentic field generated by a stationary electric current. The magnetic flux density in a cylindrical coil with only one winding can be calculated with Equation \ref{eq:one_winding}. 
+% 
+% \begin{equation}
+% \label{eq:one_winding}
+% \centering
+%  B(r) = \frac{\mu_{0}}{4\pi}\int d^{3}r^{'}j(r^{'}\times \frac{r-r^{'}}{\vert r-r^{'} \vert^{3}}
+% \end{equation}
+% 
+% Where $d^{3}r^{'}$ denotes a volume integral, $j(r^{'}$ the current density and $r-r^{'}$ a direction vector. In addition the vectors $r$ and $r^{'}$ are defined as the following: $r = (0,0,z)$ and $r^{'} = (R cos(\phi),R sin(\phi), z^{'})$. 
+% 
+% \cite{wotruba1968verbesserung}\cite{wotruba1969massive}\cite{heller1955erzeugung}
+%%%%%%%%%%%%%%%%%really necessary??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Computational fluid dynamics}
+\label{sec:CFD}
+\Gls{cfd} is an well established method in fluid mechanics. It enables a quick and efficient analysis of fluid flow, heat transfer and related phenomena through computer-based numerical analysis \cite{versteeg2007introduction}. Formerly mainly used for numerical weather prediction, calculations concerning the aerodynamics of airplanes and power generation, it has now become a vital component in process and
+product development in many different aspects of engineering. Applications now
+vary from chemical process and civil engineering to biomedical and pharmaceutical
+process and product design. CFD offers an inexpensive alternative to experimental approaches as well as the possibility to study systems in which experiments
+would be unfeasible. Other main advantages include the reduced time, parallel processing and the almost unlimited level of detail of results. The progress in both hardware and numerical algorithms in the past decades has led to the development of numerous commercial and open-source CFD programs \cite{ghia1982high}. In this work a numerical model using the COMSOL Multiphysics software was developed.
+
+\subsection{Navier-Stokes equations}
+\label{subsec:Navier_Stokes}
+The Navier-Stokes equations are a macroscopic model of the motion of viscous fluids. There are only analytical solutions for simplified forms of the Navier-Stokes equations e.g. Couette flow and Hagen-Poiseuille flow. For more complex, nonlinear problems the equations need to be solved numerically. The Navier-Stokes equations for a compressible Newtonian fluid can be written as follows: 
 
 \begin{equation}
-\label{eq:one_winding}
-\centering
- B(r) = \frac{\mu_{0}}{4\pi}\int d^{3}r^{'}j(r^{'}\times \frac{r-r^{'}}{\vert r-r^{'} \vert^{3}}
+{\partial{\bf u}\over{\partial t}} + ({\bf u} \cdot \nabla) {\bf u} - \nu\Delta{\bf u}+ \nabla p = {\bf F}
+\label{eq:Concervation of momentum }
 \end{equation}
 
-Where $d^{3}r^{'}$ denotes a volume integral, $j(r^{'}$ the current density and $r-r^{'}$ a direction vector. In addition the vectors $r$ and $r^{'}$ are defined as the following: $r = (0,0,z)$ and $r^{'} = (R cos(\phi),R sin(\phi), z^{'})$. 
+\begin{equation}
+\nabla{\bf u} = 0
+\label{eq:Conservation of mass }
+\end{equation}
 
-\cite{wotruba1968verbesserung}\cite{wotruba1969massive}\cite{heller1955erzeugung}
-%%%%%%%%%%%%%%%%%really necessary??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+where $u$ is the fluid velocity, $p$ is the fluid pressure, $\nu$ is the kinematic viscosity and $F$ is the sum of all external forces \cite{versteeg2007introduction}. The Navier-Stokes equations are always solved with together with the continuity equation (see Equation \ref{eq:Conservation of mass }). The Navier-Stokes equations satisfy the conservation of momentum, while mass conservation is included through the continuity equation \cite{alkahtani2013numerical}. 
+
+\subsection{Finite element method}
+\label{subsec:FEM}
+The finite element method is a numerical technique for obtaining approximate solutions for \gls{pde}. 
+
+
+The finite element method is a systematic way to convert the functions in an infinite dimensional function space to first functions in a finite dimensional function space and then finally ordinary vectors (in a vector space) that are tractable with numerical methods.
+
+This is the first step in the finite element formulation. With the weak formulation, it is possible to discretize the mathematical model equations to obtain the numerical model equations. The Galerkin method – one of the many possible finite element method formulations – can be used for discretization.
+
+One approach would be to use FEM for the time domain as well, but this can be rather computationally expensive. Alternatively, an independent discretization of the time domain is often applied using the method of lines. For example, it is possible to use the finite difference method.
 
 \section{Simulated moving bed chromatography}
 \label{sec:smb}
@@ -459,6 +519,14 @@ Section \ref{sec:Exp_setup} gives an overview of the experimental setup and exec
 \section{Model setup/Development}
 \label{sec:Model_setup}
 The objective of this thesis was the design and implementation of (to establish) an in silico model simulating the retention of magnetic nanoparticles flowing through a magnetizable packed bed. Furthermore parameter studies for various conditions were conducted. In the following the simulation setup including geometry, mesh, boundary conditions and solvers is described.    
+
+
+\subsection{Model validation/verification}
+\label{subsec:model_val}
+Benchmark problem flow around a cylinder (Schaefer and Turek)
+Comparison of drag coefficients
+
+Comparison with analytical solution of magnetic field around a wire
 
 \section{Experimental setup}
 \label{sec:Exp_setup}
