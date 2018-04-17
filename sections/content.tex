@@ -31,20 +31,18 @@ The first application of magnetic separation can be dated back to 1792, when Wil
 
 \newacronym{cfd}{CFD}{computational fluid dynamics}
 \newacronym{smb}{SMB}{simulated moving bed chromatography}
-\newacronym{ogms}{OGMS}{open-gradient magnetic seperators}
-\newacronym{hgms}{HGMS}{high-gradient magnetic seperators}
-\newacronym{cfd}{CFD}{computational fluid dynamics}
+\newacronym{hgms}{HGMS}{high gradient magnetic separation}
 \newacronym{pde}{PDEs}{partial differential equations}
 \newacronym{fem}{FEM}{finite element method}
 \newacronym{bdf}{BDF}{backward differentiation formula}
 
 
-In the first part of this chapter the fundamentals of magnetism are described (see Section \ref{sec:Fund_mag}). In Section \ref{sec:Mag_sep} the basic principles of and the forces acting in a magnetic separation process are explained. Furthermore the dimensioning of a Helmholtz coil is described in Section \ref{sec:Dim_helm_coil}.
-In the second part of this chapter the fundamentals of \gls{cfd} are discussed (see Section ...). 
+In the first part of this chapter the fundamentals of magnetism are described (see Section \ref{sec:Fund_mag}). In Section \ref{sec:Mag_sep} the basic principles of and the forces acting in a magnetic separation process are explained.
+In the second part of this chapter the fundamentals of \gls{cfd} are discussed (see Section \ref{sec:cfd}).  \textbf{Corinna: Update introduction}
 
 \section{Fundamentals of magnetism}
 \label{sec:Fund_mag}
-Magnetism is a physical phenomenon produced by the motion of electric charges, which results in attractive and repulsive forces between objects \cite{stevenson2010oxford}. Electric currents and the magnetic moments of elementary particles are the origin of magnetic fields, which generate these forces. Sections \ref{subsec:Maxwell}, \ref{subsec:const_rel} and \ref{subsec:Mag_pot} give an overview of the basic electromagnetic equations decribing those fields, while in Section \ref{subsec:Mag_mat} the magnetic properties of materials are discussed.
+The focus of this thesis was to establish a size separation process of nanoparticles with the help of magnetic separation technologies. As the concept of magnetic separation is based on the properties of magnetic fields and magnetic materials the following sections give an overview of the fundamental equations and material properties related to magnetism. Magnetism is a physical phenomenon produced by the motion of electric charges, which results in attractive and repulsive forces between objects \cite{stevenson2010oxford}. Electric currents and the magnetic moments of elementary particles are the origin of magnetic fields, which generate these forces. Sections \ref{subsec:Maxwell}, \ref{subsec:const_rel} and \ref{subsec:Mag_pot} give an overview of the basic electromagnetic equations decribing those fields which are also implemented in the simulation, while in Section \ref{subsec:Mag_mat} the magnetic properties of materials are discussed.
 
 \subsection{Maxwell's equations}
 \label{subsec:Maxwell}
@@ -232,8 +230,6 @@ Ferro- and ferrimagnetic materials can also be divided by the value of their coe
 
 \subsection{Influence of the particle shape and size}
 \label{subsec:part_shape}
-
-
 As already mentioned in Section \ref{subsec:Mag_mat}, the magnetic properties of ferromagnetic materials do not solely depend on the applied magnetic field, but also on the shape and size of the sample \cite{gomez2009influence}. The specific magnetic susceptibility $\chi$ is equivalent to $\kappa/\rho$, where $\kappa$ is the volume magnetic susceptibility and $\rho$ the material density. Therefore Equation \ref{eq:chi} can also be written as
 
 \begin{equation}
@@ -272,18 +268,19 @@ Superparamagnetism is based on the same mechanism as paramagnetism, except that 
     
 \section{Fundamentals of magnetic separation}
 \label{sec:Mag_sep}
-\textbf{Markus: mir wurde jetzt gesagt, dass ich die verschiedenen Theorieteil in meine Arbeit einordnen soll mit nem Satz; hier z.B: magnetic seperators are used in this study for ... see Section}
-Since the 19\textsuperscript{th} century magnetic separation processes have been used to concentrate and separate minerals. More recently, applications in waste water treatment, food industry and biotechnology have become available \cite{yavuz2009magnetic}. Magnetic separation technologies are used for the concentration of magnetic materials  as well as the removal of magnetizable particles from process fluids. As this work concentrates mainly on the use of magnetic separation for solid-liquide separation, the following sections will only describe the separation of magnetizable particles from suspensions. For separation \textbf{Markus: separation between what, das hast du noch nicht beschrieben} the magnetic particles within a suspension are influenced by a non-homogeneous magnetic field, which leads to either retention or deflection of the particles. The external magnetic field can be generated by a permanent magnet or an electromagnet. In addition, the particles are influenced by other external forces e.g. gravitational, inertial, hydrodynamic and centrifugal forces. Furthermore electrostatic and electromagnetic interparticle forces affect the separation. Consequently, the magnetic force $F_{mag}$ must be greater than the sum of the competing forces $F_{comp}$ \textbf{Markus: evtl Referenz dorthin wo du die verschiedenen Fcomp aufzählst}  for successful separation of the particles from the surrounding fluid. For a selective separation of particles with different magnetic susceptibilities, the magnetic force acting on the more magnetic \textbf{Markus: ist "more magnetic" wirklich wissenschaftlich} particles must be larger than the sum of $F_{comp}$ and for less magnetic particles smaller than the sum of $F_{comp}$. This condition is described in Equation \ref{eq:mag_sep_cond}, where $F_{mag}^{m}$ and $F_{mag}^{n}$ are the magnetic forces affecting the more and less strongly magnetic materials respectively and $F_{comp}$ summarizes the competing forces on the different particles \cite{svoboda2004magnetic}\cite{oberteuffer1974magnetic}.   \textbf{Markus: warum haben die "less magnetic" particle then index n statt l (wegen non-magnetic?)}
+Since the 19\textsuperscript{th} century magnetic separation processes have been used to concentrate and separate minerals. More recently, applications in waste water treatment, food industry and biotechnology have become available \cite{yavuz2009magnetic}. Magnetic separation technologies are used for the concentration of magnetic materials  as well as the removal of magnetizable particles from process fluids. As this work concentrates mainly on the use of magnetic separation for solid-liquide separation, the following sections will only describe the separation of magnetizable particles from suspensions. For separation, the magnetic particles within a suspension are influenced by a non-homogeneous magnetic field, which leads to either retention or deflection of the particles. The external magnetic field can be generated by a permanent magnet or an electromagnet. In addition, the particles are influenced by other external forces e.g. gravitational, inertial, hydrodynamic and centrifugal forces (see Section \ref{subsec:bas_princ}). Furthermore electrostatic and electromagnetic interparticle forces affect the separation. Consequently, the magnetic force $F_{mag}$ must be greater than the sum of the competing forces $F_{comp}$ for successful separation of the particles from the surrounding fluid. For a selective separation of particles with different magnetic susceptibilities, the magnetic force acting on the more magnetic particles must be larger than the sum of $F_{comp}$ and for less magnetic particles smaller than the sum of $F_{comp}$. This condition is described in Equation \ref{eq:mag_sep_cond}, where $F_{mag}^{m}$ and $F_{mag}^{l}$ are the magnetic forces affecting the more and less strongly magnetic materials respectively and $F_{comp}$ summarizes the competing forces on the different particles \cite{svoboda2004magnetic}\cite{oberteuffer1974magnetic}.   
 
 \begin{equation}
 \label{eq:mag_sep_cond}
 \centering
-F_{mag}^{m}\geq\sum_{i}F_{comp}^{im} \quad \textrm{and} \quad F_{mag}^{n}\leq\sum_{i}F_{comp}^{in}
+F_{mag}^{m}\geq\sum_{i}F_{comp}^{im} \quad \textrm{and} \quad F_{mag}^{l}\leq\sum_{i}F_{comp}^{il}
 \end{equation}
-\textbf{Markus: hier kannst du einen Übergang zu dem ersten Unterkapitel oder sogar ein einordnen der ganzen Unterkapitel machen, dass der Leser weiß warum du das so machst}
+
+In the following a more detailed explanation of the magnetic and the competing forces is given (see Section \ref{subsec:bas_princ}). In addition the basic concepts of \gls{hgms} and a simplified model approach are outlined in the Sections \ref{subsec:HGMS}, \ref{subsec:mag_field} and \ref{subsec:single_wire}.  
+
 \subsection{Basic principles}
 \label{subsec:bas_princ}
-The concept of magnetic separation is based on the property of magnetic fields to exert a force on matter. The magnetic force $F_{m}$ on a particle is given by \textbf{Markus: : (Doppelpunkt einfügen?)}
+The concept of magnetic separation is based on the property of magnetic fields to exert a force on matter. The magnetic force $F_{m}$ on a particle is given by
 
 \begin{equation}
 \label{eq:mag_force}
@@ -291,7 +288,7 @@ The concept of magnetic separation is based on the property of magnetic fields t
 \boldsymbol{F}_{m} = \mu_{0}V_{p}\boldsymbol{M}_{p}\nabla\boldsymbol{H}
 \end{equation}
 
-\textbf{Markus: ,}where $V_{p}$ denotes the volume of the particle, $\boldsymbol{M}_{p}$ the particle magnetization and $\nabla\boldsymbol{H}$ the gradient of the applied magnetic field. For reasons of simplification $F_{m}$ is assumed to act on the center of gravity of the particle. $\boldsymbol{M}_{p}$ can be calculated by either \textbf{Markus: oder either by} Equation \ref{eq:chi}, \ref{eq:kappa} or \ref{eq:mag_demag_fac}. As shown in Table \ref{table:mag_material}, the magnetic susceptibility for diamagnetic and paramagnetic materials is constant, while $\chi$ for ferromagnetic and ferrimagnetic substances is dependent on the magnetic field strength, the size and the shape of the particles (see Sections \ref{subsec:Mag_mat} and \ref{subsec:part_shape}). For spherical particles $F_{m}$ is also directly proportional to the cube of the particle radius $b$ \textbf{Markus $b^3$ liest sich einfacher}. \newline
+where $V_{p}$ denotes the volume of the particle, $\boldsymbol{M}_{p}$ the particle magnetization and $\nabla\boldsymbol{H}$ the gradient of the applied magnetic field. For reasons of simplification $F_{m}$ is assumed to act on the center of gravity of the particle. $\boldsymbol{M}_{p}$ can be calculated either by Equation \ref{eq:chi}, \ref{eq:kappa} or \ref{eq:mag_demag_fac}. As shown in Table \ref{table:mag_material}, the magnetic susceptibility for diamagnetic and paramagnetic materials is constant, while $\chi$ for ferromagnetic and ferrimagnetic substances is dependent on the magnetic field strength, the size and the shape of the particles (see Sections \ref{subsec:Mag_mat} and \ref{subsec:part_shape}). For spherical particles $F_{m}$ is also directly proportional to $b$\textsuperscript{3}, where $b$ denotes the particle radius. \newline
 As already mentioned above (see Section \ref{sec:Mag_sep}), the motion of the particles is also influenced by several different  forces. For ferromagnetic particles larger than approximately 1\,\textmu m the relevant competing forces are  the hydrodynamic drag force $F_{d}$, to a lesser degree in liquids the gravitational force $F_{g}$ and depending on the separator type the centrifugal force $F_{c}$.  
 
 
@@ -313,7 +310,7 @@ As already mentioned above (see Section \ref{sec:Mag_sep}), the motion of the pa
 \boldsymbol{F}_{c} = (\boldsymbol{v}_{f}-\boldsymbol{v}_{p})\omega V_{p}\boldsymbol{r}
 \end{equation}
 
-$F_{g}$ for a spherical particle is given by Equation \ref{eq:grav_force}, where $g$ is the acceleration by gravity and $\rho_{p}$ and $\rho_{f}$ are the densities of the particle and the surrounding fluid, respectively. The hydrodynamic drag force of a particle is determined by Stoke's law \textbf{markus: gilt das nicht nur für einen bestimmten Bereich der Rayleigh Zahl? also bei riesigen Geschwindigkeiten nicht mehr gelten, wenn z.B. deine Säule gerade explodiert;-)} (see Equation \ref{eq:drag_force}), where $\eta$ denotes the dynamic viscosity of the fluid, $v_{f}$ the velocity of the fluid and $v_{p}$ the velocity of the particle. $F_{c}$ is described by Equation \ref{eq:cent_force}, where $\omega$ is the angular velocity and $r$ is the radial position of the particle. Equation \ref{eq:force_rad} shows the dependency of the different forces on the particle radius $b$ \textbf{Markus: which is already obvious in Equation \ref{eq:grav_force} to \ref{eq:cent_force}} . 
+$F_{g}$ for a spherical particle is given by Equation \ref{eq:grav_force}, where $g$ is the acceleration by gravity and $\rho_{p}$ and $\rho_{f}$ are the densities of the particle and the surrounding fluid, respectively. The hydrodynamic drag force of a particle is determined by Stoke's law (see Equation \ref{eq:drag_force}), where $\eta$ denotes the dynamic viscosity of the fluid, $v_{f}$ the velocity of the fluid and $v_{p}$ the velocity of the particle. Stokes law is only valid for laminar flow around spherical objects with low Reynolds numbers and no interaction between the fluid and the particle. For our test cases low velocities and small particle sizes with no coupling between the particles were assumed and therefore Stokes law was applicable. $F_{c}$ is described by Equation \ref{eq:cent_force}, where $\omega$ is the angular velocity and $r$ is the radial position of the particle. Equation \ref{eq:force_rad} shows the dependency of the different forces on the particle radius $b$ which is already obvious in Equation \ref{eq:grav_force} to \ref{eq:cent_force}. 
 
 \begin{equation}
 \label{eq:force_rad}
@@ -321,7 +318,7 @@ $F_{g}$ for a spherical particle is given by Equation \ref{eq:grav_force}, where
 F_{g}\sim b^{3}, \quad F_{d}\sim b^{1} \quad \textrm{and} \quad F_{c}\sim b^{3}
 \end{equation}
 
-$F_{g}$ and $F_{c}$ are directly proportional to the cube of the particle radius, consequently their contribution increases significantly with increasing particle size. $F_{d}$ however depends on the first power of the particle radius and will be relevant for smaller particles \cite{svoboda2004magnetic}\cite{oberteuffer1974magnetic}. For particles smaller than approximately 1\,\textmu m Brownian motion also needs to be considered. Brownian motion is the apparently random movement of particles in a fluid due to their collisions with other \textbf{Markus: other particles,} atoms or molecules of the fluid \cite{brown1828xxvii}. Brownian motion can be described by the   
+$F_{g}$ and $F_{c}$ are directly proportional to the cube of the particle radius, consequently their contribution increases significantly with increasing particle size. $F_{d}$ however depends on the first power of the particle radius and will be relevant for smaller particles \cite{svoboda2004magnetic}\cite{oberteuffer1974magnetic}. For particles smaller than approximately 1\,\textmu m Brownian motion also needs to be considered. Brownian motion is the apparently random movement of particles in a fluid due to their collisions with other particles, atoms or molecules of the fluid \cite{brown1828xxvii}. Brownian motion can be described by the   
 Langevin equation (for more detailed information see \cite{Langevin}\cite{BrownianDynamics} \cite{BrownianModel}). It states that the minute fluctuations in the position of the particles are due to a random force. Einstein and Sutherland obtained a relation between the macroscopic diffusion constant $D$ and the atomic properties of matter \cite{einstein1906theorie}\cite{einstein1905molekularkinetischen}\cite{sutherland1905lxxv}. 
 
 \begin{equation}
@@ -330,7 +327,7 @@ Langevin equation (for more detailed information see \cite{Langevin}\cite{Browni
 D = \frac{k_{B}T}{6\pi\eta b}
 \end{equation}
 
-Equation \ref{eq:Stokes_Einstein}, called Stokes-Einstein equation, describes the diffusion of spherical particles through a fluid with low Reynolds numbers. $k_{B}$ is the Boltzmann constant with a value of 1.38064852$\cdotp$10\textsuperscript{-23}\,J/K \textbf{markus: das ist aber genau angegeben, ich hoffe du kannst bei deinem Vortrag auf nachfrage auch die 8te Nachkommastelle nennen;-)}, which can be calculated by the division of the universal gas constant $R$ by the Avogadro constant $N_{A}$, while T \textbf{Markus: ist ne variable also kursiv} is the temperature of the surrounding fluid. Particle diffusion can be pictured as a driving force which is based on the gradient in the particle concentration. 
+Equation \ref{eq:Stokes_Einstein}, called Stokes-Einstein equation, describes the diffusion of spherical particles through a fluid with low Reynolds numbers. $k_{B}$ is the Boltzmann constant with a value of 1.38064852$\cdotp$10\textsuperscript{-23}\,J/K, which can be calculated by the division of the universal gas constant $R$ by the Avogadro constant $N_{A}$, while $T$ is the temperature of the surrounding fluid. Particle diffusion can be pictured as a driving force which is based on the gradient in the particle concentration. 
 A "diffusion force" $F_{B}$ acting on the particles can therefore be described as follows:
 
 \begin{equation}
@@ -339,32 +336,32 @@ A "diffusion force" $F_{B}$ acting on the particles can therefore be described a
 \boldsymbol{F}_{B} = -k_{B}T\frac{\nabla n}{n}
 \end{equation}
 
-\textbf{Markus: ok du machst hier wohl absichtlich kein Komma}where $n$ is the number density of particles within the fluid \cite{choomphon2017simulation}\cite{moeser2004high}\cite{fletcher1991fine}. \\
-As the type of particles (\textbf{Markus: described by its} shape, size, material) is usually given, the main influencing factors on $F_{m}$ for the magnetic separation are the magnetic field strength and its gradient. Consequently the combination of magnetic field strength and field gradient must be optimized for each application individually. The most common magnetic separators can be divided into three basic categories: open gradient magnetic seperators, closed-gradient magnetic separators and matrix (polygradient) magnetic seperators \cite{svoboda2004magnetic}. \Gls{hgms} \textbf{Markus: hast du das schon irgendwo eingeführt?}, which are used for the recovery of micron sized particles, belong to the class of matrix separators. In the following Section \textbf{Markus: section klein wenn keine Zahl dahintersteht} the principles of \gls{hgms} will be further explained.  
+where $n$ is the number density of particles within the fluid \cite{choomphon2017simulation}\cite{moeser2004high}\cite{fletcher1991fine}. \\
+As the type of particles, defined by their shape, size and material, is usually given, the main influencing factors on $F_{m}$ for the magnetic separation are the magnetic field strength and its gradient. Consequently the combination of magnetic field strength and field gradient must be optimized for each application individually. The most common magnetic separators can be divided into three basic categories: open gradient magnetic separators, closed-gradient magnetic separators and matrix (polygradient) magnetic seperators \cite{svoboda2004magnetic}. \Gls{hgms}, which are used for the recovery of micron sized particles, belong to the class of matrix separators. In the following section the principles of \gls{hgms} will be further explained.  
 
 
 \subsection{High gradient magnetic separation}
 \label{subsec:HGMS}
-In conventional magnetic separators only ferromagnetic materials with a particle size larger than approximately 50\,\textmu m can be separated. \Gls{hgms}, based on the Frantz Ferrofilter, enables the magnetic separation of smaller and only weakly magnetic particles \cite{frantz1937patent} \cite{ge2017magnetic}. This is achieved through the combination of strong magnetic fields and high magnetic field gradients. Ferromagnetic bodies, called the matrix, are placed in the external magnetic field. The applied magnetic field induces magnetic moments in the ferromagnetic matrix which leads to high magnetic field gradients in the proximity of the matrix elements \cite{shukla2006process}. Magnetically susceptible particles will move \textbf{markus: will move oder nur move? genauso bei will be captured/are captured} along the gradient towards the magnetized matrix elements and will be captured on the surface \cite{hoffmann2002novel}. As the magnitude of the magnetic field gradient as well as the collection surface are dependant on the shape, size, arrangement and placement of the used bodies, the matrix material e.g. balls, grooved plates, steel wool or rods has to be chosen carefully (more information on different matrix materials can be found in \cite{iacob2002high}\cite{kim2013effects}\cite{takayasu1981matrices}). The matrix has to be fine enough to generate a strong enough magnetic field gradient for selective separation, but also not so strong as to cause matrix blockage and retention of non-magnetic materials. As the filling factor of the used matrix material is often low, e.g. 0.04 and 0.20 for steel wool and expanded metal respectively and as the matrix does not conduct magnetic flux very well, strong external fields are required. An exception are matrices consisting of balls with a filling factor of up to 0.50 and grooved plates with a filling factor of 0.80. 
+In conventional magnetic separators only ferromagnetic materials with a particle size larger than approximately 50\,\textmu m can be separated. \Gls{hgms}, based on the Frantz Ferrofilter, enables the magnetic separation of smaller and only weakly magnetic particles \cite{frantz1937patent} \cite{ge2017magnetic}. This is achieved through the combination of strong magnetic fields and high magnetic field gradients. Ferromagnetic bodies, called the matrix, are placed in the external magnetic field. The applied magnetic field induces magnetic moments in the ferromagnetic matrix which leads to high magnetic field gradients in the proximity of the matrix elements \cite{shukla2006process}. Magnetically susceptible particles move along the gradient towards the magnetized matrix elements and are captured on the surface \cite{hoffmann2002novel}. As the magnitude of the magnetic field gradient as well as the collection surface are dependant on the shape, size, arrangement and placement of the used bodies, the matrix material e.g. balls, grooved plates, steel wool or rods has to be chosen carefully (more information on different matrix materials can be found in \cite{iacob2002high}\cite{kim2013effects}\cite{takayasu1981matrices}). The matrix has to be fine enough to generate a strong enough magnetic field gradient for selective separation, but also not so strong as to cause matrix blockage and retention of non-magnetic materials. As the filling factor of the used matrix material is often low, e.g. 0.04 and 0.20 for steel wool and expanded metal respectively and as the matrix does not conduct magnetic flux very well, strong external fields are required. An exception are matrices consisting of balls with a filling factor of up to 0.50 and grooved plates with a filling factor of 0.80. 
 %In general, the separation efficiency of ball matrices is smaller than the in filament units, as a closed packed array of spheres does not leave much space for the collection of particles.  
 
 
 %%%%%%%%%%%%Include Figure of HGMS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%change figure !!!!!!!!!!!!!!!!!
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 
 \scalebox{0.35}{\includegraphics{figures/hgms_franzreb.png}}
-\caption[Schematic \gls{hgms} process]{Schematic \gls{hgms} process: The ferromagnetic wire placed in the external field, generated by permanent magnets, generates high magnetic field gradients. The magnetic particles in the suspension move along the gradient towards the wire and are captured on the wire's surface \cite{FranzrebHabil}.  
+\caption[Schematic HGMS process]{Schematic HGMS process: The ferromagnetic wire placed in the external field, generated by permanent magnets, generates high magnetic field gradients. The magnetic particles in the suspension move along the gradient towards the wire and are captured on the wire's surface (modified from \cite{FranzrebHabil}).  
 \label{fig:hgms}
 }
 \end{figure}
 
-A schematic drawing of a \gls{hgms} is shown in Figure \ref{fig:hgms}. The particle suspension flows through the matrix. Particles with high magnetic susceptibilities accumulate on the matrix surface while the rest of the suspension leaves the system. Once the matrix is saturated with particles, the external magnetic field is turned off and the collected particles are recovered \cite{svoboda2004magnetic}\cite{gerber1983high}\cite{ditsch2005high}.    
-\textbf{Markus: hier könnte auch eine Überleitung hin}
+A schematic drawing of a \gls{hgms} is shown in Figure \ref{fig:hgms}. The particle suspension flows through the matrix. Particles with high magnetic susceptibilities accumulate on the matrix surface while the rest of the suspension leaves the system. Once the matrix is saturated with particles, the external magnetic field is turned off and the collected particles are recovered \cite{svoboda2004magnetic}\cite{gerber1983high}\cite{ditsch2005high}. \gls{hgms} can be modeled by a simplified setup of a single magnetized, ferromagnetic wire which is surrounded by the flowing particle suspension. %welches von der Partikelsuspension umströmt wird  
+
 \subsection{Magnetic field in the vicinity of a magnetized wire}
 \label{subsec:mag_field}
-The magnetic field $H(r,\varphi)$ in the vicinity of a infinitely long cylinder, which is magnetized by a homogeneous magnetic field $H_{0}$ (configuration shown in Figure \ref{fig:wire}), is described by the following equation: \textbf{Markus: du musst evtl formal noch phi und r einführen, z.B Mittelpunkt deines Koordinatensystems, auch wenn das eigentlich offensichtlich ist}
+The magnetic field $H(r,\varphi)$ in the vicinity of a infinitely long cylinder, which is magnetized by a homogeneous magnetic field $H_{0}$ (configuration shown in Figure \ref{fig:wire}), is described by the following equation:
 
 \begin{equation}
 \label{eq:mag_field_strat}
@@ -386,15 +383,16 @@ H_{r} = \left(\frac{M_{s,w}a^{2}}{2r^{2}}+H_{0}\right)cos\varphi
 H_{\varphi} = \left(\frac{M_{s,w}a^{2}}{2r^{2}}-H_{0}\right)sin\varphi
 \end{equation}
 
-where $a$ is the radius of the wire and $r$ is the distance between the wire and the magnetic nanoparticle \cite{FranzrebHabil}. The magnetic field of a magnetized ferromagentic wire is shown in Figure \ref{fig:mag_field_wire}. The magnetic force $F_{m}$ affecting the particles can then be calculated from the magnetic field with Equation \ref{eq:mag_force} \cite{moeser2004high}. 
+where $a$ is the radius of the wire and $r$ is the distance between the wire and the magnetic nanoparticle \cite{FranzrebHabil}. The magnetic field of a magnetized ferromagnetic wire is shown in Figure \ref{fig:mag_field_wire}. The magnetic force $F_{m}$ affecting the particles can then be calculated from the magnetic field with Equation \ref{eq:mag_force} \cite{moeser2004high}. 
 
 \begin{figure}[H]
 \centering
-\scalebox{0.4}{\includegraphics{figures/mag_field_wire_franz.png}}
-\caption[Magnetic field in the vicinity of a wire]{Field lines of a magnetic field in the vicinity of a magnetized ferromagnetic wire\cite{FranzrebHabil} \textbf{markus: die achsen sind halt deutsch: mach sie englisch und sag (modified) ;-)}
+\scalebox{0.4}{\includegraphics{figures/mag_field_wire_franz_modified.png}}
+\caption[Magnetic field in the vicinity of a wire]{Field lines of a magnetic field in the vicinity of a magnetized ferromagnetic wire (modified from\cite{FranzrebHabil})
 \label{fig:mag_field_wire}
 }
 \end{figure}
+
 
 \subsection{Magnetic particle accumulation on single wires}
 \label{subsec:single_wire}
@@ -414,7 +412,7 @@ For a single wire model three different orientations of the wire relative to the
 \centering
 
 \scalebox{0.45}{\includegraphics{figures/hgms_orientation.pdf}}
-\caption[Geometric configurations in \gls{hgms} and particle build-up]{Schematic drawing of the three main geometric configurations in \gls{hgms} and the corresponding profiles of the particle build-up in a ferromagnetic wire; arrangements between the directions of the magnetic field $H_{0}$ and the particle flow velocity $v_{0}$ with respect to the wire (top) and the cross section of the wire (hatched area) with the particle build-up profile corresponding to the respective configuration \cite{svoboda2004magnetic}
+\caption[Geometric configurations in HGMS and particle build-up]{Schematic drawing of the three main geometric configurations in HGMS and the corresponding profiles of the particle build-up in a ferromagnetic wire; arrangements between the directions of the magnetic field $H_{0}$ and the particle flow velocity $v_{0}$ with respect to the wire (top) and the cross section of the wire (hatched area) with the particle build-up profile corresponding to the respective configuration \cite{svoboda2004magnetic}
 \label{fig:hgms_config}
 }
 \end{figure}
@@ -472,9 +470,8 @@ which describes the dynamic balance between an inward flux of the particles towa
 
 \section{Computational fluid dynamics}
 \label{sec:CFD}
-\Gls{cfd} is an well established method in fluid mechanics. It enables a quick and efficient analysis of fluid flow, heat transfer and related phenomena through computer-based numerical analysis \cite{versteeg2007introduction}. Formerly mainly used for numerical weather prediction, calculations concerning the aerodynamics of airplanes and power generation, it has now become a vital component in process and
-product development in many different aspects of engineering. Applications now
-vary from chemical process and civil engineering to biomedical and pharmaceutical
+\Gls{cfd} is a well established method in fluid mechanics. It enables a quick and efficient analysis of fluid flow, heat transfer and related phenomena through computer-based numerical analysis \cite{versteeg2007introduction}. Formerly mainly used for numerical weather prediction or calculations concerning the aerodynamics of airplanes, it has now become a vital component in process and
+product development in many different aspects of engineering. Applications vary from chemical process and civil engineering to biomedical and pharmaceutical
 process and product design. CFD offers an inexpensive alternative to experimental approaches as well as the possibility to study systems in which experiments
 would be unfeasible. Other main advantages include the reduced time, parallel processing and the almost unlimited level of detail of results. The progress in both hardware and numerical algorithms in the past decades has led to the development of numerous commercial and open-source CFD programs \cite{ghia1982high}. In this work a numerical model using the COMSOL Multiphysics software was developed.
 
@@ -492,7 +489,7 @@ The Navier-Stokes equations are a macroscopic model of the motion of viscous flu
 \label{eq:Conservation of mass }
 \end{equation}
 
-where $u$ is the fluid velocity, $p$ is the fluid pressure, $\nu$ is the kinematic viscosity and $F$ is the sum of all external forces \cite{versteeg2007introduction}. The first term describes the local acceleration of the fluid, ${\bf u} \cdot \nabla) {\bf u}$ is the non-linear convective term describing the inertial forces, $\nabla p$ is the pressure gradient and $\nu\Delta{\bf u}$ is called the dissipative viscous term. The Navier-Stokes equations are always solved together with the continuity equation (see Equation \ref{eq:Conservation of mass }). The Navier-Stokes equations satisfy the conservation of momentum, while mass conservation is included through the continuity equation \cite{alkahtani2013numerical}. The Reynolds number is a dimensionless quantity in fluid dynamics, which is used to characterize a fluid flow. The Reynolds number is defined as the ratio of the inertial forces to the viscous forces and can be written as:  
+where $u$ is the fluid velocity, $p$ is the fluid pressure, $\nu$ is the kinematic viscosity and $F$ is the sum of all external forces \cite{versteeg2007introduction}. The first term describes the local acceleration of the fluid, $({\bf u} \cdot \nabla) {\bf u}$ is the non-linear convective term describing the inertial forces, $\nabla p$ is the pressure gradient and $\nu\Delta{\bf u}$ is called the dissipative viscous term. The Navier-Stokes equations are always solved together with the continuity equation (see Equation \ref{eq:Conservation of mass }). The Navier-Stokes equations satisfy the conservation of momentum, while mass conservation is included through the continuity equation \cite{alkahtani2013numerical}. The Reynolds number is a dimensionless quantity in fluid dynamics, which is used to characterize a fluid flow. The Reynolds number is defined as the ratio of the inertial forces to the viscous forces and can be written as:  
 
 \begin{equation}
 Re=\frac{\rho u L}{\mu}=\frac{uL}{\nu}
@@ -521,7 +518,7 @@ where $\rho$ is the fluid density in kg/m\textsuperscript{3}, $L$ is a character
 
 \subsection{Space and time discretization methods}
 \label{subsec:FEM}
-Space and time dependent physical problems are usually described with the help of \gls{pde} in a domain $\Omega$. Most of these \gls{pde} cannot be solved with analytical methods, but an approximation of the equations based on different types of discretizations can be obtained. \Gls{fem} is a numerical technique for constructing such approximate solutions for \gls{pde}. The principle of the method is to replace an entire continuous domain by a number of finite-sized subdomains, called elements, of geometrically simple shapes like tetrahedrons or triangular prism. Together the elements constitute the finite-element mesh. The \gls{pde} for each element are approximated by an interpolation function, such as a linear, quadratic or higher order polynomial, also referred to as basis function, with a finite number of degrees of freedom. In combination with the boundary conditions a  system of algebraic equations is obtained, which can be solved by a sparse matrix solver \cite{john2016finite}. The solution of the matrix results in an approximate solution of the \gls{pde}. The accuracy of the solution can be increased by a refinement of the finite-element mesh or an increased order of the basis function. An example of the approximation of a function $u$ by the function $u_{h}$ consisting of linear combinations of basis functions $\psi_{i}$ with the coefficients $u_{i}$ (see Equation \ref{eq:FEM}) is depicted in Figure \ref{fig:FEM}. 
+Space and time dependent physical problems are usually described with the help of \gls{pde} in a domain $\Omega$. Most of these \gls{pde} cannot be solved with analytical methods, but an approximation of the equations based on different types of discretizations can be obtained. \Gls{fem} is a numerical technique for constructing such approximate solutions for \gls{pde}. The principle of the method is to replace an entire continuous domain by a number of finite-sized subdomains, called elements, of geometrically simple shapes like tetrahedrons or triangular prisms. Together the elements constitute the finite-element mesh. The \gls{pde} for each element are approximated by an interpolation function, such as a linear, quadratic or higher order polynomial, also referred to as basis function, with a finite number of degrees of freedom. In combination with the boundary conditions a  system of algebraic equations is obtained, which can be solved by a sparse matrix solver \cite{john2016finite}. The solution of the matrix results in an approximate solution of the \gls{pde}. The accuracy of the solution can be increased by a refinement of the finite-element mesh or an increased order of the basis function. An example of the approximation of a function $u$ by the function $u_{h}$ consisting of linear combinations of basis functions $\psi_{i}$ with the coefficients $u_{i}$ (see Equation \ref{eq:FEM}) is depicted in Figure \ref{fig:FEM}. 
 
 \begin{equation}
 u\approx u_{h} \quad \textrm{with} \quad u_{h}=\sum_{i}u_{i}\psi_{i}
@@ -531,17 +528,38 @@ u\approx u_{h} \quad \textrm{with} \quad u_{h}=\sum_{i}u_{i}\psi_{i}
 \begin{figure}[H]
 \centering
 \scalebox{0.3}{\includegraphics{figures/FEM.png}}
-\caption[]{Approximation of the function $u$ (solid blue line) with the function $u_{h}$ (dashed red line), where $u_{h}$ is a combination of linear interpolation functions $\psi_{i}$ (solid black lines) and the coefficients $u_{0}$ to $u_{7}$ \cite{ComsolFEM}
+\caption[Approximation of a function with \gls{fem}]{Approximation of the function $u$ (solid blue line) with the function $u_{h}$ (dashed red line), where $u_{h}$ is a combination of linear interpolation functions $\psi_{i}$ (solid black lines) and the coefficients $u_{0}$ to $u_{7}$ \cite{ComsolFEM}
 \label{fig:FEM}
 }
 \end{figure}
 
 Overall \gls{fem} for the approximation of \gls{pde} can be divided into four steps: Discretization of the domain, selection of the interpolation functions, formulation of the system equations and solution of the system equations. \newline 
-\Gls{fem} can also be applied for a time domain, this can however be coupled with a high computational effort. Therefore simple time-stepping methods based on finite differences are frequently used for time discretization. The implicit time-stepping algoritm used in this work is the \gls{bdf} solver, which uses backward differentiation formulas with the order of accuracy varying from one, known as the backward Euler method, to five. \Gls{bdf} solvers exhibit a high their stability, but also includes more damping effects than comparable solvers based on e.g. generalized alpha or Runge-Kutta methods \cite{ComsolRefManual}.  
+\Gls{fem} can also be applied for a time domain, this can however be coupled with a high computational effort. Therefore simple time-stepping methods based on finite differences are frequently used for time discretization. The implicit time-stepping algoritm used in this work is the \gls{bdf} solver, which uses backward differentiation formulas with the order of accuracy varying from one, known as the backward Euler method, to five. \Gls{bdf} solvers exhibit a high stability, but also include more damping effects than comparable solvers based on e.g. generalized alpha or Runge-Kutta methods \cite{ComsolRefManual}.  
 
 \section{Simulated moving bed chromatography}
 \label{sec:smb}
-\gls{smb} was developed in the late 1950s by engineers from Unviersal Oil Products to seperate p-xylene from its isomers \cite{broughton1961continuous} \cite{carson1962rotary}. The invention the continuous process was mainly motivated by the need to produce large quantities of chemicals at high purity. 
+The overall goal of the research project this thesis is embedded in is to develop a continuous size fractionation process for magnetic nanoparticles at industrial scale. \Gls{smb} is a continuous countercurrent chromatography method, which was developed in the late 1950s by engineers from Universal Oil Products to separate p-xylene from its isomers \cite{broughton1961continuous} \cite{carson1962rotary}. The invention the continuous process was mainly motivated by the need to produce large quantities of chemicals at high purity in a comparatively short time. Since the 1990s \gls{smb} is increasingly used in other industries than petrochemistry, e.g. cane and beet molasse separation in the food industry or the production of enantiomerically pure drugs in the pharmaceutical industry. The principle of countercurrent chromatography is depicted in Figure \ref{fig:SMBTurtle}. The process of separation of two components can be illustrated by picturing a fast cat and a slow turtle running on a conveyor belt that is moving in the opposite direction. The velocity of the cats is larger than and the velocity of the turtles is smaller than the velocity of the conveyor. Therefore the cat will move to the right side, while the turtle is dragged to the left side of the band and thus they are separated.  
+
+\begin{figure}[H]
+\centering
+\scalebox{0.67}{\includegraphics{figures/SMBTurtle.jpg}
+\caption[Principle of counter current separator]{Principle of counter current separator; the cat-turtle separator (top and middle) and a schematic for countercurrent chromatography (bottom)  \cite{rajendran2009simulated}}
+\label{fig:SMBTurtle}
+}
+\end{figure}
+
+
+The same separation of components is achieved in a continouse countercurrent chromatography column, where both the fluid and the solid are pumped into opposite directions. The component mixture is fed continuously to the middle of the column and the two seperated components are collected on either side of the column. As pumping of the solid phase is neither easy to achieve nor practicable the column is substituted by several seperate columns  and movement of the bed is simulated by either moving the columns on a caroussle like structure or switching of the inlet and outlet flows with rotray valves. A schematic four column setup for an \gls{smb} process is shown in Figure \ref{fig:SMB}.
+
+\begin{figure}[H]
+\centering
+\scalebox{0.67}{\includegraphics{figures/smb_schema.png}
+\caption[Schmatic drawing of a SMB process]{Schmatic drawing of a SMB process, where a feed consisting of the more retained product A and the less retained product B is split into two pure fractions of the products}
+\label{fig:SMB}
+}
+\end{figure}
+
+With this setup a continuous binary separation of a mixture can be achieved with high purity and yield. The projects objective is to applied the \gls{smb} method to achieve a continuity size fractionation in the nanoparticle range.   
 
 
 \chapter{Materials and Methodology}
