@@ -24,7 +24,7 @@
 
 %% Available languages: english,ngerman
 %% Available modes: draft,final (see README)
-\documentclass[english,draft]{sdqthesis}
+\documentclass[english,final]{sdqthesis}
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 %\usepackage{eulervm}
@@ -38,12 +38,17 @@
 \usepackage{floatrow}
 \usepackage{textcomp}
 \usepackage{multirow}
-\usepackage[nonumberlist, acronym]{glossaries}
+\usepackage[nonumberlist, acronym, nomain, nopostdot]{glossaries}
 \usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{siunitx}
 
+\setglossarystyle{long}
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
+
 \makeglossaries
+
+
 %\usepackage{jneurosci}
 %\let \bibhang \relax
 %\usepackage{natbib}
@@ -103,7 +108,7 @@ me-ta-mo-del
 %\bibliographystyle{ksfh_nat}
 \bibliographystyle{srtnat}
 %\usepackage[citestyle=authoryear, maxnames=2,uniquelist=false,natbib=true,bibstyle=authoryear,firstinits,backend=biber,defernumbers=true]{biblatex}
-\usepackage[citestyle=numeric,natbib=true,bibstyle=numeric,backend=biber, sorting=none]{biblatex}
+\usepackage[citestyle=numeric-comp,natbib=true,bibstyle=numeric,backend=biber, sorting=none]{biblatex}
 %authoryear: use cite citep (in parents) and citet (in text), maxnames=2: if more than 2 authors only one author and et al. is displayed; uniquelist: dont use first name if 2 authors have same last name, natbib=true: necessary for citep etc., bibstyle=authoryear: controls style in Bibliography, firstinits: show only initials of first name in bibliography; defersnumber=true: necessary  for use of omitnumbers=true in printbibliography (no numbers in bibliography)
 
 \addbibresource{thesis.bib}
