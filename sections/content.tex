@@ -315,7 +315,7 @@ Equation \ref{eq:Stokes_Einstein}, called Stokes-Einstein equation, describes th
 A "diffusion force" $F_{B}$ acting on the particles can therefore be described as follows:
 
 \begin{equation}
-\label{eq:mag_force}
+\label{eq:diff_force}
 \centering
 \boldsymbol{F}_{B} = -k_{B}T\frac{\nabla n}{n}
 \end{equation}
@@ -567,16 +567,16 @@ The objective of this thesis was the design and implementation of an in silico m
 \label{subsec:geom}
 The geometry of the the two-dimensional single wire model consists of two subregions: the magnetized wire and the surrounding fluid. The wire is located at the center of a rectangular channel through which a nanoparticle suspension flows with an average inlet velocity of $u_{0}$. The applied magnetic field $H_{0}$ is oriented perpendicular to the flow direction. In order to evalutate the retention of the nanoparticles close to the cylinder a circular domain was included around the wire in which the particle residence time was determined (see Section \ref{subsec:??}). The whole configuration of the control area is shown in Figure \ref{fig:geom_singlewire}.
 
-
+\textbf{include dimensions in figure!}
 \begin{figure}[H]
 \centering
 \scalebox{0.67}{\includegraphics{figures/Comsol_single_wire_Geometry.png}
-\caption[Single wire model geometry]{Single wire model geometry: the magnetic particles flow by a magnetized ferromagnetic cylinder with the radius $R_{w}$ in a rectangular channel with the length L=20$R_{w}$ and the width w=10$R_{w}$; the uniform external field $H_{0}$ is applied perpendicular to the inlet flow velocity $u_{0}$; the retention of the particles is evaluated within the outer circular domain with a radius of 1.5$R_{w}$ and at the outlet of the channel}
+\caption[Single wire model geometry]{Single wire model geometry: the magnetic particles flow by a magnetized ferromagnetic cylinder with the radius $R_{w}$ in a rectangular channel with the length L=20$R_{w}$ and the width w=10$R_{w}$ in \textmu m; the uniform external field $H_{0}$ is applied perpendicular to the inlet flow velocity $u_{0}$; the retention of the particles is evaluated within the outer circular domain with a radius of 1.5$R_{w}$ and at the outlet of the channel}
 \label{fig:geom_singlewire}
 }
 \end{figure}
 
-For the generation of the mesh the COMSOL method of physics-controlles meshing was applied. Hereby information from the physics interface is used to set up an appropriate mesh sequence. As COMSOL mainly uses \gls{fem} the accuracy of the solution is linked to the mesh size (for more information see Section \ref{subsec:FEM}). The smaller the mesh size the closer the approximation matches the exact solution of the \glspl{pde}. A decrease in element size however is always accompanied by an increase in computational effort. Therefore a mesh refinement study was conducted with the goal to minimize the difference between the exact and the approximated solution while still retaining reasonably low computing times. The residence time of the particles measured at the outflow was chosen as characteristic output parameter. As convergence criterion a deviation smaller than 1\,\% from coarser to the next finer mesh was chosen. The different meshes tested in the refinement study are shown in Figure \ref{fig:Mesh_Ref} and the corresponding mesh size parameters are listed in Table \ref{table:Mesh_Ref}.  
+For the generation of the mesh the COMSOL method of physics-controlled meshing was applied. Hereby information from the physics interface is used to set up an appropriate mesh sequence. As COMSOL mainly uses \gls{fem} the accuracy of the solution is linked to the mesh size (for more information see Section \ref{subsec:FEM}). The smaller the mesh size the closer the approximation matches the exact solution of the \glspl{pde}. A decrease in element size however is always accompanied by an increase in computational effort. Therefore a mesh refinement study was conducted with the goal to minimize the difference between the exact and the approximated solution while still retaining reasonably low computing times. The residence time of the particles measured at the outflow was chosen as characteristic output parameter. As convergence criterion a deviation smaller than 1\,\% from the current mesh to the next finer mesh was chosen. The different meshes tested in the refinement study are shown in Figure \ref{fig:Mesh_Ref} and the corresponding mesh size parameters are listed in Table \ref{table:Mesh_Ref}.  
 
 \begin{figure}[h]
 		%\centering
@@ -586,12 +586,12 @@ For the generation of the mesh the COMSOL method of physics-controlles meshing w
                   %\caption{Packing setup}\label{fig:Packing}
           \end{subfigure}\hfill	
 	  \begin{subfigure}{0.24\textwidth}
-                  \flushleft
+                  %\flushleft
                   \scalebox{0.3}{\includegraphics{figures/Comsol_single_wire_mesh_normal.png}}
                   %\caption{Packing setup}\label{fig:Packing}
           \end{subfigure}\hfill	
           \begin{subfigure}{0.24\textwidth}
-                  \flushleft
+                  %\flushright
                   \scalebox{0.3}{\includegraphics{figures/Comsol_single_wire_mesh_fine.png}}
                   %\caption{Packing setup}\label{fig:Packing}
           \end{subfigure}\hfill
@@ -621,7 +621,128 @@ finer &  1.85$\cdotp$10\textsuperscript{-5} & 6.25$\cdotp$10\textsuperscript{-8}
 \hline
 \end{tabularx}
 \end{table}
+
+In addition to the two-dimensional single wire model geometries with two and four wires were constructed. The setup and the meshing for those geometries are shown in Figure \ref{fig:Two_Four_Wires}. To assure comparability the resulting mesh size from the mesh refinement study from the single wire model was chosen.  
+
+\begin{figure}[h]
+		%\centering
+          \begin{subfigure}{0.24\textwidth}
+                  \flushleft
+                  \scalebox{0.3}{\includegraphics{figures/Comsol_two_wires_Geometry.png}}
+                  %\caption{Packing setup}\label{fig:Packing}
+          \end{subfigure}\hfill	
+	  \begin{subfigure}{0.24\textwidth}
+                  \flushleft
+                  \scalebox{0.3}{\includegraphics{figures/Comsol_two_wires_mesh_fine.png}}
+                  %\caption{Packing setup}\label{fig:Packing}
+          \end{subfigure}\hfill	
+          \begin{subfigure}{0.24\textwidth}
+                  \flushright
+                  \scalebox{0.3}{\includegraphics{figures/Comsol_four_wires_Geometry.png}}
+                  %\caption{Packing setup}\label{fig:Packing}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.24\textwidth}
+                \flushright
+                \scalebox{0.3}{\includegraphics{figures/Comsol_four_wires_mesh_fine.png}}
+                %\caption{Column}\label{fig:Column}
+        \end{subfigure}
+        \\
+        
+        \caption[Two cylinder and four cylinder setup]{Two cylinder setup geometry and fine mesh (left side) and four cylinder setup geometry and fine mesh (right side)}
+        \label{fig:Two_Four_Wires}
+  \end{figure}
   
+For the two and four cylinder setup a channel with the same dimensions as shown in Figure \ref{fig:geom_singlewire} was used.For the two cylinder setup the centers of the wires with the radius $R_{w}$ are located at at a distance of 2$R_{w}$ on the x-axis in each direction from the center of the channel. For the four cylinder setup the cylinders centers are positioned at a distance of 3.5$R_{w}$ and 1.15$R_{w}$ respectively on each side of the channel center. For those two configurations $R_{w}$ was fixed on 25\,\textmu m, while $R_{w}$ for the single wire model was also varied in the parameter studies described in Section \ref{subsec:Param_studies}. The retention of the magnetic nanoparticles was evaluated in the rectangle drawn around the cylinderes and at the outflow of the channel.   
+
+\subsection{Model parameters}
+\label{subsec:Cond_param}
+
+The parameters used in the simulation and their values are listed in Table \ref{table:param_mod}. Parameters that were varied in the parameter studies are not listed here but can be found in Section \ref{subsec:Param_studies}. For the material properties of the water and iron domain values provided by the COMSOL material library were used.   
+
+\begin{table}[H]
+\centering
+\caption[Model parameters]{Model parameters used for the simulation}
+\label{table:param_mod}
+\begin{tabularx}{\textwidth}{XXX}\hline
+Name & Description & Value \\
+\hline\hline
+$\rho_{w}$ & density of water &  997.1\,kg/m\textsuperscript{3}\\
+$\mu_{w}$ & viscosity of water & 8.9$\cdotp$10\textsuperscript{-4}\,Pa$\cdotp$s\\
+$T$ & temperature & 298.5\,K\\
+$k_{b}$ & Boltzmann constant & 1.38064852$\cdotp$10\textsuperscript{-23}\,J/K\\
+$\phi_{0}$ & initial volume fraction of magnetic particles & 1$\cdotp$10\textsuperscript{-4}\\
+$\phi_{max}$ & maximum volume fraction of magnetic particles & 0.64\\
+$\mu_{max}$ & maximum slurry viscosity & 10\textsuperscript{8}$\mu_{w}$\\
+$x_fmp$ & weight fraction of of magnetite in magnetic particles & 0.9\\
+$\rho_{pol}$ & density of polymer in particles & 950\,kg/m\textsuperscript{3}\\
+$\rho_{fmp}$ & density of magnetite in the particles & 5050\,kg/m\textsuperscript{3}\\
+$\chi_{xfmp,0}$ & initial magnetic susceptibility of magnetite in the particles & 1000\\
+$\chi_{w,0}$ & initial magnetic susceptibility of the iron wire & 1000\\
+$M_{fmp,s}$ & saturation magnetization of magnetite in the particles & 4.55$\cdotp$10\textsuperscript{3}\,A/m\\
+$M_{w,s}$ & saturation magnetization of the iron wire & 1735$\cdotp$10\textsuperscript{3}\,A/m\\
+\hline
+\end{tabularx}
+\end{table}
+
+\subsection{Model equations and boundary conditions}
+\label{subsec:model_eq_BC}
+
+The external magnetic field was simulated with the magnetic fields interface of the AC/DC branch of COMSOL. It solves Maxwell's equations (see Section \ref{subsec:Maxwell}) formulated with the magnetic vector potential as described in Section \ref{subsec:Mag_pot}. In this model the stationary equations \ref{eq:eq:Ampere_stat} and \ref{eq:Pot_A} are solved for each domain together with the constitutive relation described in Equation \ref{eq:B_tot} and the necessary material properties like $\mu_{r}$. The material properties are based on the assigned material for each domain. As initial condition the magnetic vector potential is set to zero for all domains.  As boundary condition magnetic insulation is applied to all four channel boundaries. The magnetic insulation boundary condition sets the tangential components of the magnetic potential to zero at the boundary ($\boldsymbol{n}\times\boldsymbol{A} = 0$). More information on the magnetic fields interface and corresponding equations and boundary conditions can be found in the COMSOL AC/DC module user guide \cite{ComsolACDC}. \newline
+The fluid flowing through the channel consists of a slurry containing magnetic nanoparticles with the radius $R_{p}$ and water. The nanoparticles are composed out of magnetite and a diamagnetic polymer. The model was constructed in a way to include the effects of the particle accumulation on the wire both on the fluid flow and the magnetic field. To achieve this the fluid viscosity is defined as a function of the magnetic particle concentration and the external forces are set to zero once the particles are collected indicated by the maximum particle concentration (for a more detailed description of the model see \cite{choomphon2017simulation}). The velocity and the concentration of the slurry are described by the two-dimensional unsteady state Navier-Stokes equations for compressible fluid flow. The Equations \ref{eq:NS_part1} and \ref{eq:NS_part2} depict the Navier-Stokes equations for the solid (magnetic particles) and the liquid (water) fraction, respectively. 
+
+%\begin{equation} 
+\begin{multline} 
+\rho_{p}\left(\frac{\partial}{\partial t}+(v_{s}\cdotp\nabla)\right)v_{s} = \\ \nabla\cdotp \begin{bmatrix} -\left(p+\frac{2}{3}\mu(\phi)\nabla\cdotp v_{s}\right)+2\mu(\phi)\frac{\partial v_{s,x}}{\partial x} & \mu(\phi)\left(\frac{\partial v_{s,y}}{\partial x}+\frac{\partial v_{s,x}}{\partial y}\right) \\ \mu(\phi)\left(\frac{\partial v_{s,y}}{\partial x}+\frac{\partial v_{s,x}}{\partial y}\right)  &  -\left(p+\frac{2}{3}\mu(\phi)\nabla\cdotp v_{s}\right)+2\mu(\phi)\frac{\partial v_{s,y}}{\partial y}\end{bmatrix}\\ + \frac{(F_{m}+F_{d}+F_{b})}{V_{p}}\Phi(\phi)
+\label{eq:NS_part1}
+% %\begin{bmatrix} 1&2\\3&4\end{bmatrix}
+\end{multline}
+%\label{eq:NS_part}
+%\end{equation}
+
+\begin{multline} 
+\rho_{w}\left(\frac{\partial}{\partial t}+(v_{l}\cdotp\nabla)\right)v_{l} = \\ \nabla\cdotp \begin{bmatrix} -\left(p+\frac{2}{3}\mu(\phi)\nabla\cdotp v_{l}\right)+2\mu(\phi)\frac{\partial v_{l,x}}{\partial x} & \mu(\phi)\left(\frac{\partial v_{l,y}}{\partial x}+\frac{\partial v_{l,x}}{\partial y}\right) \\ \mu(\phi)\left(\frac{\partial v_{l,y}}{\partial x}+\frac{\partial v_{s,x}}{\partial y}\right)  &  -\left(p+\frac{2}{3}\mu(\phi)\nabla\cdotp v_{s}\right)+2\mu(\phi)\frac{\partial v_{l,y}}{\partial y}\end{bmatrix}\\ - \frac{\phi F_{d}}{(1-\phi)V_{p}}
+\label{eq:NS_part2}
+% %\begin{bmatrix} 1&2\\3&4\end{bmatrix}
+\end{multline}
+
+$v_{s}=(v_{s,x},v_{s,y})$ denotes the velocity of the solid, while  $v_{l}=(v_{l,x},v_{l,y})$ is the velocity of the liquid. $\phi$ is the particle volume fraction in the fluid, $\mu(\phi)$ is the dynamic viscosity of the fluid that is dependent on $\phi$ and $\Phi(\phi)$ is a constraint function that approaches a value of zero when $\phi$ approaches its maximum value which leads to the cancellation of all forces once the particles are collected. The continuity equations for the liquid and the particle phase can be written as follows:  
+
+\begin{equation}
+\frac{d\rho_{s}}{d t}+\nabla\cdotp(\rho_{s}V_{s})=0
+\label{eq:Conti_p}
+\end{equation}
+
+\begin{equation}
+\frac{d\rho_{l}}{d t}+\nabla\cdotp(\rho_{l}V_{l})=0
+\label{eq:Conti_l}
+\end{equation}
+
+where the solid and liquid densities can be defined as $\rho_{s}=\phi\rho_{p}$ and $\rho_{l}=(1-\phi)\rho_{w}$ with $\rho_{p}$ as the density of a single particle and $\rho_{w}$ as the density of water.\\
+As the magnetic particles are assumed to be in the nanometer range (for values of $R_{p}$ see Section \ref{subsec:Param_studies}) only magnetic, hydrodynamic and diffusion forces are considered and the gravitational force is neglected. For calculation of the forces the Equations \ref{eq:mag_force}, \ref{eq:drag_force} and \ref{eq:diff_force} are modified in the following way:  
+
+\begin{equation}
+\label{eq:mag_force_model}
+\centering
+\boldsymbol{F}_{m} = \frac{1}{2}\mu_{0}V_{p}\omega_{fmp}\nabla(\boldsymbol{M}_{fmp}\boldsymbol{H_{f}})
+\end{equation}
+
+\begin{equation}
+\label{eq:drag_force_model}
+\centering
+\boldsymbol{F}_{d} = 6\pi\mu(\phi)R_{p}(\boldsymbol{v}_{l}-\boldsymbol{v}_{s})
+\end{equation}
+
+\begin{equation}
+\label{eq:diff_force_model}
+\centering
+\begin{split}
+\boldsymbol{F}_{b} &= -k_{B}T\frac{\nabla\phi}{\phi} \quad for \quad \phi>0 \\
+                   &= 0\quad for \quad \phi=0
+\end{split}                  
+\end{equation}
+
+where $\omega_{fmp}$ is the volume fraction of the magnetite in the magnetic particles, $M_{fmp}$ is the magnetization of the particles and $H_{f}$ is the local magnetic field around the wire. 
+
 
 \subsection{Parameter studies}
 \label{subsec:Param_studies} 
