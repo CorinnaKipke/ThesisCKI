@@ -404,7 +404,7 @@ For a single wire model three different orientations of the wire relative to the
 The particle trajectories in the vicinity of the wire are calculated by Newton's second law, which states that the sum of all forces affecting the particle is equal to the product of the particle mass $m$ and its acceleration $a_{p}$. 
 
 \begin{equation}
-\label{eq:mag_force}
+\label{eq:mag_force_sum}
 \centering
 \sum_{i}\boldsymbol{F}_{i} = m\boldsymbol{a}_{p}
 \end{equation}
@@ -554,29 +554,29 @@ With this setup a continuous binary separation of a mixture can be achieved with
 \newacronym{fplc}{FPLC}{fast protein liquide chromatography}
 \newacronym{esem}{ESEM}{environmental scanning electron microscope}
 \newacronym{agm}{AGM}{alternating gradient magnetometer}
+\newacronym{mumps}{MUMPS}{multifrontal massively parallel sparse direct solver}
+\newacronym{pardiso}{PARDISO}{parallel direct sparse solver}
 
-In the first part of this chapter the model setup and implementation using the simulation software COMSOL Multiphysics\textsuperscript{\textregistered}, thereafter referred to as COMSOL, is described.\\
-Section \ref{sec:Exp_setup} gives an overview of the experimental setup and execution as well as the analytical and evaluation methods used.  
-
+In the first part of this chapter the model setup and implementation using the simulation software COMSOL Multiphysics\textsuperscript{\textregistered}, thereafter referred to as COMSOL, is described (see Section \ref{sec:Model_setup}).\\
+In the second part Section \ref{sec:Exp_setup} gives an overview of the experimental setup and execution as well as of the used analytical and evaluation methods.  
 
 \section{Model setup}
 \label{sec:Model_setup}
-The objective of this thesis was the design and implementation of an in silico model simulating the retention of magnetic nanoparticles flowing through simplified magnetized packed bed. The model is based on a single wire model for the simulation of dynamic particle capture which was kindly provided by A. Ebner (a detailed description of the model can be found in \cite{choomphon2017simulation}). Furthermore parameter studies for various conditions were conducted. In the following the simulation setup including geometry, mesh, boundary conditions and solvers as well as the principal equations are described.    
+The objective of this thesis was the design and implementation of an in silico model simulating the retention of magnetic nanoparticles flowing through simplified magnetized packed bed. The model is based on a single wire model for the simulation of dynamic particle capture which was kindly provided by A. Ebner (a detailed description of the model can be found in \cite{choomphon2017simulation}). Furthermore parameter studies for various conditions were conducted. In the following the simulation setup including geometry, mesh, boundary conditions and solvers as well as the principal equations are described. Furthermore a description of the performed parameter studies is given in Section \ref{subsec:Param_studies}.     
 
 \subsection{Geometry and mesh}
 \label{subsec:geom}
-The geometry of the the two-dimensional single wire model consists of two subregions: the magnetized wire and the surrounding fluid. The wire is located at the center of a rectangular channel through which a nanoparticle suspension flows with an average inlet velocity of $u_{0}$. The applied magnetic field $H_{0}$ is oriented perpendicular to the flow direction. In order to evalutate the retention of the nanoparticles close to the cylinder a circular domain was included around the wire in which the particle residence time was determined (see Section \ref{subsec:??}). The whole configuration of the control area is shown in Figure \ref{fig:geom_singlewire}.
+The geometry of the the two-dimensional single wire model consists of two subregions: the magnetized wire and the surrounding fluid. The wire is located at the center of a rectangular channel through which a nanoparticle suspension flows with an average inlet velocity of $u_{0}$. The applied magnetic field $H_{0}$ is oriented in the same direction as the flow velocity. This longitudinal arrangement was choosen, as it matches the condtions in the experimental setup. In order to evaluate the retention of the nanoparticles close to the cylinder a circular domain was included around the wire in which the particle residence time was determined (see Section \ref{subsec:Param_studies}). The whole configuration of the control area is shown in Figure \ref{fig:geom_singlewire}.
 
-\textbf{include dimensions in figure!}
 \begin{figure}[H]
 \centering
-\scalebox{0.67}{\includegraphics{figures/Comsol_single_wire_Geometry.png}
-\caption[Single wire model geometry]{Single wire model geometry: the magnetic particles flow by a magnetized ferromagnetic cylinder with the radius $R_{w}$ in a rectangular channel with the length L=20$R_{w}$ and the width w=10$R_{w}$ in \textmu m; the uniform external field $H_{0}$ is applied perpendicular to the inlet flow velocity $u_{0}$; the retention of the particles is evaluated within the outer circular domain with a radius of 1.5$R_{w}$ and at the outlet of the channel}
+\scalebox{0.67}{\includegraphics{figures/Comsol_single_wire_Geometry_long.png}
+\caption[Single wire model geometry]{Single wire model geometry: the magnetic particles flow by a magnetized ferromagnetic cylinder with the radius $R_{w}$ in a rectangular channel with the length L=20$R_{w}$ and the width w=10$R_{w}$ in \textmu m; the uniform external field $H_{0}$ is applied parallel to the inlet flow velocity $u_{0}$; the retention of the particles is evaluated within the outer circular domain with a radius of 1.5$R_{w}$ and at the outlet of the channel}
 \label{fig:geom_singlewire}
 }
 \end{figure}
 
-For the generation of the mesh the COMSOL method of physics-controlled meshing was applied. Hereby information from the physics interface is used to set up an appropriate mesh sequence. As COMSOL mainly uses \gls{fem} the accuracy of the solution is linked to the mesh size (for more information see Section \ref{subsec:FEM}). The smaller the mesh size the closer the approximation matches the exact solution of the \glspl{pde}. A decrease in element size however is always accompanied by an increase in computational effort. Therefore a mesh refinement study was conducted with the goal to minimize the difference between the exact and the approximated solution while still retaining reasonably low computing times. The residence time of the particles measured at the outflow was chosen as characteristic output parameter. As convergence criterion a deviation smaller than 1\,\% from the current mesh to the next finer mesh was chosen. The different meshes tested in the refinement study are shown in Figure \ref{fig:Mesh_Ref} and the corresponding mesh size parameters are listed in Table \ref{table:Mesh_Ref}.  
+For the generation of the mesh the COMSOL method of physics-controlled meshing with free triangular elements was applied. Hereby information from the physics interface is used to set up an appropriate mesh sequence. As COMSOL mainly uses \gls{fem} the accuracy of the solution is linked to the mesh size (for more information see Section \ref{subsec:FEM}). The smaller the mesh size the closer the approximation matches the exact solution of the \glspl{pde}. A decrease in element size however is always accompanied by an increase in computational effort. Therefore a mesh refinement study was conducted with the goal to minimize the difference between the exact and the approximated solution while still retaining reasonably low computing times. The residence time of the particles measured at the outflow was chosen as characteristic output parameter. As convergence criterion a deviation smaller than 1.5\,\% from the current mesh to the next finer mesh was chosen. The different meshes tested in the refinement study are shown in Figure \ref{fig:Mesh_Ref} and the corresponding mesh size parameters are listed in Table \ref{table:Mesh_Ref}.  
 
 \begin{figure}[h]
 		%\centering
@@ -652,7 +652,7 @@ In addition to the two-dimensional single wire model geometries with two and fou
         \label{fig:Two_Four_Wires}
   \end{figure}
   
-For the two and four cylinder setup a channel with the same dimensions as shown in Figure \ref{fig:geom_singlewire} was used.For the two cylinder setup the centers of the wires with the radius $R_{w}$ are located at at a distance of 2$R_{w}$ on the x-axis in each direction from the center of the channel. For the four cylinder setup the cylinders centers are positioned at a distance of 3.5$R_{w}$ and 1.15$R_{w}$ respectively on each side of the channel center. For those two configurations $R_{w}$ was fixed on 25\,\textmu m, while $R_{w}$ for the single wire model was also varied in the parameter studies described in Section \ref{subsec:Param_studies}. The retention of the magnetic nanoparticles was evaluated in the rectangle drawn around the cylinderes and at the outflow of the channel.   
+For the two and four cylinder setup a channel with the same dimensions as shown in Figure \ref{fig:geom_singlewire} was used.For the two cylinder setup the centers of the wires with the radius $R_{w}$ are located at at a distance of 2$R_{w}$ on the x-axis in each direction from the center of the channel. For the four cylinder setup the cylinder centers are positioned at a distance of 3.5\,$R_{w}$ and 1.15\,$R_{w}$ respectively on each side of the channel center. For those two configurations $R_{w}$ was fixed on 25\,\textmu m, while $R_{w}$ for the single wire model was also varied in the parameter studies described in Section \ref{subsec:Param_studies}. The retention of the magnetic nanoparticles was evaluated in the rectangle drawn around the cylinders and at the outflow of the channel. To achieve a high resolution the relative tolerance for all simulations was set to 0.001 for the stationary part and to 0.01 for the time-dependent part. In addition the step width used by the \gls{bdf} solver was set to intermediate with an event tolerance of 0.01 and an initial step width of 0.001\,s. As sparse matrix solver the \gls{mumps} is used in the magnetic fields interface, while the \gls{pardiso} is used in the general form \gls{pde} interface (for more information on the linear system solvers see \cite{ComsolRefManual}).   
 
 \subsection{Model parameters}
 \label{subsec:Cond_param}
@@ -676,7 +676,7 @@ $\mu_{max}$ & maximum slurry viscosity & 10\textsuperscript{8}$\mu_{w}$\\
 $x_fmp$ & weight fraction of of magnetite in magnetic particles & 0.9\\
 $\rho_{pol}$ & density of polymer in particles & 950\,kg/m\textsuperscript{3}\\
 $\rho_{fmp}$ & density of magnetite in the particles & 5050\,kg/m\textsuperscript{3}\\
-$\chi_{xfmp,0}$ & initial magnetic susceptibility of magnetite in the particles & 1000\\
+$\chi_{fmp,0}$ & initial magnetic susceptibility of magnetite in the particles & 1000\\
 $\chi_{w,0}$ & initial magnetic susceptibility of the iron wire & 1000\\
 $M_{fmp,s}$ & saturation magnetization of magnetite in the particles & 4.55$\cdotp$10\textsuperscript{3}\,A/m\\
 $M_{w,s}$ & saturation magnetization of the iron wire & 1735$\cdotp$10\textsuperscript{3}\,A/m\\
@@ -686,9 +686,8 @@ $M_{w,s}$ & saturation magnetization of the iron wire & 1735$\cdotp$10\textsuper
 
 \subsection{Model equations and boundary conditions}
 \label{subsec:model_eq_BC}
-
-The external magnetic field was simulated with the magnetic fields interface of the AC/DC branch of COMSOL. It solves Maxwell's equations (see Section \ref{subsec:Maxwell}) formulated with the magnetic vector potential as described in Section \ref{subsec:Mag_pot}. In this model the stationary equations \ref{eq:eq:Ampere_stat} and \ref{eq:Pot_A} are solved for each domain together with the constitutive relation described in Equation \ref{eq:B_tot} and the necessary material properties like $\mu_{r}$. The material properties are based on the assigned material for each domain. As initial condition the magnetic vector potential is set to zero for all domains.  As boundary condition magnetic insulation is applied to all four channel boundaries. The magnetic insulation boundary condition sets the tangential components of the magnetic potential to zero at the boundary ($\boldsymbol{n}\times\boldsymbol{A} = 0$). More information on the magnetic fields interface and corresponding equations and boundary conditions can be found in the COMSOL AC/DC module user guide \cite{ComsolACDC}. \newline
-The fluid flowing through the channel consists of a slurry containing magnetic nanoparticles with the radius $R_{p}$ and water. The nanoparticles are composed out of magnetite and a diamagnetic polymer. The model was constructed in a way to include the effects of the particle accumulation on the wire both on the fluid flow and the magnetic field. To achieve this the fluid viscosity is defined as a function of the magnetic particle concentration and the external forces are set to zero once the particles are collected indicated by the maximum particle concentration (for a more detailed description of the model see \cite{choomphon2017simulation}). The velocity and the concentration of the slurry are described by the two-dimensional unsteady state Navier-Stokes equations for compressible fluid flow. The Equations \ref{eq:NS_part1} and \ref{eq:NS_part2} depict the Navier-Stokes equations for the solid (magnetic particles) and the liquid (water) fraction, respectively. 
+In this section a brief overview of the model equations and conditions is given, a more detailed model description can be found in \cite{choomphon2017simulation}. The external magnetic field was simulated with the magnetic fields interface of the AC/DC branch of COMSOL. It solves Maxwell's equations (see Section \ref{subsec:Maxwell}) formulated with the magnetic vector potential as described in Section \ref{subsec:Mag_pot}. In this model the stationary equations \ref{eq:Ampere_stat} and \ref{eq:Pot_A} are solved for each domain together with the constitutive relation described in Equation \ref{eq:B_tot} and the necessary material properties like $\mu_{r}$. The material properties are based on the assigned material for each domain. As initial condition the magnetic vector potential is set to zero for all domains.  As boundary condition magnetic insulation is applied to all four channel boundaries. The magnetic insulation boundary condition sets the tangential components of the magnetic potential to zero at the boundary ($\boldsymbol{n}\times\boldsymbol{A} = 0$). More information on the magnetic fields interface and corresponding equations and boundary conditions can be found in the COMSOL AC/DC module user guide \cite{ComsolACDC}. \newline
+The fluid flowing through the channel consists of a slurry containing magnetic nanoparticles with the radius $R_{p}$ and water. The nanoparticles are composed out of magnetite and a diamagnetic polymer. The model was constructed in a way to include the effects of the particle accumulation on the wire both on the fluid flow and the magnetic field. To achieve this the fluid viscosity is defined as a function of the magnetic particle concentration and the external forces are set to zero once the particles are collected indicated by the maximum particle concentration. The velocity and the concentration of the slurry are described by the two-dimensional unsteady state Navier-Stokes equations for compressible fluid flow. The Equations \ref{eq:NS_part1} and \ref{eq:NS_part2} depict the Navier-Stokes equations for the solid (magnetic particles) and the liquid (water) fraction, respectively. 
 
 %\begin{equation} 
 \begin{multline} 
@@ -717,7 +716,7 @@ $v_{s}=(v_{s,x},v_{s,y})$ denotes the velocity of the solid, while  $v_{l}=(v_{l
 \label{eq:Conti_l}
 \end{equation}
 
-where the solid and liquid densities can be defined as $\rho_{s}=\phi\rho_{p}$ and $\rho_{l}=(1-\phi)\rho_{w}$ with $\rho_{p}$ as the density of a single particle and $\rho_{w}$ as the density of water.\\
+where the solid and liquid densities can be defined as $\rho_{s}=\phi\rho_{p}$ and $\rho_{l}=(1-\phi)\rho_{w}$ with $\rho_{p}$ as the density of a single particle and $\rho_{w}$ as the density of water. The equations are implemented in the general form \gls{pde} interface.\\
 As the magnetic particles are assumed to be in the nanometer range (for values of $R_{p}$ see Section \ref{subsec:Param_studies}) only magnetic, hydrodynamic and diffusion forces are considered and the gravitational force is neglected. For calculation of the forces the Equations \ref{eq:mag_force}, \ref{eq:drag_force} and \ref{eq:diff_force} are modified in the following way:  
 
 \begin{equation}
@@ -735,18 +734,50 @@ As the magnetic particles are assumed to be in the nanometer range (for values o
 \begin{equation}
 \label{eq:diff_force_model}
 \centering
-\begin{split}
-\boldsymbol{F}_{b} &= -k_{B}T\frac{\nabla\phi}{\phi} \quad for \quad \phi>0 \\
-                   &= 0\quad for \quad \phi=0
-\end{split}                  
+\boldsymbol{F}_{b}= 
+                 \begin{cases}
+                    -k_{B}T\frac{\nabla\phi}{\phi} & \text{if}\ \phi>0 \\
+                    0 & \text{if}\ \phi=0
+                 \end{cases}
 \end{equation}
 
-where $\omega_{fmp}$ is the volume fraction of the magnetite in the magnetic particles, $M_{fmp}$ is the magnetization of the particles and $H_{f}$ is the local magnetic field around the wire. 
+where $\omega_{fmp}$ is the volume fraction of the magnetite in the magnetic particles, $M_{fmp}$ is the magnetization of the particles and $H_{f}$ is the local magnetic field around the wire which is defined by $H_{f}=H_{0}-\nabla\varphi_{2}$. Herein $\varphi_{2}$ is the magnetic potential in the liquid domain and $H_{0}$ the externally applied uniform magnetic field. The induced magnetization in the wire  by $H_{0}$ is described by the following Equation.
+
+
+\begin{equation}
+\label{eq:mag_wire}
+\centering
+\boldsymbol{M}_{w}= 
+                 \begin{cases}
+                    \frac{2\chi_{w,0}}{2+\chi_{w,0}}H_{0} & \text{if}\ \frac{2\chi_{w,0}}{2+\chi_{w,0}}H_{0}<M_{w,s} \\
+                    \frac{M_{w,s}}{H_{0}}H_{0} & \text{if}\ \frac{2\chi_{w,0}}{2+\chi_{w,0}}H_{0}\geq M_{w,s} \\
+                 \end{cases}
+\end{equation}
+
+No-slip and no-flux boundary conditions are applied at the wire's surface, while periodic boundary conditions or Dirichlet boundary conditions with a fixed flow velocity are applied to the channel walls. 
 
 
 \subsection{Parameter studies}
 \label{subsec:Param_studies} 
+In order to evaluate the influence of the different parameters on the retention of the magnetic nanoparticles parameter studies were conducted. For the parameter studies the following parameters were chosen: the magnetic flux density of the external field $B_{0}$ in mT, the particle radius $R_{p}$ in nm, the radius of the wire $R_{w}$ in \textmu m and the inflow velocity of the slurry $u_{0}$ in m/s. For the two and four cylinder models $R_{w}$ was held constant. The design of the parameter studies is shown in Table \ref{table:param_study} with the corresponding value ranges of the varied parameters. 
 
+\begin{table}[H]
+\centering
+\caption[Paramter study]{Paramter study design: with the model descritpion where sw=single wire, tw=two wires, fw=four wires and the corresponding constant parameter values and value ranges}
+\label{table:param_study}
+\begin{tabularx}{\textwidth}{XXXXX}\hline
+Model & $B_{0}$ in mT & $R_{p}$ in nm & $R_{w}$ in \textmu m & $u_{0}$ in mm/s\\
+\hline\hline
+sw, tw, fw & 0-35 & 30 & 25 & 20\\
+sw, tw, fw & 0-32.5 & 20-150 & 25 & 20\\
+sw, tw, fw & 0-32.5 & 30 & 25 & 15-40\\
+sw & 0-32.5 & 30 & 5-45 & 20\\
+\hline
+\end{tabularx}
+\end{table}
+
+10\,s were simulated for each case, where the nanoparticles were applied in a rectangular function between 0.1 and 0.2\,s at the beginning of the simulation. 
+As characteristic parameter the residence time of the particles is determined in the secondary circle around the wire and at the outflow. The residence time is then normalized by the division by the residence time at 0\,mT and otherwise unchanged parameters.    
 % \subsection{Model validation/verification}
 % \label{subsec:model_val}
 % Benchmark problem flow around a cylinder (Schaefer and Turek)
@@ -1013,7 +1044,7 @@ k = k_{s} = \sum_{j=1}^{N}[(x_{i+1}-x_{i})(\frac{y_{i+1}+y_{i}}{2})(\frac{x_{i+1
 retention = \frac{k}{k_{s}}
 \end{equation}
 
-In order to evaluate the influence of the retention the average of volume $(x_{i+1}+x_{i})/2$ within the infinitely small interval of $x_{i+1}-x_{i}$ was added to the area. The retention $k$ of a field under magentic influence was also normalized by the division with the retention $k_{s}$ of a standard peak.   
+In order to evaluate the influence of the retention the average of volume $(x_{i+1}+x_{i})/2$ within the infinitely small interval of $x_{i+1}-x_{i}$ was added to the area. The retention $k$ of a field under magnetic influence was also normalized by the division with the retention $k_{s}$ of a standard peak.   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1022,9 +1053,153 @@ In order to evaluate the influence of the retention the average of volume $(x_{i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\chapter{Results and Discussion}8
+\chapter{Results and Discussion}
 \label{chap:chap_res}
+In this chapter the results from the model parameter studies are presented and discussed. Furthermore the the experimental results are shown and compared with the the simulation results. 
 
 \section{Simulation results}
-\section{Experimental results}
+\label{sec:sim_res}
+The model described in Section \ref{sec:Model_setup} was run and evaluated as described in Section \ref{subsec:Param_studies}. In order to achieve a verification of the model the results are compared to analytical and published simulated solutions for the magnetic field and the flow around a cylinder. In Section \ref{subsec:Param_res} the results from the parameter studies and their influence on the nanoparticle retention are presented and discussed.  
 
+\subsection{Mesh refinement study}
+\label{subsec:mesh_ref}
+As the accuracy of \gls{fem} models is strongly dependent on the mesh size, a mesh refinement study was performed. The model was also used to perform parameter studies, therefore it was also important to limit the increase in computation time to an acceptable value, that still allowed the simulation of several model runs in a  relatively short time period. The convergence of the tracking parameter residence time and the computation time for the individual runs of the parameter study are shown in Table \ref{table:Mesh_Ref_res}. The specifications for the different mesh sizes can be found in Table \ref{table:Mesh_Ref}. The deviation of the residence time of 1.04\,\% between the fine and the finer mesh element size lies below the beforehand specified convergence criterion of deviation$\leq$1.5\,\%. In addition a considerable increase of 228\,\% in computation time from 27\,s to 74\,s could be observed between those two meshes. Hence the fine mesh size was chosen for all further simulations. 
+
+\begin{table}[H]
+\centering
+\caption[Mesh refinement study results]{Mesh refinement study results with tracked residence time for convergence determination and the computation time for each run}
+\label{table:Mesh_Ref_res}
+\begin{tabularx}{\textwidth}{XXXX}
+\hline
+Mesh & Residence time in s & Deviation in \% & Computation time in s\\
+\hline\hline
+coarse &  2.01 & -  & 11\\
+normal & 1.95 & 3.07 & 20\\
+fine &  1.85 & 5.16 & 27 \\
+finer &  1.83 & 1.04 & 74\\
+\hline
+\end{tabularx}
+\end{table}
+
+\subsection{Model validation}
+\label{subsec:mod_val}
+
+The model validation was conducted by the comparison of the simulation results against analytical and other model solutions, as well as experimental data. The 
+
+The Los Alamos National Laboratory (LANL) defines verification as “concerned with identifying and removing errors in the model by comparing numerical solutions to analytical or highly accurate benchmark solutions.”
+
+Validation: The process of determining the degree to which a model is an accurate representation of the real world from the perspective of the intended uses of the model.The intention is to define this as an evaluation of the FEA model results against test evidence
+
+[Validation]… is concerned with quantifying the accuracy of the model by comparing numerical solutions to experimental data.
+
+\begin{figure}[h]
+\centering
+
+\scalebox{0.4}{\includegraphics{figures/Hfield_around_single_wire_close.png}}
+\caption[Simulated magnetic field intensity around a single wire]{Simulated magnetic field intensity in A/m and magnetic field lines in the vicinity of a magnetized ferromagnetic wire in the longitudinal arrangement for an external magnetic field of 20\,mT 
+\label{fig:Hfield_sw}
+}
+\end{figure}
+
+
+\begin{figure}[H]
+		%\centering
+            \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.36}{\includegraphics{figures/Hfield_around_two_wires_close.png}}
+                  %\caption{}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                \flushright
+                \scalebox{0.36}{\includegraphics{figures/Hfield_around_four_wires_close.png}}
+                %\caption{}\label{fig:creep_2}
+        \end{subfigure}
+        \\
+        
+        \caption[Simulated magnetic field intensity around two and four wires]{Simulated magnetic field intensity in A/m and magnetic field lines around two and four ferromagnetic wires for an external magnetic field of 20\,mT}
+        \label{fig:esem_prax}
+  \end{figure}
+  
+  \begin{figure}[h]
+\centering
+
+\scalebox{0.3}{\includegraphics{figures/model_creeping_flow_single_wire.png}}
+\caption[Simulated Stokes flow around cylinder]{Simulated streamlines of a creeping flow around a single wire with a velocity of $u_{0}$=20\,mm/s 
+\label{fig:creep_flow_sw}
+}
+\end{figure}
+
+\subsection{Parameter studies}
+\label{subsec:Param_res}
+
+Parametric analysis was performed to get a better understanding of the influnces of the different parameters on the retention behaviour of the nanoparticles.  the four-variable issue
+
+% A decrease in diameter of the matrix
+% element can increase the magnetic ﬁeld gradient without changing
+% the relative distribution of the magnetic ﬁeld. After reaching the
+% magnetic saturation, the magnetic ﬁeld intensity around the
+% matrix with high saturation magnetization, is larger than that of
+% the matrix with low saturation magnetization. However, the mag-
+% netic ﬁeld gradient doesn’t change signiﬁcantly with the increase
+% in background induction [31]. This suggests that increasing the
+% magnetic ﬁeld intensity blindly may not necessarily improve the
+% separation performance in practical use \cite{ge2017magnetic}
+% 
+% However, in practical applications, the
+% magnetic matrix usually contains a group of elements, and the
+% study of a single element may not reﬂect the real situation of the
+% actual matrix. More researches on the magnetic ﬁeld distribution
+% of the matrix in the form of a group of element are required\cite{ge2017magnetic}
+
+\section{Experimental results}
+\label{sec:exp_res}
+
+\subsection{Matrix material and magnetic nanoparticle characterization}
+\label{subsec:mat_mag_char_res}
+PGV, ESEM, Microscope of PMMA, LSM, TruForm, cheamgen, micromod
+
+magnetic properties(hysteresis loop)
+
+\begin{figure}[h]
+\centering
+
+\scalebox{0.2}{\includegraphics{figures/PMMA.png}}
+\caption[Light microscope image of \gls{pmma}]{Light microscope image of the \gls{pmma} matrix material
+\label{fig:waveform}
+}
+\end{figure}
+
+
+\begin{figure}[H]
+		%\centering
+            \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.15}{\includegraphics{figures/310118TruForm316-3Praxair(MP1).png}}
+                  %\caption{}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                \flushright
+                \scalebox{0.15}{\includegraphics{figures/310118TruForm316-3Praxair(MP1-2).png}}
+                %\caption{}\label{fig:creep_2}
+        \end{subfigure}
+        \\
+        
+        \caption[ESEM images of the TruForm matrix material]{TruForm matrix material imaged with the aid of the \gls{esem} in two different resolutions}
+        \label{fig:esem_prax}
+  \end{figure}
+
+\subsection{Flow rate optimization}
+\label{subsec:flow_rate_res}
+
+pictures of different flow rates, packing of column evaluated as good if asymmtery between 1 and 1.5
+\subsection{Retention experiments with the PMMA matrix material}
+\label{subsec:pmma_res}
+
+\subsection{Retention experiments with TruForm matrix material}
+\label{subsec:trufrom_res}
+
+\subsubsection{Separation experiments with the Chemagen nanoparticles}
+\label{subsubsec:chemagen_res}
+
+\subsubsection{Separation experiments with micromod nanoparticles}
+\label{subsubsec:micromod_res}
