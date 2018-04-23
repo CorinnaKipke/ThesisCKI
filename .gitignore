@@ -17,3 +17,4 @@
 *.log
 sections/*.aux
 thesis.pdf
+thesis.out
