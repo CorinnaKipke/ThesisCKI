@@ -1110,8 +1110,36 @@ finer &  1.83 & 1.04 & 74\\
 \label{subsec:mod_val}
 
 The model validation was conducted by the comparison of the simulation results with analytical and other model solutions, as well as experimental data.
-The simulated magnetic field around a single wire is shown in Figure \ref{fig:Hfield_sw}. The colors indicate the magnetic field strength where maxima parallel to the magnetic field direction and minima perpendicular to the magnetic field direction can be observed. This indicates that the field is attractive on the top and bottom of the wire, while it is repulsive on both wire sides. 
-The comparison between the simulated magnetic field around the single magnetized ferromagnetic wire and the analytical solution. 
+The simulated magnetic field around a single wire is shown in Figure \ref{fig:Hfield_sw}. 
+
+\begin{figure}[H]
+		%\centering
+            \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.39}{\includegraphics{figures/Hfield_around_single_wire_close.png}}
+                  \caption{Contour plot of the simulated magnetic field intensity in A/m and magnetic field lines (gray lines) in the vicinity of a magnetized ferromagnetic wire}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                \flushright
+                \scalebox{0.37}{\includegraphics{figures/mag_force_wire.png}}
+                \caption{Contour plot of the simulated magnetic field gradient in y-direction in A/m\textsuperscript{2} and the magnetic force $F_{m}$ depicted as red arrows their lenght beeing proportional to the magnitude of the force}\label{fig:creep_2}
+        \end{subfigure}
+        \\
+        
+        \caption[Simulated magnetic field around a single wire]{Simulated magnetic field around a single wire in the longitudinal arrangement for an external magnetic field of 20\,mT}
+        \label{fig:tw_fw_mag_field}
+  \end{figure}
+
+% \begin{figure}[H]
+% \centering
+% 
+% \scalebox{0.4}{\includegraphics{figures/Hfield_around_single_wire_close.png}}
+% \caption[Simulated magnetic field intensity around a single wire]{Contour plot of the simulated magnetic field intensity in A/m and magnetic field lines (gray lines) in the vicinity of a magnetized ferromagnetic wire in the longitudinal arrangement for an external magnetic field of 20\,mT \textbf{add figures with larger font}
+% \label{fig:Hfield_sw}
+% }
+% \end{figure}
+
+The colors indicate the magnetic field strength where maxima in the direction of the magnetic field and minima perpendicular to the magnetic field direction can be observed. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient, while it is repulsive on both wire sides, i.e. a negative field gradient. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very  similar overall distribution of the magnetic field intensity (see Figure \ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure \ref{fig:Hfield_sw} also match with the experimental visualization of the magnetic field lines in Figure \ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between a wire and a sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire.  
 
 \begin{figure}[H]
 		\centering
@@ -1119,6 +1147,7 @@ The comparison between the simulated magnetic field around the single magnetized
                   \flushleft
                   \scalebox{0.17}{\includegraphics{figures/Force_flow_of_a_magnetized_steel_sphere.png}}
                   \caption{Magnetic field lines around a magnetized steel sphere visualized by iron fillings sprinkled across a glass plate \cite{hale1913magnets}}
+                  \label{fig:mag_field_hale}
           \end{subfigure}\hfill
         \begin{subfigure}{0.49\textwidth}
                 \flushright
@@ -1127,27 +1156,17 @@ The comparison between the simulated magnetic field around the single magnetized
         \end{subfigure}
         \\
         
-        \caption[Magnetic field around a magentized sphere and wire]{Magnetic field around a magnetized sphere and wire}
+        \caption[Magnetic field around a magentized sphere and wire]{Magnetic field around a magnetized sphere and wire \textbf{add figures with larger font}}
         \label{fig:esem_prax}
   \end{figure}
 
+As the simulation is in good accordance with the compared solutions the model was deemed adequate for the simulation of the magnetic field. In Figure \ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and the magnetic field lines for two and four magnetized cylindrical wires are shwon. As the magnetic fields of each wire intearct the maxima of the   
 
-
-The Los Alamos National Laboratory (LANL) defines verification as “concerned with identifying and removing errors in the model by comparing numerical solutions to analytical or highly accurate benchmark solutions.”
-
-Validation: The process of determining the degree to which a model is an accurate representation of the real world from the perspective of the intended uses of the model.The intention is to define this as an evaluation of the FEA model results against test evidence
-
-[Validation]… is concerned with quantifying the accuracy of the model by comparing numerical solutions to experimental data.
-
-\begin{figure}[h]
-\centering
-
-\scalebox{0.4}{\includegraphics{figures/Hfield_around_single_wire_close.png}}
-\caption[Simulated magnetic field intensity around a single wire]{Contour plot of the simulated magnetic field intensity in A/m and magnetic field lines in the vicinity of a magnetized ferromagnetic wire in the longitudinal arrangement for an external magnetic field of 20\,mT 
-\label{fig:Hfield_sw}
-}
-\end{figure}
-
+% The Los Alamos National Laboratory (LANL) defines verification as “concerned with identifying and removing errors in the model by comparing numerical solutions to analytical or highly accurate benchmark solutions.”
+% 
+% Validation: The process of determining the degree to which a model is an accurate representation of the real world from the perspective of the intended uses of the model.The intention is to define this as an evaluation of the FEA model results against test evidence
+% 
+% [Validation]… is concerned with quantifying the accuracy of the model by comparing numerical solutions to experimental data.
 
 \begin{figure}[H]
 		%\centering
@@ -1164,7 +1183,7 @@ Validation: The process of determining the degree to which a model is an accurat
         \\
         
         \caption[Simulated magnetic field intensity around two and four wires]{Simulated magnetic field intensity in A/m and magnetic field lines around two and four ferromagnetic wires for an external magnetic field of 20\,mT}
-        \label{fig:esem_prax}
+        \label{fig:tw_fw_mag_field}
   \end{figure}
   
   \begin{figure}[h]
