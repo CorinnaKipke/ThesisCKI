@@ -562,11 +562,11 @@ In the second part Section \ref{sec:Exp_setup} gives an overview of the experime
 
 \section{Model setup}
 \label{sec:Model_setup}
-The objective of this thesis was the design and implementation of an in silico model simulating the retention of magnetic nanoparticles flowing through simplified magnetized packed bed. The model is based on a single wire model for the simulation of dynamic particle capture which was kindly provided by A. Ebner (a detailed description of the model can be found in \cite{choomphon2017simulation}). Furthermore parameter studies for various conditions were conducted. In the following the simulation setup including geometry, mesh, boundary conditions and solvers as well as the principal equations are described. Furthermore a description of the performed parameter studies is given in Section \ref{subsec:Param_studies}.     
+The objective of this thesis was the design and implementation of an in silico model simulating the retention of magnetic nanoparticles flowing through a simplified magnetized packed bed. The model is based on a single wire model for the simulation of dynamic particle capture which was kindly provided by A. Ebner (a detailed description of the model can be found in \cite{choomphon2017simulation}). Furthermore parameter studies for various conditions were conducted. In the following the simulation setup including geometry, mesh, boundary conditions and solvers as well as the principal equations are described. Furthermore a description of the performed parameter studies is given in Section \ref{subsec:Param_studies}.     
 
 \subsection{Geometry and mesh}
 \label{subsec:geom}
-The geometry of the the two-dimensional single wire model consists of two subregions: the magnetized wire and the surrounding fluid. The wire is located at the center of a rectangular channel through which a nanoparticle suspension flows with an average inlet velocity of $u_{0}$. The applied magnetic field $H_{0}$ is oriented in the same direction as the flow velocity. This longitudinal arrangement was choosen, as it matches the condtions in the experimental setup. In order to evaluate the retention of the nanoparticles close to the cylinder a circular domain was included around the wire in which the particle residence time was determined (see Section \ref{subsec:Param_studies}). The whole configuration of the control area is shown in Figure \ref{fig:geom_singlewire}.
+The geometry of the the two-dimensional single wire model consists of two subregions: the magnetized wire and the surrounding fluid. The wire is located at the center of a rectangular channel through which a nanoparticle suspension flows with an average inlet velocity of $u_{0}$. The applied magnetic field $H_{0}$ is oriented in the same direction as the flow velocity. This longitudinal arrangement was choosen, as it matches the condtions in the experimental setup. In order to evaluate the retention of the nanoparticles close to the cylinder, a circular domain was included around the wire in which the particle residence time was determined (see Section \ref{subsec:Param_studies}). The whole configuration of the control area is shown in Figure \ref{fig:geom_singlewire}.
 
 \begin{figure}[H]
 \centering
@@ -754,7 +754,7 @@ where $\omega_{fmp}$ is the volume fraction of the magnetite in the magnetic par
                  \end{cases}
 \end{equation}
 
-No-slip and no-flux boundary conditions are applied at the wire's surface, while periodic boundary conditions or Dirichlet boundary conditions with a fixed flow velocity are applied to the channel walls. 
+No-slip and no-flux boundary conditions are applied at the wire's surface, while periodic boundary conditions or Dirichlet boundary conditions with a fixed flow velocity are applied to the channel walls. A Dirichlet boundary condition of $p$=0 was set at the outflow and an inflow velocity $u_{0}$ was set at the inflow. 
 
 
 \subsection{Parameter studies}
@@ -777,7 +777,13 @@ sw & 0-32.5 & 30 & 5-45 & 20\\
 \end{table}
 
 10\,s were simulated for each case, where the nanoparticles were applied in a rectangular function between 0.1 and 0.2\,s at the beginning of the simulation. 
-As characteristic parameter the residence time of the particles is determined in the secondary circle around the wire and at the outflow. The residence time is then normalized by the division by the residence time at 0\,mT and otherwise unchanged parameters.    
+As characteristic parameter the residence time of the particles is determined in the secondary circle around the wire and at the outflow (see Equation \ref{eq:residence_time}). For the two and four cylinder setup the residence time of the particles is determined within the rectangle around the wires and at the outflow of the channel. The residence time is then normalized by the division with the residence time at 0\,mT and otherwise unchanged parameters. 
+
+\begin{equation}
+\label{eq:residence_time}
+\centering
+\tau = \frac{\phi(t)}{\int_{0}^{\infty}\phi(t)dt}
+\end{equation}
 % \subsection{Model validation/verification}
 % \label{subsec:model_val}
 % Benchmark problem flow around a cylinder (Schaefer and Turek)
@@ -787,7 +793,7 @@ As characteristic parameter the residence time of the particles is determined in
 
 \section{Experimental setup}
 \label{sec:Exp_setup}
-For the validation of the simulation results and a proof of principle of the operational concept several experimental runs were designed. In order to evaluate the retention of a magnetic nanoparticle suspension within a magnetizable packed bed a chromatographic system was used (see Section \ref{subsec:chrom_sys}). The nanoparticle suspension is characterized in Section \ref{subsec:Mag_nanoparticles} and the matrix materials in Section \ref{subsec:Matrix_mat}. Furthermore an overview of the conducted experiments is given in Section \ref{subsec:Exp_Pro}. In Section \ref{subsec:ana_met} the analytical methods and in Section \ref{subsec:Eval} the evaluation methods are discussed.    
+For the validation of the simulation results and as a proof of principle of the operational concept several experimental runs were designed. In order to evaluate the retention of a magnetic nanoparticle suspension within a magnetizable packed bed a chromatographic system was used (see Section \ref{subsec:chrom_sys}). The nanoparticle suspension is characterized in Section \ref{subsec:Mag_nanoparticles} and the matrix materials in Section \ref{subsec:Matrix_mat}. Furthermore an overview of the conducted experiments is given in Section \ref{subsec:Exp_Pro}. In Section \ref{subsec:ana_met} the analytical methods and in Section \ref{subsec:Eval} the evaluation methods are discussed.    
 
 
 \subsection{Magnetic nanoparticle suspension}
@@ -876,6 +882,25 @@ A CETONI neMESYS syringe pump (CETONI GmbH, Korbussen, Germany), controlled by a
 \label{subsec:chrom_sys}
 For the compression of the packed bed within the column and the execution of the retention experiments an Äkta purifier \gls{fplc}-system from GE Healthcare (Buckinghamshire, England) was used. For all connections tubings with an inner diameter of 0.25\,mm (PEEK tubings blue, GE Healtcare Bio-Sciences AB, Uppsala, Sweden) were used to achieve high resolution peaks. The samples were injected via a sample loop with a total volume of 100\,\textmu m. The experiments were conducted with ultra-pure water as solvent and a constant flow rate. An inline UV flow cell was used to continuously measure the absorbance of the liquid at a wavelength of 280 nm and to transmit the data to the computer. A conductivity flow cell was used to measure the conductivity of the passing solution. For further analysis the samples were collected by a fraction collector. The regulation of the \gls{fplc}-system and the analysis of the transmitted data was realized by the software Unicorn. The experimental setup is shown in Figure \ref{fig:  }.
 %%%%%%%%%%%%%%%Include Figure of ÄKta and Fraction collector%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+		\centering
+          \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.05}{\includegraphics{figures/Column_Packing_All_numbers.pdf}}
+                  \caption{\textbf{Change photo with photo of ÄKTA system}}\label{fig:Bioreactor_Geometry}
+          \end{subfigure}
+        \begin{subfigure}{0.49\textwidth}
+                \flushright
+                \scalebox{0.09}{\includegraphics{figures/Helmholtz_Coil_Column.jpg}}
+                \caption{Chromatographic column within the Helmholtz coil}\label{fig:Bioreactor_cross_section}
+        \end{subfigure}
+        \\
+        
+        \caption{Chromatographic system and the used Helmholtz coil}
+        \label{fig:Bioreactor}
+  \end{figure}  
+
 
 \subsubsection{Chromatographic system with a Helmholtz coil}
 \label{subsubsec:helm_coil}
@@ -1084,7 +1109,29 @@ finer &  1.83 & 1.04 & 74\\
 \subsection{Model validation}
 \label{subsec:mod_val}
 
-The model validation was conducted by the comparison of the simulation results against analytical and other model solutions, as well as experimental data. The 
+The model validation was conducted by the comparison of the simulation results with analytical and other model solutions, as well as experimental data.
+The simulated magnetic field around a single wire is shown in Figure \ref{fig:Hfield_sw}. The colors indicate the magnetic field strength where maxima parallel to the magnetic field direction and minima perpendicular to the magnetic field direction can be observed. This indicates that the field is attractive on the top and bottom of the wire, while it is repulsive on both wire sides. 
+The comparison between the simulated magnetic field around the single magnetized ferromagnetic wire and the analytical solution. 
+
+\begin{figure}[H]
+		\centering
+            \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.17}{\includegraphics{figures/Force_flow_of_a_magnetized_steel_sphere.png}}
+                  \caption{Magnetic field lines around a magnetized steel sphere visualized by iron fillings sprinkled across a glass plate \cite{hale1913magnets}}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                \flushright
+                \scalebox{0.198}{\includegraphics{figures/H_field_magntized_sphere_Nirschl.png}}
+                \caption{Simulated magnetic field intensity and field gradient around a cylindrical wire \cite{lindner2013simulation}}\label{fig:mag_field_nirschl}
+        \end{subfigure}
+        \\
+        
+        \caption[Magnetic field around a magentized sphere and wire]{Magnetic field around a magnetized sphere and wire}
+        \label{fig:esem_prax}
+  \end{figure}
+
+
 
 The Los Alamos National Laboratory (LANL) defines verification as “concerned with identifying and removing errors in the model by comparing numerical solutions to analytical or highly accurate benchmark solutions.”
 
@@ -1096,7 +1143,7 @@ Validation: The process of determining the degree to which a model is an accurat
 \centering
 
 \scalebox{0.4}{\includegraphics{figures/Hfield_around_single_wire_close.png}}
-\caption[Simulated magnetic field intensity around a single wire]{Simulated magnetic field intensity in A/m and magnetic field lines in the vicinity of a magnetized ferromagnetic wire in the longitudinal arrangement for an external magnetic field of 20\,mT 
+\caption[Simulated magnetic field intensity around a single wire]{Contour plot of the simulated magnetic field intensity in A/m and magnetic field lines in the vicinity of a magnetized ferromagnetic wire in the longitudinal arrangement for an external magnetic field of 20\,mT 
 \label{fig:Hfield_sw}
 }
 \end{figure}
