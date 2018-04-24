@@ -754,7 +754,7 @@ where $\omega_{fmp}$ is the volume fraction of the magnetite in the magnetic par
                  \end{cases}
 \end{equation}
 
-No-slip and no-flux boundary conditions are applied at the wire's surface, while periodic boundary conditions or Dirichlet boundary conditions with a fixed flow velocity are applied to the channel walls. A Dirichlet boundary condition of $p$=0 was set at the outflow to simulate an open-boundray flow with an ambient pressure of zero and an inflow velocity $u_{0}$ was set at the inflow.
+No-slip and no-flux boundary conditions are applied at the wire's surface, while periodic boundary conditions or Dirichlet boundary conditions with a fixed flow velocity are applied to the channel walls. The boundray conditions on the channel walls were selected in order to model a chromatographic column with far more than just one cylinder in a channel. A Dirichlet boundary condition of $p$=0 was set at the outflow to simulate an open-boundary flow with an ambient pressure of zero and an inflow velocity $u_{0}$ was set at the inflow.
 
 
 \subsection{Parameter studies}
@@ -1138,7 +1138,7 @@ The simulated magnetic field around a single wire is shown in Figure \ref{fig:sw
 % }
 % \end{figure}
 
-The colors indicate the magnetic field strength where maxima in the direction of the magnetic field and minima perpendicular to the magnetic field direction can be observed. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient prevails, while it is repulsive on both wire sides, i.e. a negative field gradient develops. These attractive and repulsive magentic forces are visualized in Figure \ref{fig:mag_force_sw}, where the color indicates the magnitude of the magnetic field gradient in the y-direction and the arrows indicate the direction and magnitude of the magentic froce $F_{m}$. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very similar overall distribution of the magnetic field intensity (see Figure \ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure \ref{fig:sw_mag_field} also match with the experimental visualization of the magnetic field lines in Figure \ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between wire and sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire.  
+The colors indicate the magnetic field strength where maxima in the direction of the magnetic field and minima perpendicular to the magnetic field direction can be observed. A maximum value of 3.07$\cdotp$10\textsuperscript{-4}\,A/m and a minimum of 3.58\,A/m are detected for the magnetic field intensity. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient prevails, while it is repulsive on both wire sides, i.e. a negative field gradient develops. These attractive and repulsive magentic forces are visualized in Figure \ref{fig:mag_force_sw}, where the color indicates the magnitude of the magnetic field gradient in the y-direction and the arrows indicate the direction and magnitude of the magentic froce $F_{m}$. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very similar overall distribution of the magnetic field intensity (see Figure \ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure \ref{fig:sw_mag_field} also match with the experimental visualization of the magnetic field lines in Figure \ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between wire and sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire. As the simulation is in good accordance with both the experimental and the simulated data, the model was deemed adequate for the simulation of the magnetic field.  
 
 \begin{figure}[H]
 		\centering
@@ -1159,13 +1159,29 @@ The colors indicate the magnetic field strength where maxima in the direction of
         \label{fig:esem_prax}
   \end{figure}
 
-As the simulation is in good accordance with both the experimental and the simulated data, the model was deemed adequate for the simulation of the magnetic field. In Figure \ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and the magnetic field lines for two and four magnetized cylindrical wires are shown. It is appartent that the minimum and maximum values of the magnetic field intensity can still be located in the same positions as for a single wire. The highest and lowest values however decrease from  
-
+ 
+Figure \ref{fig:creep_flow_sw} shows the simulated streamlines around a single wire for an inlet velocity of 20\,mm/s with no-slip boundary conditions at the wires surface and constant velocity at the channel walls. The image depicts the typical streamlines that also develop in flow experiments (see Figure \ref{fig:creep_1}) past a circular cylinder for low Reynolds numbers.  A streamline is a path traced out by a massless particle as it moves with the flow. It can be seen that the steady-state flow is completely symmetrical to both the y- and the x-axis. At a distance from the wire the flow is unidirectional and uniform. On both sides of the cylinder the flow speed increases in consistence with the Bernoulli equation which leads to a lower pressure in those regions. The vertical streamlines at the cylinder center clearly suggest the stagnation points where velocity is zero at the upstream and downstream sides of the cylinder. Overall the simulated flow around a cylinder with low Reynolds numbers matches well with the experimentaly observed flow conditions. 
 % The Los Alamos National Laboratory (LANL) defines verification as “concerned with identifying and removing errors in the model by comparing numerical solutions to analytical or highly accurate benchmark solutions.”
 % 
 % Validation: The process of determining the degree to which a model is an accurate representation of the real world from the perspective of the intended uses of the model.The intention is to define this as an evaluation of the FEA model results against test evidence
 % 
 % [Validation]… is concerned with quantifying the accuracy of the model by comparing numerical solutions to experimental data.
+  
+  \begin{figure}[H]
+\centering
+
+\scalebox{0.3}{\includegraphics{figures/model_creeping_flow_single_wire.png}}
+\caption[Simulated Stokes flow around cylinder]{Simulated streamlines of a creeping flow around a single wire with a velocity of $u_{0}$=20\,mm/s 
+\label{fig:creep_flow_sw}
+}
+\end{figure}
+
+\subsection{Parameter studies}
+\label{subsec:Param_res}
+
+Parametric analysis was performed to get a better understanding of the influnces of the different parameters on the retention behaviour of the nanoparticles.  the four-variable issue
+
+In Figure \ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and the magnetic field lines for two and four magnetized cylindrical wires are shown. It is appartent that the minimum and maximum values of the magnetic field intensity can still be located in the same positions as for a single wire. The highest values for the field strenght however decrease from 3.07$\cdotp$10\textsuperscript{-4}\,A/m for the single wire configuration to 2.82$\cdotp$10\textsuperscript{-4}\,A/m and 2.04$\cdotp$10\textsuperscript{-4}\,A/m for the two and four wire setup respectively. As there are more surfaces for the particles to be attracted to than in the single wire setup and the particles can not as easily bypass the wire without beeing influenced by the magnetic field gradient the retention is assumed to increase with an increase in the number of wires.  
 
 \begin{figure}[H]
 		%\centering
@@ -1184,20 +1200,6 @@ As the simulation is in good accordance with both the experimental and the simul
         \caption[Simulated magnetic field intensity around two and four wires]{Simulated magnetic field intensity in A/m and magnetic field lines around two and four ferromagnetic wires for an external magnetic field of 20\,mT \textbf{add figures with larger font}}
         \label{fig:tw_fw_mag_field}
   \end{figure}
-  
-  \begin{figure}[h]
-\centering
-
-\scalebox{0.3}{\includegraphics{figures/model_creeping_flow_single_wire.png}}
-\caption[Simulated Stokes flow around cylinder]{Simulated streamlines of a creeping flow around a single wire with a velocity of $u_{0}$=20\,mm/s 
-\label{fig:creep_flow_sw}
-}
-\end{figure}
-
-\subsection{Parameter studies}
-\label{subsec:Param_res}
-
-Parametric analysis was performed to get a better understanding of the influnces of the different parameters on the retention behaviour of the nanoparticles.  the four-variable issue
 
 % A decrease in diameter of the matrix
 % element can increase the magnetic ﬁeld gradient without changing
@@ -1215,6 +1217,17 @@ Parametric analysis was performed to get a better understanding of the influnces
 % study of a single element may not reﬂect the real situation of the
 % actual matrix. More researches on the magnetic ﬁeld distribution
 % of the matrix in the form of a group of element are required\cite{ge2017magnetic}
+
+% Because particles deposit preferentially on the upstream wires as shown
+% in Section III, the wire matrix preferentially becomes saturated with particles
+% in the upstream part and increases the pressure drop before all of the wires are
+% saturated with particles. Figure 12 suggests that the capture ratio or deposition
+% on each wire can be controlled by specifying a combination of the magnetic
+% field and fluid velocity for a given capture ratio of the magnetic filt
+
+% Es zeigt sich, dass bei kleineren Achsenabständen der Gitter die Stromlinien bei gleichem
+% Ausgangspunkt näher am Draht verlaufen. Hierdurch werden die Partikel näher an den Draht und
+% damit in den Bereich größerer Magnetkräfte transportiert, woraus höhere Einfangradien resultiere Aber verstopfung!
 
 \section{Experimental results}
 \label{sec:exp_res}
