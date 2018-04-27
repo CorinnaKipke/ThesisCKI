@@ -455,7 +455,7 @@ process and product design. CFD offers an inexpensive alternative or addition to
 
 \subsection{Navier-Stokes equations}
 \label{subsec:Navier_Stokes}
-The Navier-Stokes equations are a macroscopic model of the motion of viscous fluids \textbf{Markus: and the basis of the fluid-dynamic calculations of COMSOL (Bezug herstellen; kannst du auch in 2.3 schon machen)}. Analytical solutions only exist for simplified versions of the Navier-Stokes equations e.g. Couette flow and Hagen-Poiseuille flow. For more complex, nonlinear problems \textbf{Markus: as the setup in this thesis} the equations need to be solved numerically. The Navier-Stokes equations in their most general form for a compressible fluid can be written as follows in Equation \textbf{Markus:Equations} \ref{eq:Conservation of momentum 1}, \ref{eq:Conservation of mass 1} and \ref{eq:Conservation of energy 1}:
+The Navier-Stokes equations are a macroscopic model of the motion of viscous fluids and the basis of the fluid-dynamic calculations of COMSOL. Analytical solutions only exist for simplified versions of the Navier-Stokes equations e.g. Couette flow and Hagen-Poiseuille flow. For more complex, nonlinear problems like the setup in this thesis the equations need to be solved numerically. The Navier-Stokes equations in their most general form for a compressible fluid can be written as follows in Equations \ref{eq:Conservation of momentum 1}, \ref{eq:Conservation of mass 1} and \ref{eq:Conservation of energy 1}:
 
 % \begin{equation}
 % \rho\frac{\partial \boldsymbol u}{\partial t} + \rho\boldsymbol u\cdotp\nabla\boldsymbol u - \left(\mu(\nabla\boldsymbol u+(\nabla\boldsymbol u)^{T})-\frac{2}{3}\mu(\nabla\cdotp\boldsymbol u)\boldsymbol I\right) + \nabla p = \boldsymbol F
@@ -478,21 +478,21 @@ The Navier-Stokes equations are a macroscopic model of the motion of viscous flu
 \label{eq:Conservation of energy 1}
 \end{equation}
 
-\textbf{Markus:das hab ich dir schonmal hingeschrieben, aber ich glaub du hast noch nicht erklärt warum du manche Sachen (u,F) dick machst und andere (p,t) nicht}where $\rho$ is the density in kg/m\textsuperscript{3}, $\boldsymbol u$ is the velocity in m/s, $p$ is the pressure in Pa, $\tau$ is the viscous stress tensor in Pa, $\boldsymbol I$ is the unit vector, $\boldsymbol F$ is the volume force vector in N/m\textsuperscript{3}. $C_{p}$ is the specific heat capacity in at constant pressure in J/(kg$\cdotp$K), $T$ is the absolute Temperature in K, $\boldsymbol q$ is the heat flux vector in W/m\textsuperscript{2}, $Q$ describes the heat sources in W/m\textsuperscript{3} and $\boldsymbol S$ is the strain-rate tensor. The Navier-Stokes Equations (see Equation\,\ref{eq:Conservation of momentum 1}) satisfy the conservation of momentum, while the continuity equation (see Equation\,\ref{eq:Conservation of mass 1} represents the conservation of mass. Equation\,\ref{eq:Conservation of energy 1} describes the conservation of energy formulated in terms of temperature \textbf{Markus:2 mal conservations (und ich glaub conservations passt hier auch nicht wegen Q, das ist ja ein Quellterm); vllt ganz einfach: determines the evolution of temperature}. The double dot product describes the contraction between two tensors. The strain-rate tensor can be calculated by the expression in Equation\,\ref{eq:strain_tensor}.
+where $\rho$ is the density in kg/m\textsuperscript{3}, $\boldsymbol u$ is the velocity in m/s, $p$ is the pressure in Pa, $\tau$ is the viscous stress tensor in Pa, $\boldsymbol I$ is the unit vector, $\boldsymbol F$ is the volume force vector in N/m\textsuperscript{3}. $C_{p}$ is the specific heat capacity in at constant pressure in J/(kg$\cdotp$K), $T$ is the absolute Temperature in K, $\boldsymbol q$ is the heat flux vector in W/m\textsuperscript{2}, $Q$ describes the heat sources in W/m\textsuperscript{3} and $\boldsymbol S$ is the strain-rate tensor. The Navier-Stokes Equations (see Equation\,\ref{eq:Conservation of momentum 1}) satisfy the conservation of momentum, while the continuity equation (see Equation\,\ref{eq:Conservation of mass 1} represents the conservation of mass. Equation\,\ref{eq:Conservation of energy 1} describes the conservation of energy formulated in terms of temperature. The double dot product describes the contraction between two tensors. The strain-rate tensor can be calculated by the expression in Equation\,\ref{eq:strain_tensor}.
 
 \begin{equation}
 \boldsymbol S = \frac{1}{2}(\nabla\boldsymbol u+(\nabla\boldsymbol u)^{T})
 \label{eq:strain_tensor}
 \end{equation}
 
-Newtonian fluids exhibit a linear correlation between the viscous stress, arising from its flow, and the local strain-rate, which is described by Equation\,\ref{eq:stress_tensor}. \textbf{Markus:, where} Where $\mu$ is the dynamic viscosity in Pa$\cdotp$s.
+Newtonian fluids exhibit a linear correlation between the viscous stress, arising from its flow, and the local strain-rate, which is described by Equation\,\ref{eq:stress_tensor}, where $\mu$ is the dynamic viscosity in Pa$\cdotp$s.
 
 \begin{equation}
 \boldsymbol\tau = 2\mu\boldsymbol S - \frac{2}{3}\mu(\nabla\cdotp\boldsymbol u)\boldsymbol I
 \label{eq:stress_tensor}
 \end{equation}
 
-For incompressible Newtonian fluids, like water or alcohol, the Equations\,\ref{eq:Conservation of momentum 1} \textbf{Markus: ich finde jetzt hängt die Zahl mit dem roten Viereck ganz schön auf Equation, aber das wollte er ja so} and \ref{eq:Conservation of mass 1} are reduced to Equations\,\ref{eq:Conservation of momentum } and \ref{eq:Conservation of mass }\cite{versteeg2007introduction}. 
+For incompressible Newtonian fluids, like water or alcohol, the Equations\,\ref{eq:Conservation of momentum 1} and \ref{eq:Conservation of mass 1} are reduced to Equations\,\ref{eq:Conservation of momentum } and \ref{eq:Conservation of mass }\cite{versteeg2007introduction}. 
 
 \begin{equation}
 {\partial{\boldsymbol u}\over{\partial t}} + ({\boldsymbol u} \cdot \nabla) {\boldsymbol u} - \nu\Delta{\boldsymbol u}+ \frac{1}{\rho}\nabla p = {\boldsymbol F}
@@ -504,16 +504,16 @@ For incompressible Newtonian fluids, like water or alcohol, the Equations\,\ref{
 \label{eq:Conservation of mass }
 \end{equation}
  
-The first term describes the local acceleration of the fluid, $({\boldsymbol u} \cdot \nabla) {\boldsymbol u}$ is the non-linear convective term, describing the inertial forces, $\nabla p$ is the pressure gradient and $\nu\Delta{\boldsymbol u}$ is the dissipative viscous term. \textbf{Markus: Ich würde das immer wie eine Aufzählung mit nur einem Verb machen: The first term describes the local acceleration of the fluid, $({\boldsymbol u} \cdot \nabla) {\boldsymbol u}$ the non-linear convective term, representing the inertial forces, $\nabla p$ the pressure gradient and $\nu\Delta{\boldsymbol u}$ the dissipative viscous term.} The Navier-Stokes equations are always solved together with the continuity equation (see Equation\,\ref{eq:Conservation of mass }). 
+The first term describes the local acceleration of the fluid, $({\boldsymbol u} \cdot \nabla) {\boldsymbol u}$ the non-linear convective term, representing the inertial forces, $\nabla p$ the pressure gradient and $\nu\Delta{\boldsymbol u}$ the dissipative viscous term. The Navier-Stokes equations are always solved together with the continuity equation (see Equation\,\ref{eq:Conservation of mass }). 
 %The Navier-Stokes equations satisfy the conservation of momentum, while mass conservation is included through the continuity equation \cite{alkahtani2013numerical}.
-The Reynolds number is a dimensionless quantity in fluid dynamics, which is used to characterize a fluid flow. The Reynolds number is defined as the ratio of the inertial forces to the viscous forces and can be written as shown in Equation\,\ref{eq:Reynolds}\textbf{Markus: ne alternative wäre: can be written as follows (Equation\,\ref{eq:Reynolds})}:  
+The Reynolds number is a dimensionless quantity in fluid dynamics, which is used to characterize a fluid flow. The Reynolds number is defined as the ratio of the inertial forces to the viscous forces and can be written as follows (Equation\,\ref{eq:Reynolds}):  
 
 \begin{equation}
 Re=\frac{\rho u L}{\mu}=\frac{uL}{\nu}
 \label{eq:Reynolds}
 \end{equation}
 
-where $\rho$ is the fluid density in kg/m\textsuperscript{3}, $L$ is a characteristic linear dimension in m, e.g. the hydraulic diameter of a pipe, and the dynamic viscosity $\mu$ of the fluid in Pa$\cdotp$s \textbf{Markus: $\mu$ hast du oben schon eingeführt}. For a low Reynolds number the flow condition will be laminar, while for higher Reynolds numbers, above approximately 2300 for a flow in a circular pipe, turbulent flow occurs \cite{schwarze2012cfd}. Flows where Re is much smaller than one are referred to as Stokes flow or creeping flow. Here the viscous forces are much larger than the inertial forces which is usually caused by either very low velocities or small characteristic lengths, f.e. in microfluidics. Stokes flow also occurs in highly viscous fluids such as heavy oils and honey \cite{lautrup2004physics}. Figure\,\ref{fig:creep_tot} shows creeping flow around a cylinder \textbf{Markus:, with its characteristic streamlines, that are parallel to the surface of the cylinder} as a schematic drawing and in reality. \textbf{Markus:Hier noch ein bisschen was für mehr Platz (und weils passt): A turbulent flow around the same cylinder, which would occur e.g. for large u, would appear less ordered and contain eddies or swirls.}
+where $\rho$ is the fluid density in kg/m\textsuperscript{3} and $L$ is a characteristic linear dimension in m, e.g. the hydraulic diameter of a pipe. For a low Reynolds number the flow condition will be laminar, while for higher Reynolds numbers, above approximately 2300 for a flow in a circular pipe, turbulent flow occurs \cite{schwarze2012cfd}. Flows where Re is much smaller than one are referred to as Stokes flow or creeping flow. Here the viscous forces are much larger than the inertial forces which is usually caused by either very low velocities or small characteristic lengths, f.e. in microfluidics. Stokes flow also occurs in highly viscous fluids such as heavy oils and honey \cite{lautrup2004physics}. Figure\,\ref{fig:creep_tot} shows creeping flow around a cylinder, with its characteristic streamlines, that are parallel to the surface of the cylinder as a schematic drawing and in reality. A turbulent flow around the same cylinder, which would occur e.g. for large u, would appear less ordered and contain eddies or swirls.
 
 \begin{figure}[h]
 		%\centering
@@ -556,7 +556,7 @@ Overall \gls{fem} for the approximation of \glspl{pde} can be divided into four 
 \section{Analysis of peak asymmetry}
 \label{sec:peak_as}
 In chromatography, the peak shape is extremely important, as it can be used to extract basic performance parameters such as the peak height, area, resolution and asymmetry. For the experimental setup in this thesis mainly the retention time, peak area and asymmetry were evaluated (for more information on the setup and evaluation methods see Section\,\ref{sec:Exp_setup}). In the following, the asymmetry of chromatographic peaks is further discussed. \newline 
-An idealized chromatographic peak with a Gaussian profile is depicted in Figure\,\ref{fig:peak_param}. As most real chromatographic peaks are not symmetrical, an asymmetry factor $A_{s}$ is introduced to characterize the peak shape and to evaluate the quality of the packed bed. The asymmetry can be empirically determined by $A_{s}=b/a$, where $a$ is the partial peak width of the first part, measured at a \textbf{Markus:certain} percentage of the peak height and $b$ is the partial peak width for the secodn part of the peak, also measured at the same percentage of height. $A_{s}$ is usually measured at 10\,\% of the peak height as for Gaussian and near Gaussian peaks it results in much more accurate values with lower standard deviations as compared to measurements at 5, 30 or 50\,\% \cite{foley1983equations}. The Gaussian standard deviation of the asymmterical peak can be estimated with Equation \ref{eq:Gaus_dev}, where $w_{10}=a+b$ is the peak width at $h_{10}$ \cite{papai2002analysis}.  
+An idealized chromatographic peak with a Gaussian profile is depicted in Figure\,\ref{fig:peak_param}. As most real chromatographic peaks are not symmetrical, an asymmetry factor $A_{s}$ is introduced to characterize the peak shape and to evaluate the quality of the packed bed. The asymmetry can be empirically determined by $A_{s}=b/a$, where $a$ is the partial peak width of the first part, measured at a certain percentage of the peak height and $b$ is the partial peak width for the secodn part of the peak, also measured at the same percentage of height. $A_{s}$ is usually measured at 10\,\% of the peak height as for Gaussian and near Gaussian peaks it results in much more accurate values with lower standard deviations as compared to measurements at 5, 30 or 50\,\% \cite{foley1983equations}. The Gaussian standard deviation of the asymmterical peak can be estimated with Equation \ref{eq:Gaus_dev}, where $w_{10}=a+b$ is the peak width at $h_{10}$ \cite{papai2002analysis}.  
 
 \begin{equation}
 \sigma=\frac{w_{10}}{3.27 b/a + 1.2}
@@ -571,7 +571,7 @@ An idealized chromatographic peak with a Gaussian profile is depicted in Figure\
 }
 \end{figure}
 
-The peak shape for values of $A_{s} < 1$ is called fronting and for values of $A_{s} > 1$ tailing. Tailing is e.g. caused by dead volume in the flow path or the column packing, while fronting can arise from channeling in poorly packed columns. Therefore $A_{s}$ is a good indicator of the quality of the packed bed and should be checked regularly before each experimental cycle. As almost all chromatographic peaks tail to some extent and \textbf{Markus:extent, a acceptable} a acceptable range for $A_{s}$ has to be defined for each column and application individually.  
+The peak shape for values of $A_{s} < 1$ is called fronting and for values of $A_{s} > 1$ tailing. Tailing is e.g. caused by dead volume in the flow path or the column packing, while fronting can arise from channeling in poorly packed columns. Therefore $A_{s}$ is a good indicator of the quality of the packed bed and should be checked regularly before each experimental cycle. As almost all chromatographic peaks tail to some extent, an acceptable range for $A_{s}$ has to be defined for each column and application individually.  
 
 % \section{Simulated moving bed chromatography}
 % \label{sec:smb}
@@ -855,23 +855,25 @@ In addition,  plain nanomag\textsuperscript{\textregistered}-D-spio particles fr
 
 \subsection{Matrix material}
 \label{subsec:Matrix_mat}
-For the packed bed three different matrix materials were evaluated. In Table\,\ref{table:mat_material} the two magnetizable materials and their corresponding composition are listed. The concentration ranges for the TruForm particles are due to protected confidentiality. %check this! ask for real composition    
+For the packed bed three different matrix materials were evaluated. In Table\,\ref{table:mat_material} the three magnetizable materials and their corresponding composition are listed. The concentration ranges for the TruForm particles are due to protected confidentiality. %check this! ask for real composition    
 
 \begin{table}[H]
 \centering
 \caption{Matrix materials and their composition}
 \label{table:mat_material}
-\begin{tabular}{llllllll}\hline
+%\begin{tabular}{llllllll}\hline
+\begin{tabularx}{\textwidth}{XXXXXXXX}\hline
 \multirow{2}{*}{name} & \multirow{2}{*}{charge/lot} & \multirow{2}{*}{producer} & \multicolumn{5}{c}{composition in \%}  \\
 & & & Fe & C & Cr & Ni & Mo \\
 \hline\hline
 SRA-150 & W140401E & H.C. Stark & 83.95 & 0.16 & 12.5  & & \\
+LSM Fe-4021 & 154001 & m4p & 85.37 & 0.23 & 12.8 & & \\
 TruForm\textsuperscript{TM} 316-3 & 15 & Praxair & 50-75 & & 5-20 &5-20& 1-5\\
 \hline
-\end{tabular}
+\end{tabularx}
 \end{table}
 
-The matrix material SRA-150 was already used in preceding experiments by \cite{AndreMaster}. In order to achieve a narrow particle-size distribution the SRA-150 particles were sieved with a mesh size of 25\,\textmu m and 20\,\textmu m respectively. In addition the matrix material TruForm 316-3 was chosen due to its spherical structure and material composition. 
+The matrix material SRA-150 was already used in preceding experiments by \cite{AndreMaster}. In order to achieve a narrow particle-size distribution the SRA-150 particles were sieved with a mesh size of 25\,\textmu m and 20\,\textmu m respectively. In addition the matrix materials TruForm 316-3 and were chosen due to its spherical structure and material composition. 
 As a negative control \gls{pmma} particles from microParticles GmbH were used. 
 
 \subsection{Column packing}
@@ -1132,11 +1134,11 @@ In order to evaluate the influence of the retention the average of volume $(x_{i
 
 \chapter{Results and Discussion}
 \label{chap:chap_res}
-In this chapter the results from the model parameter studies are presented and discussed \textbf{Markus: ref...}. Furthermore the the experimental results are shown and compared with the the simulation results \textbf{Markus: ref...}. 
+In this chapter the results from the model parameter studies are presented and discussed in Section\,\ref{sec:sim_res}. Furthermore the the experimental results are shown and compared with the the simulation results (see Section\,\ref{sec:exp_res}). 
 
 \section{Simulation results}
 \label{sec:sim_res}
-The model, described in Section\,\ref{sec:Model_setup}, was run and evaluated as described in Section\,\ref{subsec:Param_studies}\textbf{Markus:hab ich vergessen, was stand da? welches Modell war das überhaupt nochmal?}. In order to validate the model, the results are compared to analytical and published simulated solutions for the magnetic field and the flow around a cylinder. In Section\,\ref{subsec:Param_res} the results from the parameter studies and their influence on the nanoparticle retention are presented and discussed.  
+The model of the retention of nanoparticles by magnetized cylindrical wires, described in Section\,\ref{sec:Model_setup}, was run and evaluated as described in Section\,\ref{subsec:Param_studies}. In order to validate the model, the results are compared to analytical and published simulated solutions for the magnetic field and the flow around a cylinder. In Section\,\ref{subsec:Param_res} the results from the parameter studies and their influence on the nanoparticle retention are presented and discussed.  
 
 \subsection{Mesh refinement study}
 \label{subsec:mesh_ref}
@@ -1169,12 +1171,12 @@ The simulated magnetic field around a single wire is shown in Figure\,\ref{fig:s
             \begin{subfigure}{0.49\textwidth}
                   \flushleft
                   \scalebox{0.39}{\includegraphics{figures/Hfield_around_single_wire_close.png}}
-                  \caption{Contour plot of the simulated magnetic field intensity in A/m and magnetic field lines (gray lines) in the vicinity of a magnetized ferromagnetic wire}\label{fig:sw_mag_field}
+                  \caption{Simulated magnetic field intensity in A/m and magnetic field lines (gray lines) in the vicinity of a magnetized ferromagnetic wire}\label{fig:sw_mag_field}
           \end{subfigure}\hfill
         \begin{subfigure}{0.49\textwidth}
                 \flushright
                 \scalebox{0.37}{\includegraphics{figures/mag_force_wire.png}}
-                \caption{Contour plot\textbf{Markus: (genauso links) Bei Contour plots sieht man ja eigentlich die Linien noch, vllt einfach nur: Simulated magnetic field gradient in y-direction in A/m\textsuperscript{2}} of the simulated magnetic field gradient in y-direction in A/m\textsuperscript{2} and the magnetic force $F_{m}$ depicted as red arrows their lenght beeing proportional to the magnitude of the force}\label{fig:mag_force_sw}
+                \caption{Simulated magnetic field gradient in y-direction in A/m\textsuperscript{2} and the magnetic force $F_{m}$ depicted as red arrows their lenght beeing proportional to the magnitude of the force}\label{fig:mag_force_sw}
         \end{subfigure}
         \\
         
@@ -1191,13 +1193,13 @@ The simulated magnetic field around a single wire is shown in Figure\,\ref{fig:s
 % }
 % \end{figure}
 
-The colors indicate the magnetic field strength where maxima in the direction of the magnetic field and minima perpendicular to the magnetic field direction can be observed \textbf{Markus:maxima/minima in the direction/perpendicular to the magnetic field can be observed}. A maximum value of 3.07$\cdotp$10\textsuperscript{4}\,A/m and a minimum of 3.58\,A/m are detected for the magnetic field intensity. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient prevails, while it is repulsive on both wire sides, i.e. a negative field gradient develops. These attractive and repulsive magentic forces are visualized in Figure\,\ref{fig:mag_force_sw}, where the color indicates the magnitude of the magnetic field gradient in the y-direction and the arrows indicate the direction and magnitude of the magnetic force $F_{m}$. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very similar overall distribution of the magnetic field intensity (see Figure\,\ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure\,\ref{fig:sw_mag_field} also match with the experimental visualization of the magnetic field lines in Figure\,\ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between wire and sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire. As the simulation is in good accordance with both the experimental and the simulated data, the model was deemed adequate for the simulation of the magnetic field. \textbf{Markus:ich würde, der vollständigkeitshalber ein field direction pfeil auch in 4.1b und 4.2a machen, auch weil das bei 4.2b ja anderst ist als bei den anderen 3, oder?}  
+The colors indicate the magnetic field strength where maxima/minima in the direction/perpendicular to the magnetic field can be observed. A maximum value of 3.07$\cdotp$10\textsuperscript{4}\,A/m and a minimum of 3.58\,A/m are detected for the magnetic field intensity. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient prevails, while it is repulsive on both wire sides, i.e. a negative field gradient develops. These attractive and repulsive magentic forces are visualized in Figure\,\ref{fig:mag_force_sw}, where the color indicates the magnitude of the magnetic field gradient in the y-direction and the arrows indicate the direction and magnitude of the magnetic force $F_{m}$. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very similar overall distribution of the magnetic field intensity (see Figure\,\ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure\,\ref{fig:sw_mag_field} also match with the experimental visualization of the magnetic field lines in Figure\,\ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between wire and sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire. As the simulation is in good accordance with both the experimental and the simulated data, the model was deemed adequate for the simulation of the magnetic field. \textbf{Markus:ich würde, der vollständigkeitshalber ein field direction pfeil auch in 4.1b und 4.2a machen, auch weil das bei 4.2b ja anderst ist als bei den anderen 3, oder?}  
 
 \begin{figure}[H]
 		\centering
             \begin{subfigure}{0.49\textwidth}
                   \flushleft
-                  \scalebox{0.17}{\includegraphics{figures/Force_flow_of_a_magnetized_steel_sphere.png}}
+                  \scalebox{0.372}{\includegraphics{figures/Force_flow_of_a_magnetized_steel_sphere_mod.png}}
                   \caption{Magnetic field lines around a magnetized steel sphere visualized by iron fillings sprinkled across a glass plate \cite{hale1913magnets}}
                   \label{fig:mag_field_hale}
           \end{subfigure}\hfill
@@ -1208,12 +1210,12 @@ The colors indicate the magnetic field strength where maxima in the direction of
         \end{subfigure}
         \\
         
-        \caption[Magnetic field around a magnetized sphere and wire]{Magnetic field around a magnetized sphere and wire \textbf{Markus:(2-D)}}
+        \caption[Magnetic field around a magnetized sphere and wire]{Magnetic field around a magnetized sphere and wire (2-D)}
         \label{fig:esem_prax}
   \end{figure}
 
  
-Figure\,\ref{fig:creep_flow_sw} shows the simulated streamlines around a single wire for an inlet velocity of 20\,mm/s with no-slip boundary conditions at the wires surface and constant velocity at the channel walls. The image depicts the typical streamlines, that also develop in flow experiments (see Figure\,\ref{fig:creep_1}) past a circular cylinder for low Reynolds numbers.  A streamline is a path traced out by a massless particle as it moves with the flow. It can be seen that the steady-state flow is completely symmetrical to both the y- and the x-axis. At a distance from the wire the flow is unidirectional and uniform. On both sides of the cylinder the flow speed increases in consistence with the Bernoulli equation, which leads to a lower pressure in those regions. The vertical streamlines at the cylinder center clearly suggest the stagnation points where velocity is zero at the upstream and downstream sides of the cylinder. Overall the simulated flow around a cylinder with low Reynolds numbers exhibits the same characteristics as the experimentally observed flow \textbf{Markus:by you? then ref to section or as in theory? then ref to theory}. 
+Figure\,\ref{fig:creep_flow_sw} shows the simulated streamlines around a single wire for an inlet velocity of 20\,mm/s with no-slip boundary conditions at the wires surface and constant velocity at the channel walls. The image depicts the typical streamlines, that also develop in flow experiments (see Figure\,\ref{fig:creep_1}) past a circular cylinder for low Reynolds numbers.  A streamline is a path traced out by a massless particle as it moves with the flow. It can be seen that the steady-state flow is completely symmetrical to both the y- and the x-axis. At a distance from the wire the flow is unidirectional and uniform. On both sides of the cylinder the flow speed increases in consistence with the Bernoulli equation, which leads to a lower pressure in those regions. The vertical streamlines at the cylinder center clearly suggest the stagnation points where velocity is zero at the upstream and downstream sides of the cylinder. Overall the simulated flow around a cylinder with low Reynolds numbers exhibits the same characteristics as the experimentally observed flow (see Section \ref{subsec:Navier_Stokes}). 
 % The Los Alamos National Laboratory (LANL) defines verification as “concerned with identifying and removing errors in the model by comparing numerical solutions to analytical or highly accurate benchmark solutions.”
 % 
 % Validation: The process of determining the degree to which a model is an accurate representation of the real world from the perspective of the intended uses of the model.The intention is to define this as an evaluation of the FEA model results against test evidence
@@ -1254,6 +1256,8 @@ In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and 
         \label{fig:tw_fw_mag_field}
   \end{figure}
 
+  
+
 % A decrease in diameter of the matrix
 % element can increase the magnetic ﬁeld gradient without changing
 % the relative distribution of the magnetic ﬁeld. After reaching the
@@ -1287,9 +1291,95 @@ In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and 
 
 \subsection{Matrix material and magnetic nanoparticle characterization}
 \label{subsec:mat_mag_char_res}
-PGV, ESEM, Microscope of PMMA, LSM, TruForm, cheamgen, micromod
+%PGV, ESEM, Microscope of PMMA, LSM, TruForm, cheamgen, micromod
+%magnetic properties(hysteresis loop)
 
-magnetic properties(hysteresis loop)
+As the material properties, e.g. size, shape and magnetization behaviour, of both the matrix material and the magnetic nanoparticles have a significant influence on the retention behaviour and the separation efficiency the used materials were thoroughly/extensively tested and characterized. \newline
+The volume based particle size distributions for the examined matrix materials are shown in Figure\,\ref{fig:Hist_mat}. The corresponding D-values that were derived from a fit of the cumulative distribution Q$_{3}$ can be found in Table\,\ref{table:D_values}. It can be seen that the LSM matrix material with a D10 value of 24.7\,\textmu m and a D90 value of 81.05\,\textmu m exhibits a much wider particle size distribution than the two other matrix materials SRA-150 and Truform with D10 values of  8.5\,\textmu m and 16.38\,\textmu m and D90 values of 34.22\,\textmu m and 47.01\,\textmu m respectively. It is desirable for the size of the matrix material particles to be relatively homogeneous, at best varying no more than 10\,\% from the average particle size, in order to achieve a homogeneous packed bed which in turn leads to uniform fluid flow characteristics within the column \cite{miltenyi1997magnetic}. In addition smaller particles produce higher magentic field gradients and are therefore more suitable for the separation of weakly magnetic materials. Consequently the LSM particles were not further investigated. The remaining matrix materials SRA-150 and TruForm exhibit narrower particle size distributions. With an average particle size of 20.0\,\textmu m and  31.72\,\textmu m and corresponding standard deviations of 11.76\,\textmu m and 9.67\,\textmu m respectively they vary however further than the above mentioned 10\,\% from the average particle size. In order to decrease the width of the particle size distinction the SRA-150 particles were sieved. The resulting particle distribution is shown in Figure\,\ref{fig:hist_SRA_sieve}. From the  
+
+
+% a high magnetic field gradient is locally induced close to the surface of the matrix
+% 
+% spheres form a closely stacked lattice, which creates substantially uniform channels for homogeneous flow during separations. homogeneous flow characteristics
+% 
+% uniform magnetic field gradients and flow characteristics
+% 
+% It is desirable that the size of spheres be relatively homogeneous, usually varying not more than about 15% from the average size, more usually by not more than about 10%, and preferably by not more than about 5%.
+% The substantially symmetrical spherical shape and substantially uniform size of the spheres are desirable for the construction of a magnetic separator matrix, as the spheres can assume a lattice configuration wherein the gaps between the spheres form regular channels or pores in the matrix.
+% Upon the application of a magnetic field to the separator, magnetic field gradients are created in the gaps between the spheres. The uniform size, and therefore spacing, of the spheres provides for a substantially uniform magnetic gradient throughout the matrix, and substantially uniform fluid flow characteristics.
+
+\begin{figure}[h]
+		%\centering
+          \begin{subfigure}{0.49\textwidth}
+                  %\flushleft
+                  \scalebox{0.37}{\includegraphics{figures/Praxair_PGV.pdf}}
+                  \caption{TruForm matrix material}\label{fig:hist_TruForm}
+          \end{subfigure}\hfill	
+	  \begin{subfigure}{0.49\textwidth}
+                  %\flushleft
+                  \scalebox{0.37}{\includegraphics{figures/LSM_PGV.pdf}}
+                  \caption{ LSM matrix material}\label{fig:hist_LSM}
+          \end{subfigure}\hfill	\\
+          \begin{subfigure}{0.49\textwidth}
+                  %\flushright
+                  \scalebox{0.37}{\includegraphics{figures/Starck_PGV_Andre.pdf}}
+                  \caption{SRA-150 matrix material}\label{fig:hist_SRA}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                %\flushright
+                \scalebox{0.37}{\includegraphics{figures/Starck_PGV_sieved.pdf}}
+                \caption{SRA-150 matrix material sieved}\label{fig:hist_SRA_sieve}
+        \end{subfigure}
+        \\        
+        \caption[Particle size distribution of the matrix materials]{Volume based particle size distribution of the matrix materials with a histogram plot of the density distribution q$_{3}$ (grey bins) and the cumulative distribution Q$_{3}$ (black line)}
+        \label{fig:Hist_mat}
+  \end{figure}
+
+\begin{table}[H]
+\centering
+\caption[Volumetric D-values for the matrix material and the magnetic nanoparticles]{Volumetric D-values for the matrix material and the magnetic nanoparticles}
+\label{table:D_values}
+\begin{tabularx}{\textwidth}{XXXX}\hline
+material name & D10  & D50 & D90  \\
+\hline\hline
+TruForm & 16.38\,\textmu m & 31.25\,\textmu m & 47.01\,\textmu m \\
+LSM & 24.7\,\textmu m & 46.11\,\textmu m & 81.05\,\textmu m \\
+SRA-150 & 8.5\,\textmu m & 18.46\,\textmu m & 34.22\,\textmu m \\
+SRA-150 sieved & 8.65\,\textmu m & 18.01\,\textmu m & 32.44\,\textmu m \\
+Chemagen filtrated & 63.17\,nm & 101.06\,nm & 189.59\,nm \\
+micromod 100\,nm & 28.41\,nm & 99.96\,nm & 185.65\,nm \\
+micromod 20\,nm & 19.23\,nm & 40.67\,nm & 74.70\,nm \\
+micromod mixture & 22.16\,nm & 44.17\,nm & 80.39\,nm \\
+\hline
+\end{tabularx}
+\end{table}  
+
+\begin{figure}[h]
+		%\centering
+          \begin{subfigure}{0.49\textwidth}
+                  %\flushleft
+                  \scalebox{0.37}{\includegraphics{figures/ChemagenfiltStandard.pdf}}
+                  \caption{Chemagen nanoparticles filtrated }\label{fig:hist_chemagen}
+          \end{subfigure}\hfill	
+	  \begin{subfigure}{0.49\textwidth}
+                  %\flushleft
+                  \scalebox{0.37}{\includegraphics{figures/hist20180316MF100MixFeed1.pdf}}
+                  \caption{micromod particles mixture 1:1}\label{fig:hist_micro_mix}
+          \end{subfigure}\hfill	\\
+          \begin{subfigure}{0.49\textwidth}
+                  %\flushright
+                  \scalebox{0.37}{\includegraphics{figures/hist20180316MF100100nmFeed1.pdf}}
+                  \caption{micromod particles 100\,nm}\label{fig:hist_micro_100}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                %\flushright
+                \scalebox{0.37}{\includegraphics{figures/hist20180316MF10020nmFeed1.pdf}}
+                \caption{micromod particles 20\,nm}\label{fig:hist_micro_20}
+        \end{subfigure}
+        \\        
+        \caption[Volumetric particle size distribution of the magnetic nanoparticles]{Particle size distribution of the magnetic nanoparticles with the density distribution q$_{3}$ (dotted black line) with error bars, the cumulative distribution Q$_{3}$ (black line) and the fit of Q$_{3}$ (dotted red lines) for the calculation of the D-values}
+        \label{fig:Hist_nano}
+  \end{figure}  
 
 \begin{figure}[h]
 \centering
