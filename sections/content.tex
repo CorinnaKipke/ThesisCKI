@@ -1175,7 +1175,7 @@ The simulated magnetic field around a single wire is shown in Figure\,\ref{fig:s
           \end{subfigure}\hfill
         \begin{subfigure}{0.49\textwidth}
                 \flushright
-                \scalebox{0.37}{\includegraphics{figures/mag_force_wire.png}}
+                \scalebox{0.39}{\includegraphics{figures/mag_force_wire.png}}
                 \caption{Simulated magnetic field gradient in y-direction in A/m\textsuperscript{2} and the magnetic force $F_{m}$ depicted as red arrows their lenght beeing proportional to the magnitude of the force}\label{fig:mag_force_sw}
         \end{subfigure}
         \\
@@ -1193,7 +1193,7 @@ The simulated magnetic field around a single wire is shown in Figure\,\ref{fig:s
 % }
 % \end{figure}
 
-The colors indicate the magnetic field strength where maxima/minima in the direction/perpendicular to the magnetic field can be observed. A maximum value of 3.07$\cdotp$10\textsuperscript{4}\,A/m and a minimum of 3.58\,A/m are detected for the magnetic field intensity. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient prevails, while it is repulsive on both wire sides, i.e. a negative field gradient develops. These attractive and repulsive magentic forces are visualized in Figure\,\ref{fig:mag_force_sw}, where the color indicates the magnitude of the magnetic field gradient in the y-direction and the arrows indicate the direction and magnitude of the magnetic force $F_{m}$. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very similar overall distribution of the magnetic field intensity (see Figure\,\ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure\,\ref{fig:sw_mag_field} also match with the experimental visualization of the magnetic field lines in Figure\,\ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between wire and sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire. As the simulation is in good accordance with both the experimental and the simulated data, the model was deemed adequate for the simulation of the magnetic field. \textbf{Markus:ich würde, der vollständigkeitshalber ein field direction pfeil auch in 4.1b und 4.2a machen, auch weil das bei 4.2b ja anderst ist als bei den anderen 3, oder?}  
+The colors indicate the magnetic field strength where maxima/minima in the direction/perpendicular to the magnetic field can be observed. A maximum value of 3.07$\cdotp$10\textsuperscript{4}\,A/m and a minimum of 3.58\,A/m are detected for the magnetic field intensity. This indicates that the field is attractive on the top and bottom of the wire i.e. a positive magnetic field gradient prevails, while it is repulsive on both wire sides, i.e. a negative field gradient develops. These attractive and repulsive magentic forces are visualized in Figure\,\ref{fig:mag_force_sw}, where the color indicates the magnitude of the magnetic field gradient in the y-direction and the arrows indicate the direction and magnitude of the magnetic force $F_{m}$. The magnetic field intensity around a circular wire simulated by Lindner et al. \cite{lindner2013simulation} exhibits very similar positions for the minima and maxima of the magnetic field strength in regard to the field direction and also a very similar overall distribution of the magnetic field intensity (see Figure\,\ref{fig:mag_field_nirschl}). The magnetic field lines depicted in Figure\,\ref{fig:sw_mag_field} also match with the experimental visualization of the magnetic field lines in Figure\,\ref{fig:mag_field_hale}. The magnetic field lines exhibit a very similar pattern in both cases, as in the two-dimensional case no distinction between wire and sphere can be made. The field lines are denser in the close vicinity of the wire reflecting the high magnetic field strength, while the field lines become less dense with the diminishing field strength at a distance from the wire. As the simulation is in good accordance with both the experimental and the simulated data, the model was deemed adequate for the simulation of the magnetic field.  
 
 \begin{figure}[H]
 		\centering
@@ -1256,7 +1256,7 @@ In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and 
         \label{fig:tw_fw_mag_field}
   \end{figure}
 
-  
+Most paramteter runs were performed with a a particle radius of 30\,\textmu m, this fits the volume median diamteter D50 of 31,25\,textmu m used of the TruForm matrix material used for the retention experiments (see Section \ref{subsec:mat_mag_char_res}). 
 
 % A decrease in diameter of the matrix
 % element can increase the magnetic ﬁeld gradient without changing
@@ -1295,8 +1295,19 @@ In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and 
 %magnetic properties(hysteresis loop)
 
 As the material properties, e.g. size, shape and magnetization behaviour, of both the matrix material and the magnetic nanoparticles have a significant influence on the retention behaviour and the separation efficiency the used materials were thoroughly/extensively tested and characterized. \newline
-The volume based particle size distributions for the examined matrix materials are shown in Figure\,\ref{fig:Hist_mat}. The corresponding D-values that were derived from a fit of the cumulative distribution Q$_{3}$ can be found in Table\,\ref{table:D_values}. It can be seen that the LSM matrix material with a D10 value of 24.7\,\textmu m and a D90 value of 81.05\,\textmu m exhibits a much wider particle size distribution than the two other matrix materials SRA-150 and Truform with D10 values of  8.5\,\textmu m and 16.38\,\textmu m and D90 values of 34.22\,\textmu m and 47.01\,\textmu m respectively. It is desirable for the size of the matrix material particles to be relatively homogeneous, at best varying no more than 10\,\% from the average particle size, in order to achieve a homogeneous packed bed which in turn leads to uniform fluid flow characteristics within the column \cite{miltenyi1997magnetic}. In addition smaller particles produce higher magentic field gradients and are therefore more suitable for the separation of weakly magnetic materials. Consequently the LSM particles were not further investigated. The remaining matrix materials SRA-150 and TruForm exhibit narrower particle size distributions. With an average particle size of 20.0\,\textmu m and  31.72\,\textmu m and corresponding standard deviations of 11.76\,\textmu m and 9.67\,\textmu m respectively they vary however further than the above mentioned 10\,\% from the average particle size. In order to decrease the width of the particle size distinction the SRA-150 particles were sieved. The resulting particle distribution is shown in Figure\,\ref{fig:hist_SRA_sieve}. From the  
+The volume based particle size distributions for the examined matrix materials are shown in Figure\,\ref{fig:Hist_mat}. The corresponding D-values that were derived from a fit of the cumulative distribution Q$_{3}$ can be found in Table\,\ref{table:D_values}. It can be seen that the LSM matrix material with a D10 value of 24.7\,\textmu m and a D90 value of 81.05\,\textmu m exhibits a much wider particle size distribution than the two other matrix materials SRA-150 and Truform with D10 values of  8.5\,\textmu m and 16.38\,\textmu m and D90 values of 34.22\,\textmu m and 47.01\,\textmu m respectively. It is desirable for the size of the matrix material particles to be relatively homogeneous, at best varying no more than 10\,\% from the average particle size, in order to achieve a homogeneous packed bed which in turn leads to uniform fluid flow characteristics within the column \cite{miltenyi1997magnetic}. In addition smaller particles produce higher magnetic field gradients and are therefore more suitable for the separation of weakly magnetic materials. Consequently the LSM particles were not further investigated. The remaining matrix materials SRA-150 and TruForm exhibit narrower particle size distributions. With an average particle size of 20.0\,\textmu m and  31.72\,\textmu m and corresponding standard deviations of 11.76\,\textmu m and 9.67\,\textmu m respectively, they vary however further than the above mentioned 10\,\% from the average particle size. In order to decrease the width of the particle size distribution the SRA-150 particles, which were already used in preceiding experiments by \cite{AndreMaster}, were sieved as described in Section\,\ref{subsec:Matrix_mat}. The resulting particle distribution is shown in Figure\,\ref{fig:hist_SRA_sieve}. With an increase of the D10 value by 1.8\,\% and a decrease of the D50 and D90 value by 2.5\,\% and 5.5\,\%  respectively the width of the particle size distribution could not be reduced significantly. This lack of size separation may be due to the dry sieving process applied. For particles smaller than approximately 30\,\textmu m a wet sieving process reduces blocking of the sieve meshes and therefore increase the separation efficiency \cite{RetschSieve}. Nevertheless both the SRA-150 and the TruFrom matrix material further investigated. The particle size and shape of the \gls{pmma} matrix material, which was used as a negative control with its non-magentic behaviour, was determined under the light microscope. The diameter of the spherical particles was measured as described in Section\,\ref{subsubsec:light_mic}. An exemplary microscope image of the \gls{pmma} particles with diameter measurements is shown in Figure\,\ref{fig:PMMA}. It can be clearly seen that the particles are almost perfectely spherical and of a uniform size at approximately 17\,\textmu m, which matches the manufacturers specifications.  
 
+\begin{figure}[h]
+\centering
+
+\scalebox{0.2}{\includegraphics{figures/PMMA.png}}
+\caption[Light microscope image of \gls{pmma}]{Light microscope image of the \gls{pmma} matrix material
+\label{fig:PMMA}
+}
+\end{figure}
+
+The particle size distributions of the magnetic nanoparticle suspensions were measured via dynamic light scattering. In order to evaluate the nanoparticles the D-values were determined by a fit of the cumulative distribution Q$_{3}$. The resulting volume based particle size distributions and the calculated D-values can be found in Figure\,\ref{fig:Hist_nano} and Table\,\ref{table:D_values} respectively. It was already demonstrated by \cite{AndreMaster}, that the Chemagen nanoparticles form aggregates. Therefore the nanoparticles were filtered through a filter with a pore size of 450\,\textmu m before each experiment to remove the largest aggregates from the particle suspension, which should minimize a size exclusion effect within the column. In Figure\,\ref{fig:hist_chemagen} it can be clearly seen that no particles larger than the filter pore size were detected in the filtered solution. With a volumetric D50 value of 101.06\,\textmu m the chemagen nanoparticles still considerably larger than the average particle size of 10\,nm to 20\,nm in magnetic nanoparticle suspensions mentioned by \cite{svoboda2004magnetic}. In addition a wide particl size distribution from approximately 50\,nm to 400\,nm is apparent. This can also be attributed to the agglomeration of the particles with an indivdual size between 20\,nm and 50\,nm.
+In order to get a more precise evaluation of the separation efficiency of the tested column nanoparticles with a more narrower particle size distribution from micromod were examined. The results of the particle size measurements of the micromod particles for two different particle sizes, 20\,nm and 100\,nm, as well as a 1:1 mixture of the two suspensions are also depicted in Figure\,\ref{fig:Hist_nano}. It can be clearly seen that all three solutions exhibit far narrower particle size distributions in a range between approximately 20\,nm to 300\,nm. The measured volumetric D50 value of 99.96\,nm fits very well with the manufacturers data of an average particle size of 100\,nm. For the 20\,nm particles however the determined D-value of 40.67\,nm is much larger than the indicated 20\,nm range. The variation could however also result from the volumetric approach of the particle measurement in which larger particles have a stronger influence on the D-values than in an number based approach. For the 20\,nm micromod particles a bimodal distribution is observed. The first mode exhibits a mean particle size of approximately 20\,nm, while the second mode is comparaplbe to the size distribution of the 100\,nm particles. This could be due to a contamination of the 20\,nm particles with the 100\,nm particles. The mixture of the two particle sizes, which was used for separation experiments, also results in a bimodal size distribution which is shown in Figure \ref{fig:hist_micro_20}. A first mode at approximately 20\,nm and a second mode at around 50\,nm can be observed. Despite the deviations of the particle  size the micromod particles exhibit a much smaller particle size distribution than the chemagen nanoparticles, which makes them more suitable for initial separation experiments.   
 
 % a high magnetic field gradient is locally induced close to the surface of the matrix
 % 
@@ -1335,7 +1346,7 @@ The volume based particle size distributions for the examined matrix materials a
         \label{fig:Hist_mat}
   \end{figure}
 
-\begin{table}[H]
+\begin{table}[h]
 \centering
 \caption[Volumetric D-values for the matrix material and the magnetic nanoparticles]{Volumetric D-values for the matrix material and the magnetic nanoparticles}
 \label{table:D_values}
@@ -1381,14 +1392,7 @@ micromod mixture & 22.16\,nm & 44.17\,nm & 80.39\,nm \\
         \label{fig:Hist_nano}
   \end{figure}  
 
-\begin{figure}[h]
-\centering
 
-\scalebox{0.2}{\includegraphics{figures/PMMA.png}}
-\caption[Light microscope image of \gls{pmma}]{Light microscope image of the \gls{pmma} matrix material
-\label{fig:waveform}
-}
-\end{figure}
 
 
 \begin{figure}[H]
@@ -1415,6 +1419,9 @@ micromod mixture & 22.16\,nm & 44.17\,nm & 80.39\,nm \\
 pictures of different flow rates, packing of column evaluated as good if asymmtery between 1 and 1.5
 \subsection{Retention experiments with the PMMA matrix material}
 \label{subsec:pmma_res}
+
+As the aggregates in the chemagen nanaoparticl suspension could not be completely removed by an ultrasonic treatment (see Section \ref{Sec:}) it could not be guaranteed that the solution was comprised of the same amount of particles each experimental cycle. Therefore the results of each cycle were noramlized with experimental runs at 0\,mT with the same sample solution.  
+
 
 \subsection{Retention experiments with TruForm matrix material}
 \label{subsec:trufrom_res}
