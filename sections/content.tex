@@ -812,19 +812,19 @@ No-slip and no-flux boundary conditions are applied at the wire's surface, while
 
 \subsection{Parameter studies}
 \label{subsec:Param_studies} 
-In order to evaluate the influence of the different parameters on the retention of the magnetic nanoparticles, parameter studies were conducted. For the parameter studies, the following parameters were varied: the magnetic flux density of the external field $B_{0}$ in mT, the particle radius $R_{p}$ in nm, the radius of the wire $R_{w}$ in \textmu m and the inflow velocity of the slurry $u_{0}$ in m/s. For the two and four cylinder models $R_{w}$ was held constant. The design of the parameter studies is shown in Table\,\ref{table:param_study} with the corresponding value ranges of the varied parameters. 
+In order to evaluate the influence of the different parameters on the retention of the magnetic nanoparticles, parameter studies were conducted. For the parameter studies, the following parameters were varied: the magnetic flux density of the external field $B_{0}$ in mT, the particle radius $R_{p}$ in nm, the radius of the wire $R_{w}$ in \textmu m and the inflow velocity of the slurry $u_{0}$ in \textmu m/s. For the two and four cylinder models $R_{w}$ was held constant. The design of the parameter studies is shown in Table\,\ref{table:param_study} with the corresponding value ranges of the varied parameters. 
 
 \begin{table}[H]
 \centering
-\caption[Paramter study]{Paramter study design: with the model description where sw=single wire, tw=two wires, fw=four wires and the corresponding constant parameter values and value ranges}
+\caption[Parameter study]{Parameter study design: with the model description where sw=single wire, tw=two wires, fw=four wires and the corresponding constant parameter values and value ranges}
 \label{table:param_study}
 \begin{tabularx}{\textwidth}{XXXXX}\hline
-Model & $B_{0}$ in mT & $R_{p}$ in nm & $R_{w}$ in \textmu m & $u_{0}$ in mm/s\\
+Model & $B_{0}$ in mT & $R_{p}$ in nm & $R_{w}$ in \textmu m & $u_{0}$ in \textmu m/s\\
 \hline\hline
-sw, tw, fw & 0-35 & 30 & 25 & 20\\
-sw, tw, fw & 0-32.5 & 20-150 & 25 & 20\\
-sw, tw, fw & 0-32.5 & 30 & 25 & 15-40\\
-sw & 0-32.5 & 30 & 5-45 & 20\\
+sw, tw, fw & 0-35 & 30 & 25 & 200\\
+sw, tw, fw & 0-32.5 & 20-150 & 25 & 200\\
+sw, tw, fw & 0-32.5 & 30 & 25 & 150-400\\
+sw & 0-32.5 & 30 & 5-45 & 200\\
 \hline
 \end{tabularx}
 \end{table}
@@ -1234,9 +1234,9 @@ Figure\,\ref{fig:creep_flow_sw} shows the simulated streamlines around a single 
 \subsection{Parameter studies}
 \label{subsec:Param_res}
 
-Parametric analysis was performed to get a better understanding of the influnces of the different parameters on the retention behaviour of the nanoparticles.  the four-variable issue
-
-In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and the magnetic field lines for two and four magnetized cylindrical wires are shown. It is appartent that the minimum and maximum values of the magnetic field intensity can still be located in the same positions as for a single wire. The highest values for the field strenght however decrease from 3.07$\cdotp$10\textsuperscript{-4}\,A/m for the single wire configuration to 2.82$\cdotp$10\textsuperscript{-4}\,A/m and 2.04$\cdotp$10\textsuperscript{-4}\,A/m for the two and four wire setup respectively. As there are more surfaces for the particles to be attracted to than in the single wire setup and the particles can not as easily bypass the wire without beeing influenced by the magnetic field gradient the retention is assumed to increase with an increase in the number of wires.  
+Parameter studies were performed to get a better understanding of the influence of the different parameters on the retention behaviour of the nanoparticles.
+Most parameter runs were performed with a particle radius of 30\,\textmu m, which fits the volumetric median diameter D50 of 31,25\,\textmu m of the TruForm matrix material used for the retention experiments (see Section\,\ref{subsec:mat_mag_char_res}). In addition to the single wire setup the parameter studies were performed with two and four wire configurations. The resulting magnetic field and flux around the single wire were already described in Section\,\ref{subsec:mod_val}. In the following a short overview of the resulting magentic field and flux around the two and four cylinder setup is given. \\
+In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and the magnetic field lines for two and four magnetized cylindrical wires are shown. It is apparent that the minimum and maximum values of the magnetic field intensity can still be located in the same positions as for a single wire. The highest values for the field strength however decrease from 3.07$\cdotp$10\textsuperscript{-4}\,A/m for the single wire configuration to 2.82$\cdotp$10\textsuperscript{-4}\,A/m and 2.04$\cdotp$10\textsuperscript{-4}\,A/m for the two and four wire setup respectively. As there are more surfaces for the particles to be attracted to than in the single wire setup and the particles can not as easily bypass the wire without being influenced by the magnetic field gradient the retention is assumed to increase with an increase in the number of wires.  
 
 \begin{figure}[H]
 		%\centering
@@ -1256,7 +1256,27 @@ In Figure\,\ref{fig:tw_fw_mag_field} the simulated magnetic field intensity and 
         \label{fig:tw_fw_mag_field}
   \end{figure}
 
-Most paramteter runs were performed with a a particle radius of 30\,\textmu m, this fits the volume median diamteter D50 of 31,25\,textmu m used of the TruForm matrix material used for the retention experiments (see Section \ref{subsec:mat_mag_char_res}). 
+In Figure \ref{fig:tw_fw_flow_field} the fluid flow around the two and four wire configuration for $U_{0}$=20mm/s is shown. The no-slip boundary condition on the wire surface leads to a velocity of zero directly at the surface and a forming of a boundary layer in the vicinity. As the cross section between the cylinders is decreased the velocity of the fluid is increased in accordance with Bernoulli's principle. For two cylinders a maximum velocity of 443\,\textmu m/s and for four cylinders of 1640\,\textmu m/s is reached in between the wires, while only a maximum velocity of 310\,\textmu m/s can be observed in the one wire setup. This results in a higher drag force on particles close to the wires.   
+  
+\begin{figure}[H]
+		%\centering
+            \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.36}{\includegraphics{figures/Hfield_around_two_wires_close.png}}
+                  %\caption{}
+          \end{subfigure}\hfill
+        \begin{subfigure}{0.49\textwidth}
+                \flushright
+                \scalebox{0.36}{\includegraphics{figures/Hfield_around_four_wires_close.png}}
+                %\caption{}\label{fig:creep_2}
+        \end{subfigure}
+        \\
+        
+        \caption[]{\textbf{add Figure of streamlines around 2 and 4 cylinders}}
+        \label{fig:tw_fw_flow_field}
+  \end{figure}  
+
+The results of the parameter studies for the one, two and four wire configurations are presented and discussed in the following Sections (\ref{subsubsec:One_wire}, \ref{subsubsec:Two_wires} and \ref{subsubsec:Four_wires}). 
 
 % A decrease in diameter of the matrix
 % element can increase the magnetic ﬁeld gradient without changing
@@ -1296,18 +1316,18 @@ Most paramteter runs were performed with a a particle radius of 30\,\textmu m, t
 		%\centering
             \begin{subfigure}{0.49\textwidth}
                   \flushleft
-                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_var_2Cylinder_constBC.pdf}}
+                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_20_Rw_var_1Cylinder_constBC.pdf}}
                   %\caption{}
           \end{subfigure}\hfill
           \\
             \begin{subfigure}{0.49\textwidth}
                   \flushleft
-                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_var_2Cylinder_constBC.pdf}}
+                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_var_Rw_25_1Cylinder_constBC.pdf}}
                   %\caption{}
           \end{subfigure}\hfill
         \begin{subfigure}{0.49\textwidth}
                 \flushright
-                \scalebox{0.42}{\includegraphics{figures/B0_Rp_var_U0_20_2Cylinder_constBC.pdf}}
+                \scalebox{0.42}{\includegraphics{figures/B0_Rp_var_U0_20_Rw_25_1Cylinder_constBC.pdf}}
                 %\caption{}\label{fig:creep_2}
         \end{subfigure}
         \\
@@ -1321,12 +1341,18 @@ Most paramteter runs were performed with a a particle radius of 30\,\textmu m, t
 		%\centering
             \begin{subfigure}{0.49\textwidth}
                   \flushleft
-                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_var_2Cylinder_preiodicBC.pdf}}
+                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_20_Rw_var_1Cylinder_periodicBC.pdf}}
+                  %\caption{}
+          \end{subfigure}\hfill
+          \\
+            \begin{subfigure}{0.49\textwidth}
+                  \flushleft
+                  \scalebox{0.42}{\includegraphics{figures/B0_Rp_30_U0_var_Rw_25_1Cylinder_periodicBC.pdf}}
                   %\caption{}
           \end{subfigure}\hfill
         \begin{subfigure}{0.49\textwidth}
                 \flushright
-                \scalebox{0.42}{\includegraphics{figures/B0_Rp_var_U0_20_2Cylinder_periodicBC.pdf}}
+                \scalebox{0.42}{\includegraphics{figures/B0_Rp_var_U0_20_Rw_25_1Cylinder_periodicBC.pdf}}
                 %\caption{}\label{fig:creep_2}
         \end{subfigure}
         \\
