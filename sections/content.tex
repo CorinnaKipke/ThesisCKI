@@ -524,8 +524,7 @@ Re=\frac{\rho u L}{\mu}=\frac{uL}{\nu}
 \end{equation}
 
 where $\rho$ is the fluid density in kg/m\textsuperscript{3} and $L$ is a characteristic linear dimension in m, e.g. the hydraulic diameter of a pipe. For a low Reynolds number the flow condition will be laminar, while for higher Reynolds numbers, above approximately 2300 for a flow in a circular pipe, turbulent flow occurs \cite{schwarze2012cfd}. Flows where Re is much smaller than one are referred to as Stokes flow or creeping flow. Here the viscous forces are much larger than the inertial forces which is usually caused by either very low velocities or small characteristic lengths, f.e. in microfluidics. Stokes flow also occurs in highly viscous fluids such as heavy oils or honey \cite{lautrup2004physics}. Figure\,\ref{fig:creep_tot} shows creeping flow around a cylinder, with its characteristic streamlines, that are parallel to the surface of the cylinder as a schematic drawing and in reality. A turbulent flow around the same cylinder, which would occur e.g. for large u, would appear less ordered and contain eddies or swirls.
-
-\begin{figure}[h]
+\begin{figure}
 		%\centering
           \begin{subfigure}{0.49\textwidth}
                   \flushleft
@@ -542,7 +541,7 @@ where $\rho$ is the fluid density in kg/m\textsuperscript{3} and $L$ is a charac
         \caption[Creeping flow around a cylinder]{Streamlines of the flow field for a creeping flow around a cylinder with Re\,$\ll$\,1 }
         \label{fig:creep_tot}
   \end{figure}
-
+\FloatBarrier
 \subsection{Space and time discretization methods}
 \label{subsec:FEM}
 Space and time dependent physical problems are usually described with the help of \glspl{pde} in a domain $\Omega$. Most of these \glspl{pde} cannot be solved with analytical methods, but an approximation of the equations based on different types of discretizations can be obtained. \Gls{fem} is a numerical technique for constructing such approximate solutions for \glspl{pde}. The principle of the method is to replace an entire continuous domain by a number of finite-sized subdomains, called elements, of geometrically simple shapes like tetrahedrons or triangular prisms. Together the elements constitute a finite-element mesh. The \glspl{pde} for each element are approximated by an interpolation function, such as a linear, quadratic or higher order polynomial, also referred to as basis function, with a finite number of degrees of freedom. In combination with the boundary conditions a  system of algebraic equations is obtained, which can be solved by a sparse matrix solver \cite{john2016finite}. The solution of the matrix results in an approximate solution of the \glspl{pde}. The accuracy of the solution can be increased by a refinement of the finite-element mesh or an increased order of the basis function. An example of the approximation of a function $u$ by the function $u_{h}$ consisting of linear combinations of basis functions $\psi_{i}$ with the coefficients $u_{i}$ (see Equation\,\ref{eq:FEM}) is depicted in Figure\,\ref{fig:FEM}. 
@@ -552,7 +551,7 @@ u\approx u_{h} \quad \textrm{with} \quad u_{h}=\sum_{i}u_{i}\psi_{i}
 \label{eq:FEM}
 \end{equation}
 
-\begin{figure}[H]
+\begin{figure}
 \centering
 \scalebox{0.3}{\includegraphics{figures/FEM.png}}
 \caption[Approximation of a function with FEM]{Approximation of the function $u$ (solid blue line) by the function $u_{h}$ (dashed red line), where $u_{h}$ is a combination of linear interpolation functions $\psi_{i}$ (solid black lines) and the coefficients $u_{0}$ to $u_{7}$ \cite{ComsolFEM}
@@ -563,11 +562,19 @@ u\approx u_{h} \quad \textrm{with} \quad u_{h}=\sum_{i}u_{i}\psi_{i}
 Overall \gls{fem} for the approximation of \glspl{pde} can be divided into four steps: discretization of the domain, selection of the interpolation functions, formulation of the system equations and solution of the system equations. 
  
 \Gls{fem} can also be applied for a time domain, this can, however, come at the cost of a high computational effort. Therefore simple time-stepping methods based on finite differences are frequently used for time discretization. The implicit time-stepping algorithm used in this work is the \gls{bdf} solver, which uses backward differentiation formulas with the order of accuracy varying from one, known as the backward Euler method, to five. \gls{bdf} solvers exhibit a high stability, but also include more damping effects than comparable solvers based on e.g. generalized alpha or Runge-Kutta methods \cite{ComsolRefManual}.
-
+\FloatBarrier
 \section{Analysis of peak asymmetry}
 \label{sec:peak_as}
 Chromatography is a technique commonly used for the separation of components of a mixture. There are many different types of chromatography e.g. liquide and gas chromatography. The principal of chromatographic separation is based on the different affinities of the mixture components towards a stationary phase, which can be either solid or liquide, and a mobile phase, which can be either liquide or gaseous. The differences in the rates of movement from the different mixture components lead to a separation over the length of the stationary phase, which is often placed in a column. A chromatogram is basically the output of a chromatography run measured at the end of the column. The chromatogram depicts different peaks which correspond to the separated mixture components. In liquide chromatography, the peak shape is an important quality characteristic, as it can be used to extract basic performance parameters such as the peak height, area, resolution and asymmetry. These parameters allow a prediction of the separation properties of the respective process. In order to predict the quality of the packed bed of a chromatographic column peaks produced by tracer molecules are examined. As tracer substances with no interaction with either the mobile or the solid phase are chosen. For the experimental setup in this thesis mainly the retention time, peak area and asymmetry were evaluated (for more information on the setup and evaluation methods see Section\,\ref{sec:Exp_setup}). In the following, the asymmetry of chromatographic peaks is further discussed. 
- 
+
+\begin{figure}
+\centering
+\scalebox{0.6}{\includegraphics{figures/Peak_param.pdf}}
+\caption[Idealized chromatographic peak]{Idealized chromatographic peak: Measurement of the retention time $t_{R}$ and the asymmetry factor $A_{s}=b/a$ at 10\,\% peak height $h_{10}$ 
+\label{fig:peak_param}
+}
+\end{figure} 
+
 An idealized chromatographic peak with a Gaussian profile is depicted in Figure\,\ref{fig:peak_param}. As most real chromatographic peaks are not symmetrical, an asymmetry factor $A_{s}$ is introduced to characterize the peak shape and to evaluate the quality of the packed bed. The asymmetry can be empirically determined by $A_{s}=b/a$, where $a$ is the partial peak width of the first part, measured at a certain percentage of the peak height and $b$ is the partial peak width for the second part of the peak, also measured at the same percentage of height. $A_{s}$ is usually measured at 10\,\% of the peak height from the base line as for Gaussian and near Gaussian peaks it results in much more accurate values with lower standard deviations as compared to measurements at 5, 30 or 50\,\% \cite{foley1983equations}. The Gaussian standard deviation of the asymmetrical peak can be estimated with Equation \ref{eq:Gaus_dev}, where $w_{10}=a+b$ is the peak width at $h_{10}$ \cite{papai2002analysis}.  
 
 \begin{equation}
@@ -575,16 +582,8 @@ An idealized chromatographic peak with a Gaussian profile is depicted in Figure\
 \label{eq:Gaus_dev}
 \end{equation}
 
-\begin{figure}[h]
-\centering
-\scalebox{0.6}{\includegraphics{figures/Peak_param.pdf}}
-\caption[Idealized chromatographic peak]{Idealized chromatographic peak: Measurement of the retention time $t_{R}$ and the asymmetry factor $A_{s}=b/a$ at 10\,\% peak height $h_{10}$ 
-\label{fig:peak_param}
-}
-\end{figure}
-
 The peak shape for values of $A_{s} < 1$ is called fronting and for values of $A_{s} > 1$ tailing. Tailing is e.g. caused by dead volume in the flow path or the column packing, while fronting can arise from channeling in poorly packed columns. Therefore $A_{s}$ is a suitable indicator of the quality of the packed bed. As almost all chromatographic peaks tail to some extent, an acceptable range for $A_{s}$ has to be defined for each column and application individually \cite{SWB-414874366}.  
-
+\FloatBarrier
 % \section{Simulated moving bed chromatography}
 % \label{sec:smb}
 % The overall goal of the research project this thesis is embedded in is to develop a continuous size fractionation process for magnetic nanoparticles at industrial scale. \Gls{smb} is a continuous countercurrent chromatography method, which was developed in the late 1950s by engineers from Universal Oil Products to separate p-xylene from its isomers \cite{broughton1961continuous,carson1962rotary}. The invention of the continuous process was mainly motivated by the need to produce large quantities of chemicals at high purity in a comparatively short time. Since the 1990s \gls{smb} is increasingly used in other industries than petrochemistry, e.g. cane and beet molasse separation in the sugar industry or the production of enantiomerically pure drugs in the pharmaceutical industry. The principle of countercurrent chromatography is depicted in Figure\,\ref{fig:SMBTurtle}. The process of separation of two components can be illustrated by picturing a fast cat and a slow turtle running on a conveyor belt that is moving in the opposite direction. The velocity of the cat is larger than and the velocity of the turtle is smaller than the velocity of the conveyor. Therefore the cat will move to the right side, while the turtle is dragged to the left side of the band and thus they are separated \cite{rajendran2009simulated}.  
@@ -633,14 +632,14 @@ The objective of this thesis is the design, implementation and validation of an 
 \label{subsec:geom}
 The geometry of the the two-dimensional single wire model as shown in Figure\,\ref{fig:geom_singlewire}, consists of two subregions: the magnetized wire (displayed by the inner cylinder) and the surrounding fluid (in gray). The wire is located at the center of a rectangular channel, through which a nanoparticle suspension flows with an average inlet velocity of $u_{0}$. The applied magnetic field $H_{0}$ is oriented in the same direction as the flow velocity. This longitudinal arrangement was chosen, as it matches the conditions in the experimental setup. In order to evaluate the retention of the nanoparticles close to the cylinder, a circular domain was included around the wire in which the particle residence time was determined (see Section\,\ref{subsec:Param_studies}).
 
-\begin{figure}[H]
+\begin{figure}
 \centering
 \scalebox{0.67}{\includegraphics{figures/Comsol_single_wire_Geometry_long.png}
 \caption[Single wire model geometry]{Single wire model geometry: the magnetic particles flow by a magnetized ferromagnetic cylinder with the radius $R_{w}$ in a rectangular channel with the length L=20$R_{w}$ and the width w=10$R_{w}$ in \textmu m; the uniform external field $H_{0}$ is applied parallel to the inlet flow velocity $u_{0}$; the retention of the particles is evaluated within the outer circular domain with a radius of 1.5$R_{w}$ and at the outlet of the channel}
 \label{fig:geom_singlewire}
 }
 \end{figure}
-
+\FloatBarrier
 For the generation of the mesh, the COMSOL method of physics-controlled meshing with free triangular elements, was applied. Hereby, information from the physics interface is used to set up an appropriate mesh sequence. The different mesh sizes are specified by COMSOL with adjectives such as coarse, normal, fine or finer. As COMSOL mainly uses \gls{fem}, the accuracy of the solution is linked to the mesh size (for more information see Section\,\ref{subsec:FEM}). The smaller the mesh size the closer the approximation matches the exact solution of the \glspl{pde}. A decrease in element size, however, is always accompanied by an increase in computational effort. Therefore, a mesh refinement study was conducted with the goal to minimize the difference between the exact and the approximated solution, while still retaining reasonably low computing times. The residence time of the particles measured at the outflow was chosen as characteristic output parameter. As convergence criterion a deviation of the residence time smaller than 1.5\,\% from the current mesh to the next finer mesh was chosen. The different meshes tested in the refinement study are shown in Figure\,\ref{fig:Mesh_Ref} and the corresponding mesh size parameters are listed in Table\,\ref{table:Mesh_Ref}.  
 
 \begin{figure}[h]
@@ -670,7 +669,6 @@ For the generation of the mesh, the COMSOL method of physics-controlled meshing 
         \caption[Mesh refinement study]{The different meshes used in the mesh refinement study with the element-size from left to right: coarse, normal, fine, finer}
         \label{fig:Mesh_Ref}
   \end{figure}
- 
  
 \begin{table}[H]
 \centering
@@ -898,8 +896,10 @@ As a negative control \gls{pmma} particles from microParticles GmbH were used.
 
 \subsection{Column packing}
 \label{subsec:col_pack}
-As chromatographic column an Omnifit\textsuperscript{\textregistered} BenchMark\textsuperscript{TM} Microbore chromatography column (Omnifit Labware, Diba Industries, Danbury, USA) was used. The borosilicate glass column has a column length of 10\,mm, a column inside diameter of 3\,mm and a total volume capacity of 0.7\,ml. On both sides of the column end pieces with pre-assembled frits were used to hold back the matrix material. For the experiments with \gls{pmma} and SRA-150 \gls{ptfe} frits with a pore size of 25\,\textmu m were used. In addition punched out polycarbonate filters with a pore size of 2\,\textmu m and an O-ring were added to the inlet and outlet of the column. For the experiments with the TruForm 316-3 matrix material \gls{ptfe} frits with a pore size of 5\,\textmu m were used, no additional filters were necessary. \\   
-For the column packing a slurry consisting of the matrix material and either ultra-pure water for \gls{pmma} or a 20\,\% Ethanol suspension for SRA-150 and TruForm 316-3 was used. Ethanol was used in order to simplify the packing of the column due to the reduced surface tension. To remove impurities and achieve a narrower particle size distribution the \gls{pmma} matrix material was first mixed with the solvent and left to settle for several minutes. After sedimentation the supernatant was removed and replaced by fresh solvent. This procedure was repeated till the supernatant was a clear fluid. For the other two matrix materials instead of sedimentation a magnet was held to the outside of the falcon to separate the magnetizable particles from the supernatant.\\   
+As chromatographic column an Omnifit\textsuperscript{\textregistered} BenchMark\textsuperscript{TM} Microbore chromatography column (Omnifit Labware, Diba Industries, Danbury, USA) was used. The borosilicate glass column has a column length of 10\,mm, a column inside diameter of 3\,mm and a total volume capacity of 0.7\,ml. On both sides of the column end pieces with pre-assembled frits were used to hold back the matrix material. For the experiments with \gls{pmma} and SRA-150 \gls{ptfe} frits with a pore size of 25\,\textmu m were used. In addition punched out polycarbonate filters with a pore size of 2\,\textmu m and an O-ring were added to the inlet and outlet of the column. For the experiments with the TruForm 316-3 matrix material \gls{ptfe} frits with a pore size of 5\,\textmu m were used, no additional filters were necessary. 
+
+For the column packing a slurry consisting of the matrix material and either ultra-pure water for \gls{pmma} or a 20\,\% Ethanol suspension for SRA-150 and TruForm 316-3 was used. Ethanol was used in order to simplify the packing of the column due to the reduced surface tension. To remove impurities and achieve a narrower particle size distribution the \gls{pmma} matrix material was first mixed with the solvent and left to settle for several minutes. After sedimentation the supernatant was removed and replaced by fresh solvent. This procedure was repeated till the supernatant was a clear fluid. For the other two matrix materials instead of sedimentation a magnet was held to the outside of the falcon to separate the magnetizable particles from the supernatant.
+
 A CETONI neMESYS syringe pump (CETONI GmbH, Korbussen, Germany), controlled by a QmixElements software, was connected to bottom of the column via a tube (see Figure\,\ref{fig:Packing_Setup_Column}). With this setup a negative pressure was generated within the column into which the matrix material slurry is drawn from the column inlet. The slurry was added to the column inlet by a pipette. Once the column was completely filled, the syringe pump was disconnected and the end piece with the corresponding frit or filter was placed on top of the column. Then the packed bed within the column was compressed with the help of an \gls{fplc}-system (described in Section\,\ref{subsec:chrom_sys}) to eliminate possible cavities. Afterwards the column was again connected to the syringe pump and the resulting void at the top filled with new matrix material. This procedure was repeated until no further compression of the matrix material could be observed. The column and the syringe pump are shown in Figure\,\ref{fig:Packing_Setup_Column}.
 %%%%%%%%%%%%%%%%%%%%Include Figure of setup and column%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -951,13 +951,13 @@ A CETONI neMESYS syringe pump (CETONI GmbH, Korbussen, Germany), controlled by a
 %         \label{fig:Bioreactor}
 %   \end{figure}  
 
-
+\FloatBarrier
 \subsection{Chromatographic system}
 \label{subsec:chrom_sys}
 For the compression of the packed bed within the column and the execution of the retention experiments an Äkta purifier \gls{fplc}-system from GE Healthcare (Buckinghamshire, England) was used. For all connections tubings with an inner diameter of 0.25\,mm (PEEK tubings blue, GE Healtcare Bio-Sciences AB, Uppsala, Sweden) were used to reduce axial dispersion in order to achieve high resolution peaks. The samples were injected via a sample loop with a total volume of 100\,\textmu m. The experiments were conducted with ultra-pure water as mobile phase and a constant flow rate. An inline UV flow cell was used to continuously measure the absorbance of the liquid at a wavelength of 280 nm. A conductivity flow cell was used to measure the conductivity of the passing solution. For further analysis the injected samples were collected by a fraction collector after they had passed the column and the detectors. The regulation of the \gls{fplc}-system and the analysis of the transmitted data was realized by the software Unicorn 5.20 (GE Healthcare Life Sciences, Buckinghamshire, England). The experimental setup is shown in Figure\,\ref{fig:  }.
 %%%%%%%%%%%%%%%Include Figure of ÄKta and Fraction collector%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[H]
+\begin{figure}
 		\centering
           \begin{subfigure}{0.49\textwidth}
                   \flushleft
@@ -974,7 +974,7 @@ For the compression of the packed bed within the column and the execution of the
         \caption{Chromatographic system and the used Helmholtz coil}
         \label{fig:Bioreactor}
   \end{figure}  
-
+\FloatBarrier
 
 \subsubsection{Chromatographic system with a Helmholtz coil}
 \label{subsubsec:helm_coil}
