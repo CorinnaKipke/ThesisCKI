@@ -177,9 +177,9 @@
 \iflanguage{english}{
 % include English and German abstracts
 \include{sections/abstract_en}
-%\begin{otherlanguage}{ngerman}
-%\include{sections/abstract_de}
-%\end{otherlanguage}
+\begin{otherlanguage}{ngerman}
+\include{sections/abstract_de}
+\end{otherlanguage}
 }{
 % include only German abstract
 \include{sections/abstract_de}
